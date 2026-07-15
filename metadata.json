@@ -1,0 +1,6 @@
+{
+  "name": "賴以婕的能量藍圖",
+  "description": "跨流派深度命理分析報告：整合西洋占星、人類圖、紫微斗數、姓名學與八字的天賦指引。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
