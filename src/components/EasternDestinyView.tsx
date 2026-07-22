@@ -263,7 +263,7 @@ export default function EasternDestinyView() {
 
           <div className="pt-6 border-t border-slate-900 mt-6 text-center">
             <span className="text-[10px] text-slate-500 font-mono">
-              乾坤八字由文墨天機提供・乙亥年五月初七
+              乾坤八字由文墨天機提供・八字排盤數據 (生辰已保密)
             </span>
           </div>
         </div>
@@ -379,8 +379,8 @@ export default function EasternDestinyView() {
               </div>
 
               <div className="space-y-0.5 text-[6.5px] sm:text-[10px] text-slate-300 scale-95 sm:scale-100 origin-center leading-snug">
-                <div>農曆: 乙亥年五月初七 卯時</div>
-                <div>陽曆: 1995-06-04 05:20</div>
+                <div>農曆: (已隱藏保密)</div>
+                <div>陽曆: (已隱藏保密)</div>
                 <div className="text-slate-400 text-[6px] sm:text-[9px]">
                   命主：文曲 ✦ 身主：天機
                 </div>

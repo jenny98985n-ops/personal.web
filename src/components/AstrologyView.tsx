@@ -214,7 +214,7 @@ export default function AstrologyView() {
 
           <div className="pt-6 border-t border-slate-850 mt-6 text-center">
             <span className="text-[10px] text-slate-500 font-mono block">
-              西洋占星數據由 Astrolabe 提供・1995-06-04 05:20
+              西洋占星數據由 Astrolabe 提供・星盤數據 (生辰已保密)
             </span>
           </div>
         </div>

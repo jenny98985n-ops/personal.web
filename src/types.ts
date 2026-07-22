@@ -49,10 +49,10 @@ export const LAI_YI_CHIEH_DATA = {
   name: '探索者',
   englishName: 'Explorer',
   birthData: {
-    solar: '1995年6月4日 05:20',
-    lunar: '乙亥年五月初七 卯時',
-    bazi_calc_time: '1995-06-04 05:21 真太陽時',
-    name_calc_time: '1994年 (甲戌年) 國曆3月1日23時 (姓名學專屬輸入)'
+    solar: '保密 (已隱藏)',
+    lunar: '保密 (已隱藏)',
+    bazi_calc_time: '1995年 (真太陽時)',
+    name_calc_time: '姓名學專屬輸入 (已隱藏)'
   },
   
   // 1. Astro Placements

@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import UserManualView from './UserManualView';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, 
@@ -1908,7 +1909,7 @@ export default function FullReportView() {
     },
     {
       id: 55,
-      title: "55. 人類圖核心生活哲學：賴以婕的能量使用說明書 (深度解碼版)",
+      title: "55. 賴以婕專屬使用說明書 (User Manual 官方原廠終極版)",
       category: "humandesign",
       categoryLabel: "人類圖深度",
       icon: Brain,
@@ -1916,51 +1917,7 @@ export default function FullReportView() {
       iconColor: "text-rose-400",
       tagline: "顯示者 ✦ 2/4 人生角色 ✦ 情緒權威 ✦ 空白薦骨 ✦ 四箭全左",
       content: (
-        <div className="space-y-4 text-xs leading-relaxed font-sans">
-          <p>如果將妳的生命比喻為一台頂級跑車，那麼「人類圖」就是這台跑車的底層線路圖與引擎說明書。結合妳的紫微、占星與心理學，這是一份專屬於妳的「減阻尼、抗內耗」終極操作指南：</p>
-          <div className="space-y-3">
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
-              <strong className="text-rose-400 block mb-1">① 妳的核心引擎：顯示者 (Manifestor) 的霸氣與悲哀</strong>
-              <p className="text-slate-300">
-                <strong>原廠設定：</strong>妳生來就是為了打破現狀、發起新局，不需任何人的邀請或許可。但受到 ENFJ 與 2 號人的影響，妳常壓抑力量去拯救別人，不敢為自己發起，因而累積「憤怒」。<br />
-                <span className="text-rose-400 font-semibold">💡 優化：</span>將「告知」視為結界而非請求。不用問「我可不可以這樣做」，而是以霸道總裁的形式宣告妳的決定，然後行動。
-              </p>
-            </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
-              <strong className="text-blue-400 block mb-1">② 妳的導航系統：情緒中心權威 (Emotional Authority)</strong>
-              <p className="text-slate-300">
-                <strong>原廠設定：</strong>妳的決策中心不在大腦，而在情緒。當機會來臨時，極速大腦會催促妳「趕快答應」。但此時做決定，事後 90% 會後悔並陷入內耗。<br />
-                <span className="text-blue-400 font-semibold">💡 優化：</span>強制執行「72小時冷卻法則」。等狂喜與焦慮都消退，留下的「平靜、微涼的確定感」才是身體真實的聲音。
-              </p>
-            </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
-              <strong className="text-amber-400 block mb-1">③ 妳的能量電池：空白薦骨 (Undefined Sacral) 的致命陷阱</strong>
-              <p className="text-slate-300">
-                <strong>原廠設定：</strong>妳沒有持續工作的電池。走入人群，妳會吸滿別人的工作能量與焦慮，誤以為自己有體力而過度勞作，回家徹底被榨乾。<br />
-                <span className="text-amber-400 font-semibold">💡 優化：</span>允許自己「沒用」，見好就收。發起專案後，將重複執行的細節花錢外包給生產者。睡前一小時斷網、聽輕音樂排空多餘能量。
-              </p>
-            </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
-              <strong className="text-teal-400 block mb-1">④ 妳的社交策略：2/4 人生角色 (Hermit / Opportunist)</strong>
-              <p className="text-slate-300">
-                4 爻讓妳容易與人打成一片，好機會與財富往往來自熟人圈；但 2 爻渴望當隱士，社交過多會讓妳極度暴躁。將精力花在維護少數高质量的朋友圈上，累了就毫無愧疚地躲進妳的「神聖洞穴」。
-              </p>
-            </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
-              <strong className="text-purple-400 block mb-1">⑤ 妳的高階戰略腦：四箭全左 (Quad Left)</strong>
-              <p className="text-slate-300">
-                擁有極度結構、戰略性、主動吸收邏輯的活躍大腦。大腦想當將軍親自上陣殺敵，但身體沒體力。所以做軍師，不做步兵，把戰略腦用在策劃、分析、產出策略上，執行交給別人。
-              </p>
-            </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
-              <strong className="text-orange-400 block mb-1">⑥ 妳的天賦通道：體驗者與見證者</strong>
-              <p className="text-slate-300">
-                <strong>35-36 (體驗/無常通道)：</strong>註定要體驗豐富的情比起伏，重點在體驗本身，妳的喉嚨表達極具感染力。<br />
-                <strong>13-33 (浪子/紀錄見證通道)：</strong>天生吸引別人訴說秘密，妳必須建立「傾聽 ➔ 吸收 ➔ 退回洞穴隱遁沉澱 ➔ 重新現身分享」的循環，否則會被別人的負能量毒死。
-              </p>
-            </div>
-          </div>
-        </div>
+        <UserManualView />
       )
     },
     {
