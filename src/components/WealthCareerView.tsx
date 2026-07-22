@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Sparkles, DollarSign, Briefcase, TrendingUp, Compass, AlertTriangle, Users, Lightbulb, ShieldCheck, HelpCircle, ArrowRight, Calendar, Coins } from 'lucide-react';
+import { Sparkles, DollarSign, Briefcase, TrendingUp, Compass, AlertTriangle, Users, Lightbulb, ShieldCheck, HelpCircle, ArrowRight, Calendar, Coins, Crown, Brain, Shield } from 'lucide-react';
 import FullReportView from './FullReportView';
+import CoreKeyPointsSummary from './CoreKeyPointsSummary';
 
 export default function WealthCareerView() {
   const [selectedTimeline, setSelectedTimeline] = useState<'35-44' | '2026' | '2027'>('35-44');
@@ -48,6 +49,46 @@ export default function WealthCareerView() {
           </div>
         </div>
       </div>
+
+      {/* ⚡️ 財富與職場天賦懶人包速讀元件 */}
+      <CoreKeyPointsSummary
+        domainName="財富與職場"
+        themeColor="amber"
+        items={[
+          {
+            icon: DollarSign,
+            tag: "創富基因: 智力印鈔",
+            title: "天機化祿 ✕ 智慧與點子變現",
+            subtitle: "不靠死體力，靠大腦與系統獲利",
+            summary: "財帛宮天機化祿，代表財富來自「知識、點子、策略與顧問」。越能提供高價值智力解決方案，財富越豐盛。",
+            actionAdvice: "將知識與策略包裝成高單價諮詢、系統課程或個人品牌數位產品。"
+          },
+          {
+            icon: Briefcase,
+            tag: "職場定位: 個人品牌發起人",
+            title: "顯示者 ✕ 雙子大腦戰略家",
+            subtitle: "適合獨立發起與主導",
+            summary: "不適合體制內重複性勞碌。適合擔任個人品牌創辦人、戰略顧問、總策劃或高端智囊角色。",
+            actionAdvice: "建立自動化流程與外包團隊，自己專注於「發起、策略與核心決策」。"
+          },
+          {
+            icon: Users,
+            tag: "人脈聚財: 熟人網絡",
+            title: "4爻機會主義者 ✕ 貴人圈",
+            subtitle: "信任圈子帶來黃金機會",
+            summary: "財富與事業機會往往來自於「熟人網絡與既有信任圈」。養護好核心朋友圈，自然有轉介紹與合作。",
+            actionAdvice: "經營高品質的小眾私域社群，透過口碑推薦獲得高端案源。"
+          },
+          {
+            icon: Shield,
+            tag: "防破財提醒: 避免盲目合資",
+            title: "防範比劫奪財 ✕ 法律護盾",
+            subtitle: "清楚財務邊界與獨立合約",
+            summary: "防範因義氣或感情用事進行不透明合資。合作必須簽訂嚴謹合約，保持財務獨立。",
+            actionAdvice: "重大投資合資前進行法律審查，堅持財務獨立主權。"
+          }
+        ]}
+      />
 
       {/* NEW SECTION: 35大限與 2026-2027 流年預警核心 */}
       <div className="p-6 md:p-8 rounded-3xl bg-slate-950 border border-slate-800 shadow-2xl relative overflow-hidden">

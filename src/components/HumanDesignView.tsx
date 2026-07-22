@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
-import { Brain, Sparkles, Shield, Heart, Zap, RefreshCw, Layers, Compass, HelpCircle } from 'lucide-react';
+import { Brain, Sparkles, Shield, Heart, Zap, RefreshCw, Layers, Compass, HelpCircle, Flame, Crown, BatteryCharging } from 'lucide-react';
 import FullReportView from './FullReportView';
+import CoreKeyPointsSummary from './CoreKeyPointsSummary';
 
 export default function HumanDesignView() {
   const data = LAI_YI_CHIEH_DATA.humanDesign;
@@ -69,6 +70,54 @@ export default function HumanDesignView() {
           </div>
         </div>
       </div>
+
+      {/* ⚡️ 人類圖懶人包速讀元件 */}
+      <CoreKeyPointsSummary
+        domainName="人類圖全析"
+        themeColor="rose"
+        items={[
+          {
+            icon: Crown,
+            tag: "類型: 顯示者",
+            title: "顯示者 (Manifestor)",
+            subtitle: "佔人口 9% 的變革引領者",
+            summary: "擁有封閉且具吸引力的能量場。不需等待他人邀請即可直接發起行動與衝破現狀，是天生的開路先鋒。",
+            actionAdvice: "行動前「主動告知」相關人員，能瞬間消除身邊人的抵抗力與猜疑。"
+          },
+          {
+            icon: Flame,
+            tag: "權威: 情緒中心",
+            title: "情緒中心權威 (Emotional)",
+            subtitle: "衝動是魔鬼，等待清明",
+            summary: "情緒有規律地起伏。重大決策切忌在情緒高峰或低谷做出，必須等情緒波浪走完、回歸平靜後決策。",
+            actionAdvice: "重大決定至少給自己 3 天緩衝期。平靜不帶情緒高昂時的選擇最安全。"
+          },
+          {
+            icon: Layers,
+            tag: "人生角色: 2/4",
+            title: "2/4 隱士 / 機會主義者",
+            subtitle: "雙軌切換的高奢靈魂",
+            summary: "2爻需要極高奢的獨處空間進行自我修復，4爻則需要透過熟人網絡與社交關係帶來機會。",
+            actionAdvice: "享受獨處時無罪惡感，同時維繫優質小圈子，機會自然會從熟人圈湧入。"
+          },
+          {
+            icon: BatteryCharging,
+            tag: "薦骨: 空白",
+            title: "空白薦骨中心 (Undefined Sacral)",
+            subtitle: "非生產者，拒絕無效體力消耗",
+            summary: "沒有源源不絕的持續工作體力，不適合打卡制勞碌。具爆發性行動力但需高頻率休息與充電。",
+            actionAdvice: "電量剩 20% 之前主動躺平休息。重複性瑣事外包給生產者夥伴。"
+          },
+          {
+            icon: Zap,
+            tag: "閘門: 35-36, 12-22",
+            title: "無盡變革與情緒情感通道",
+            subtitle: "體驗派與靈魂藝術家",
+            summary: "35-36 通道渴望透過多元嘗試汲取經驗；12-22 通道賦予對藝術、音樂與情感語調的超凡直覺與感應力。",
+            actionAdvice: "心情不好時不要硬講話，在對的優雅狀態與情緒對時再公開發聲。"
+          }
+        ]}
+      />
 
       {/* Main Grid: Bodygraph and Details */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

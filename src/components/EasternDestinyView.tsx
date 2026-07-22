@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
-import { Flame, Sparkles, AlertCircle, HelpCircle, Award } from 'lucide-react';
+import { Flame, Sparkles, AlertCircle, HelpCircle, Award, Compass, Brain, Heart, Shield } from 'lucide-react';
 import FullReportView from './FullReportView';
+import CoreKeyPointsSummary from './CoreKeyPointsSummary';
 
 const getGridAreaClass = (palaceName: string) => {
   if (palaceName.includes('福德宮') || palaceName.includes('福德')) return 'col-start-1 row-start-1';
@@ -166,6 +167,54 @@ export default function EasternDestinyView() {
           </div>
         </div>
       </div>
+
+      {/* ⚡️ 東方命理（八字紫微）懶人包速讀元件 */}
+      <CoreKeyPointsSummary
+        domainName="八字與紫微"
+        themeColor="amber"
+        items={[
+          {
+            icon: Sparkles,
+            tag: "紫微命宮: 命無正星",
+            title: "命無正星 ✕ 借對宮太陽太陰",
+            subtitle: "變色龍般的靈性吸納力",
+            summary: "命宮無主星代表個人極具彈性，不執著固化心態，能吸收各路精華。借對宮日月能量，光芒與深邃兼備。",
+            actionAdvice: "不盲從單一派別，善用吸納與整合天賦，打造屬於自己的獨特體系。"
+          },
+          {
+            icon: Flame,
+            tag: "八字日主: 丙火",
+            title: "丙火日主 ✕ 身弱傷官佩印",
+            subtitle: "熱情外放與智慧護體",
+            summary: "丙火熱情有感染力，傷官天賦讓才華橫溢、講話一針見血；「佩印」代表需靠知識與身心靈滋養護體。",
+            actionAdvice: "才華輸出（傷官）過度時容易耗傷精神，需隨時補充讀書學習與靈性修復（印星）。"
+          },
+          {
+            icon: Brain,
+            tag: "官祿宮: 天機巨門",
+            title: "天機巨門 ✕ 靈魂駭客智囊",
+            subtitle: "憑智慧與口才立足職場",
+            summary: "天機主靈敏策略，巨門主分析口才。適合從事顧問、命理諮詢、自媒體、寫作與策略規劃。",
+            actionAdvice: "將直覺與分析整理成 SOP 課程或諮詢報告，能最大化你的口才與大腦價值。"
+          },
+          {
+            icon: Shield,
+            tag: "財帛宮: 太陰化忌",
+            title: "太陰化忌 ✕ 財富情緒水流",
+            subtitle: "靠知識與美感變現",
+            summary: "太陰主財與女性、情緒。化忌代表財務容易受情緒波動影響，宜走「非傳統、靠智慧與質感」的進財路線。",
+            actionAdvice: "避免投機風險投資。專注於打造優質智力產品與長期美感品牌。"
+          },
+          {
+            icon: Heart,
+            tag: "夫妻宮: 太陽天梁",
+            title: "太陽天梁 ✕ 照顧與崇拜共存",
+            subtitle: "渴望有擔當與深度的伴侶",
+            summary: "夫妻宮太陽天梁代表另一半具備領導力、正直、喜歡照顧人，但同時要求精神層面的高度共鳴。",
+            actionAdvice: "保持獨立發光狀態，吸引能理解你精神世界並樂於給予後盾讚賞的優質伴侶。"
+          }
+        ]}
+      />
 
       {/* Part 1: Bazi Four Pillars Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

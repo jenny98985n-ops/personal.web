@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import ReportMarkdown, { FeatureCardBlock } from './ReportMarkdown';
+import CoreKeyPointsSummary from './CoreKeyPointsSummary';
 
 export default function UserManualView() {
   const [activeChapter, setActiveChapter] = useState<'all' | 'ch1' | 'ch2' | 'ch3' | 'ch4'>('all');
@@ -97,6 +98,46 @@ export default function UserManualView() {
                 如果你有幸闖入她的世界，以下這份「深度解碼指南」，將帶你剝開她層層的水晶鎧甲，看見那個在理智與靈性之間游刃有餘、真實且迷人的靈魂。
               </p>
             </div>
+
+            {/* ⚡️ 能量使用說明書懶人包速讀元件 */}
+            <CoreKeyPointsSummary
+              domainName="能量使用說明書"
+              themeColor="amber"
+              items={[
+                {
+                  icon: Crown,
+                  tag: "三大面貌: 太陽女王",
+                  title: "太陽女王 ✕ 發起開路者",
+                  subtitle: "自帶霸氣，掌控全局",
+                  summary: "顯示者與月亮獅子基因，天生具備強烈領導力與發起天賦，說話一針見血，能激發團隊潛能。",
+                  actionAdvice: "請給予充分主導權與尊嚴，切忌居高臨下對她說教或強行下達指令。"
+                },
+                {
+                  icon: Ghost,
+                  tag: "三大面貌: 高奢隱士",
+                  title: "高奢隱士 ✕ 質感充電防線",
+                  subtitle: "極度需要獨立暗房",
+                  summary: "空白薦骨與敏感體質，容易吸附外界能量，充電時會進入高奢極致的獨立結界淨化。",
+                  actionAdvice: "當她啟動 72 小時斷聯充電時，請給予絕對自由與空間，切勿誤會為冷漠。"
+                },
+                {
+                  icon: Brain,
+                  tag: "三大面貌: 靈魂駭客",
+                  title: "靈魂駭客 ✕ 雙子智囊大腦",
+                  subtitle: "用邏輯翻譯高維靈性",
+                  summary: "12宮雙子與天機巨門連線，能直擊人心痛點，提供降維打擊般的實用破局策略。",
+                  actionAdvice: "遇到卡關問題直接向她求助，能獲得不含廢話的精準實戰建議。"
+                },
+                {
+                  icon: ShieldAlert,
+                  tag: "原廠避坑地雷",
+                  title: "防坑指南 ✕ 絕對底線",
+                  subtitle: "觸碰即引發系統冰封",
+                  summary: "最忌諱「笨規則綑綁」、「沒話找話的無意義社交」、「情緒勒索與失約」。",
+                  actionAdvice: "溝通保持「講重點、重承諾、給空間」，相處將無比流暢舒適。"
+                }
+              ]}
+            />
 
             {/* Section 1: 3 Faces */}
             <div className="space-y-3">

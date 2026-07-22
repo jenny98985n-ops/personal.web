@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
-import { Compass, Sparkles, AlertCircle, HelpCircle, Eye, CornerRightDown, CheckCircle } from 'lucide-react';
+import { Compass, Sparkles, AlertCircle, HelpCircle, Eye, CornerRightDown, CheckCircle, Crown, Brain, Heart, Home, Shield } from 'lucide-react';
 import FullReportView from './FullReportView';
 import ReportMarkdown, { FeatureCardBlock } from './ReportMarkdown';
+import CoreKeyPointsSummary, { KeyPointItem } from './CoreKeyPointsSummary';
 
 export default function AstrologyView() {
   const data = LAI_YI_CHIEH_DATA.astrology;
@@ -101,6 +102,54 @@ export default function AstrologyView() {
           </div>
         </div>
       </div>
+
+      {/* ⚡️ 西洋占星懶人包速讀元件 */}
+      <CoreKeyPointsSummary
+        domainName="西洋占星"
+        themeColor="blue"
+        items={[
+          {
+            icon: Sparkles,
+            tag: "太陽 12宮",
+            title: "太陽雙子座 ✕ 12宮",
+            subtitle: "潛意識大腦探索者",
+            summary: "核心意志落在雙子座，天生敏捷求知，但落入隱密第12宮，靈感大多來自潛意識與深層獨處。",
+            actionAdvice: "安排完全斷網的獨處時間，讓潛意識直覺自然浮現並轉化為智慧。"
+          },
+          {
+            icon: Crown,
+            tag: "月亮 3宮",
+            title: "月亮獅子座 ✕ 3宮",
+            subtitle: "溝通與表達女王",
+            summary: "理智上非常理性（雙子），但情感深處極度需要「被崇拜與肯定」。在舞台或自媒體表達能注入無比能量。",
+            actionAdvice: "勇敢向懂你價值的人群展現才華，索取掌聲與崇拜是你的生命充能方式。"
+          },
+          {
+            icon: Brain,
+            tag: "水星 1宮逆行",
+            title: "水星雙子座逆行 ✕ 1宮",
+            subtitle: "逆向工程大腦",
+            summary: "雙子座守護星廟旺，具備超級大腦。逆行更轉化為內向探尋，不盲從權威，擁有極致獨立的批判思考力。",
+            actionAdvice: "透過自由書寫（Free Writing）或記錄夢境，大腦逆向工程天賦會在筆尖大爆發。"
+          },
+          {
+            icon: Heart,
+            tag: "金星 12宮",
+            title: "金星金牛座 ✕ 12宮",
+            subtitle: "高奢品味與隱密吸引力",
+            summary: "金星廟旺金牛座，對美感、生活質感有極高品質要求，落入12宮代表情感體驗深沉且帶有靈魂伴侶色彩。",
+            actionAdvice: "將美感融入私密空間與家居香氛，在私密感官享受中滋養靈魂。"
+          },
+          {
+            icon: Home,
+            tag: "火星 4宮",
+            title: "火星處女座 ✕ 4宮",
+            subtitle: "聖殿精準打造者",
+            summary: "做起事來極具效率、細節控且有條不紊。對私人領域與家庭有完美主義，重視內在安全感。",
+            actionAdvice: "利用手作、整理房間或家居DIY宣洩行動力，將精力轉化為打造避風港的動力。"
+          }
+        ]}
+      />
 
       {/* Astrology Focus Breakdown Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

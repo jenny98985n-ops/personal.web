@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Eye, Shield, Activity, BatteryCharging, Moon, Compass, Heart, RefreshCw, Waves, Trash2, CheckCircle2, Flame, Lock, Unlock, AlertCircle, Send, MessageSquare, Award, ChevronRight, DollarSign } from 'lucide-react';
+import { Sparkles, Eye, Shield, Activity, BatteryCharging, Moon, Compass, Heart, RefreshCw, Waves, Trash2, CheckCircle2, Flame, Lock, Unlock, AlertCircle, Send, MessageSquare, Award, ChevronRight, DollarSign, Crown, Brain } from 'lucide-react';
 import FullReportView from './FullReportView';
+import CoreKeyPointsSummary from './CoreKeyPointsSummary';
 
 export default function HealthSpiritualityView() {
   // Karma interactive states
@@ -70,6 +71,46 @@ export default function HealthSpiritualityView() {
           </div>
         </div>
       </div>
+
+      {/* ⚡️ 身心靈與玄學天賦懶人包速讀元件 */}
+      <CoreKeyPointsSummary
+        domainName="身心靈與玄學"
+        themeColor="purple"
+        items={[
+          {
+            icon: Eye,
+            tag: "靈性印記: 12宮雙子天賦",
+            title: "潛意識雷達 ✕ 靈性大腦對接",
+            subtitle: "對高維訊息與直覺高度敏銳",
+            summary: "太陽與金星落入12宮，結合雙子敏捷天賦，使你能輕易感知環境情緒與潛意識對象，天生對命理、心理學有極深感召。",
+            actionAdvice: "建立個人的靈性暗房時間，保護自己的感官雷達不被外界干擾嘈雜喧囂。"
+          },
+          {
+            icon: Brain,
+            tag: "轉化天賦: 邏輯翻譯官",
+            title: "天機巨門 ✕ 直覺轉化邏輯",
+            subtitle: "把抽象玄學翻譯成白話溝通",
+            summary: "擁有將高維直覺與複雜命理系統轉化為邏輯清晰、易懂且實用的白話說明書能力，是極佳的「靈魂駭客」。",
+            actionAdvice: "善用口才與寫作，將你的直覺體悟整理成具體的諮詢產品與指引方略。"
+          },
+          {
+            icon: RefreshCw,
+            tag: "淨化儀式: 72小時斷網",
+            title: "空白薦骨 ✕ 能量淨化護盾",
+            subtitle: "避免接代業力與情緒過載",
+            summary: "空白薦骨與敏感體質容易吸收諮詢或社交對象的情緒負能量。需要定期實施 72 小時斷聯淨化，避免神經發炎。",
+            actionAdvice: "諮詢或深度社交後，一定要透過洗澡、精油、獨處或自然接觸進行場域淨化。"
+          },
+          {
+            icon: Shield,
+            tag: "邊界修練: 水晶防衛卡",
+            title: "顯示者主權 ✕ 拒絕能量寄生",
+            subtitle: "設好防線，保護個人頻率",
+            summary: "明確意識到自己的顯示者主權，不盲目承接別人的課題或因過度同理而委屈自己，做主權獨立的靈性導師。",
+            actionAdvice: "熟記「不妥協清單」，勇敢對消耗你能量的人事物說不。"
+          }
+        ]}
+      />
 
       {/* Metaphysical Superpowers breakdown */}
       <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 shadow-xl space-y-6">

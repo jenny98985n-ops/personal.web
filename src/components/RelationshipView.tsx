@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Sparkles, Heart, AlertCircle, ShieldAlert, CheckCircle2, User, HelpCircle } from 'lucide-react';
+import { Sparkles, Heart, AlertCircle, ShieldAlert, CheckCircle2, User, HelpCircle, Crown, Brain, Ghost } from 'lucide-react';
 import FullReportView from './FullReportView';
+import CoreKeyPointsSummary from './CoreKeyPointsSummary';
 
 export default function RelationshipView() {
   const [freedomLevel, setFreedomLevel] = useState<number>(50); // Slider for freedom vs security
@@ -30,6 +31,46 @@ export default function RelationshipView() {
           </div>
         </div>
       </div>
+
+      {/* ⚡️ 親密關係藍圖懶人包速讀元件 */}
+      <CoreKeyPointsSummary
+        domainName="親密關係藍圖"
+        themeColor="rose"
+        items={[
+          {
+            icon: Crown,
+            tag: "核心需求: 被崇拜與肯定",
+            title: "月亮獅子 ✕ 女王渴望",
+            subtitle: "需要專屬感與滿滿的讚美",
+            summary: "理智灑脫，但內心渴望另一半能看懂你的光芒與付出，給予極致的肯定、崇拜與專屬偏愛。",
+            actionAdvice: "與能真誠誇獎你、給予高讚美價值的夥伴在一起，遠離評頭論足的打壓型對象。"
+          },
+          {
+            icon: Ghost,
+            tag: "空間需求: 高奢隱士獨處",
+            title: "12宮金星 ✕ 2/4爻隱士",
+            subtitle: "感情中必須有個人暗房",
+            summary: "對感情極度深情，但也極度需要個人的獨立秘密花園。被逼太緊或沒有獨處空間會產生強烈窒息感。",
+            actionAdvice: "事先向伴侶說明「72小時獨處充電」是你的個人儀式，不代表冷漠或不愛。"
+          },
+          {
+            icon: Brain,
+            tag: "理想路徑: 朋友變情人",
+            title: "雙子群星 ✕ 智力共鳴",
+            subtitle: "先聊得來，再談深情",
+            summary: "智力上的火花是點燃感情的第一步。你需要能陪你深度對談、能理智理解你靈魂的智慧型伴侶。",
+            actionAdvice: "從共同興趣或工作夥伴做起，先建立智力共鳴與無話不談的信任。"
+          },
+          {
+            icon: ShieldAlert,
+            tag: "避坑地雷: 情緒勒索",
+            title: "冷酷界線 ✕ 零容忍強迫",
+            subtitle: "最忌諱被指責與指手畫腳",
+            summary: "作為顯示者與獨特靈魂，你最忌諱被伴侶居高臨下地指責或試圖控制。一旦踩雷會瞬間進入冰封狀態。",
+            actionAdvice: "確立「彼此尊重空間」的底線，開誠布公告知相處說明書地雷。"
+          }
+        ]}
+      />
 
       {/* Love Balance Meter (Interactive) */}
       <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 shadow-xl space-y-6">

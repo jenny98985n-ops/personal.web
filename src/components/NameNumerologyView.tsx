@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
-import { Award, CheckCircle, HelpCircle, Shield, Sparkles, AlertTriangle, Flame, Activity, Zap, Layers, RefreshCw } from 'lucide-react';
+import { Award, CheckCircle, HelpCircle, Shield, Sparkles, AlertTriangle, Flame, Activity, Zap, Layers, RefreshCw, Crown, Heart, Brain } from 'lucide-react';
 import FullReportView from './FullReportView';
+import CoreKeyPointsSummary from './CoreKeyPointsSummary';
 
 export default function NameNumerologyView() {
   const data = LAI_YI_CHIEH_DATA.nameNumerology;
@@ -40,6 +41,46 @@ export default function NameNumerologyView() {
           </div>
         </div>
       </div>
+
+      {/* ⚡️ 姓名學懶人包速讀元件 */}
+      <CoreKeyPointsSummary
+        domainName="姓名學五格"
+        themeColor="emerald"
+        items={[
+          {
+            icon: Award,
+            tag: "總格 32畫 (木)",
+            title: "總格 32畫 ✕ 寶馬金鞍大吉",
+            subtitle: "越陳越香的貴人與事業吉數",
+            summary: "總格代表中年後運勢。32 劃象徵貴人相助、開花結果。木生火局，越到中後期事業與財運越發順遂。",
+            actionAdvice: "保持寬厚優雅心態，定時積累優質人脈與作品，晚運大吉。"
+          },
+          {
+            icon: Crown,
+            tag: "人格 21畫 (木)",
+            title: "人格 21畫 ✕ 明月光照領袖",
+            subtitle: "獨立自主與女王天賦",
+            summary: "人格主個人核心性格。21 劃為獨立領袖數，意志堅定、具開創力，天生具備獨立主持大局的才能。",
+            actionAdvice: "在團隊或個人品牌中擔當決策要角，避免過度妥協屈就小夥伴。"
+          },
+          {
+            icon: Shield,
+            tag: "地格 16畫 (土)",
+            title: "地格 16畫 ✕ 宅心仁厚貴人",
+            subtitle: "穩固的安全感與深厚感情底蘊",
+            summary: "地格主36歲前基礎運與親密關係。16 劃為厚德載物大吉數，給人值得信賴、溫暖且穩重的質感。",
+            actionAdvice: "珍惜內在沉穩特質，在親密關係中建立清晰界線與彼此尊重。"
+          },
+          {
+            icon: Flame,
+            tag: "五行相生",
+            title: "木火通明 ✕ 智慧與創作花開",
+            subtitle: "文采斐然與光芒散發",
+            summary: "姓名格局木火相生，代表靈感充沛、思考極快，適合文字創作、教學、美感設計與演講發聲。",
+            actionAdvice: "將內在點子記錄下來出版或發布，作品能如同燦爛花朵般吸引貴人。"
+          }
+        ]}
+      />
 
       {/* Characters and Stroke Count Block */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

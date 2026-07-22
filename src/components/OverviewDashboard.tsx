@@ -4,8 +4,8 @@ import {
   Sparkles, Brain, Flame, Zap, CheckCircle2, AlertCircle, 
   Compass, Heart, DollarSign, Activity, Eye, Shield, Award, HelpCircle,
   RefreshCw, Shuffle, Crown, TrendingUp, Users, ArrowRight,
-  Sliders, Gauge, BarChart3, PieChart, Info, ChevronDown, ChevronUp,
-  Maximize2, X, ExternalLink, BookOpen
+  Sliders, Gauge, BarChart3, PieChart, Info, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Filter, Layers,
+  Maximize2, Minimize2, X, ExternalLink, BookOpen
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import EnergyQuoteWidget from './EnergyQuoteWidget';
@@ -31,20 +31,20 @@ const HOLOGRAPHIC_CARDS: HolographicCardItem[] = [
     id: 'astrology',
     systemTag: '西洋占星',
     groupTitle: '維度一 ✦ 天賦核心',
-    title: '太陽與上升雙子 ✕ 月亮獅子 3 宮',
-    tags: ['超級神經網絡', '12宮隱秘天賦', '表達造王者'],
+    title: '太陽/上升雙子 ✕ 月亮獅子 3 宮',
+    tags: ['超級神經網絡', '12宮靈魂結界', '高階表達造王者'],
     icon: Compass,
     themeColor: 'amber',
     summary: '雙子星群賦予極速學習與超頻邏輯，月亮獅子 3 宮擁有強烈的表達熱情與造王者氣場。',
     spiritualInsight: `雙子座太陽與上升組合構成了 YieJie 極速運算、無限吸收資訊的高維神經網絡。大腦如同一台超頻運作的量子電腦，能輕鬆拆解複雜系統並完成跨領域的逆向工程。
 
-然而，這層看似機智靈動的外衣下，包裹著月亮獅子座在 3 宮的強烈光芒——妳的內心渴望透過高質感的表達與創造，成為眾人矚目的「靈性造王者」。同時，12 宮星體連線讓妳擁有極其特殊的潛意識靈感雷達，能在平靜中感應宇宙場域的細微震動。妳的理智並非冷酷，而是將深邃的靈性直覺轉化為精準無懈的語言。`,
+然而，這層看似機智靈動的外衣下，包裹著月亮獅子座在 3 宮的強烈光芒——妳的內心渴望透過高質感的表達與創造，成為眾人矚目的「靈性造王者」。同時，12 宮星體連線（太陽、金星）讓妳擁有極其特殊的潛意識靈感雷達，能在平靜中感應宇宙場域的細微震動。妳不需要在日常中過度曝光，妳的定位是「預約制、邀請制、具備極高隱私性的高端智庫與靈性導師」。`,
     coreBreakdown: [
       { label: '✦ 靈魂天賦', text: '雙子超頻神經網絡 ✕ 3宮月亮獅子的語言震撼力與啟發氣場' },
       { label: '✦ 陰影機制', text: '大腦資訊過載引發的神經焦慮，與 12 宮海綿體質吸收外界濁氣' },
-      { label: '✦ 高階破局', text: '建立明確心理結界，將 12 宮直覺轉化為 3 宮精準輸出，不干涉他人業力' }
+      { label: '✦ 高階破局', text: '建立 12 宮隱密品牌結界，將直覺轉化為精準高價產出，不干涉他人業力' }
     ],
-    actionAdvice: '定期實施「文字與語音排毒」，將大腦中的靈光寫成專欄或卡片，並搭配雪松香氛淨化頭部能量場。',
+    actionAdvice: '實施「文字與語音排毒」，將大腦中的靈感寫成專屬戰略框架，搭配雪松與金牛精油淨化頭部能量場。',
     targetTab: 'astrology'
   },
   {
@@ -52,13 +52,13 @@ const HOLOGRAPHIC_CARDS: HolographicCardItem[] = [
     systemTag: '人類圖',
     groupTitle: '維度一 ✦ 天賦核心',
     title: '顯示者 Manifestor ✕ 四箭全左',
-    tags: ['獨立破局發起', '極致戰略策劃', '告知開路'],
+    tags: ['獨立破局發起', '極致戰略策劃', '四箭全左邏輯'],
     icon: Brain,
     themeColor: 'rose',
     summary: '生來打破現狀、開創新局。配備四箭全左邏輯大腦，專注於頂層策略規劃與方向引領。',
     spiritualInsight: `身為佔人口僅 9% 的「顯示者 (Manifestor)」，YieJie 的原廠設定是獨立打破舊秩序、發起全新局面的變革者。妳的封閉與排他型能量場（Closed Aura）保護著妳強大的發起意志，不受他人質疑干擾。
 
-搭配極為罕見的「四箭全左」戰略型大腦，妳在觀察世界時自帶極致的結構化與逆向思維。妳不是來聽命行事的，妳是來頒佈願景、帶領團隊突破重圍的戰略司令。當妳學會在行動前「告知 (Inform)」，阻力將化為助力，全宇宙都會為妳的發起開路。`,
+搭配極為罕見的「四箭全左」戰略型大腦，妳在觀察世界時自帶極致的結構化與逆向思維。妳不是來聽命行事的勞動者，而是頒佈願景、帶領團隊突破重圍的戰略司令。戒斷親力親為的勞力變現，透過「告知 (Inform)」與授權，將繁瑣執行外包，讓全宇宙為妳的發起開路。`,
     coreBreakdown: [
       { label: '✦ 靈魂天賦', text: '獨立發起力、純粹願景渲染力、四箭全左系統化架構天賦' },
       { label: '✦ 陰影機制', text: '試圖微觀管理苦工引發的「憤怒 (Anger)」，或被笨規則約束時的爆發' },
@@ -71,43 +71,142 @@ const HOLOGRAPHIC_CARDS: HolographicCardItem[] = [
     id: 'ziwei_core',
     systemTag: '紫微斗數',
     groupTitle: '維度一 ✦ 天賦核心',
-    title: '命宮卯無主星 ✕ 對宮太陽天梁',
-    tags: ['變色龍極致適應', '軍師靈感源泉', '大智若愚'],
+    title: '命宮卯無主星 ✕ 身宮太陽化權',
+    tags: ['變色龍極致適應', '太陽化權降維打擊', '霸氣結界'],
     icon: Zap,
     themeColor: 'teal',
-    summary: '無主星具備極高彈性與環境吸收力，藉由借對宮陽梁巨木能量，展現大智若愚與策略格局。',
+    summary: '無主星具備極高彈性，身宮遷移宮太陽化權提供無與倫比的王權決斷力與護城河。',
     spiritualInsight: `紫微斗數中「命宮無主星」象徵著極高的能量塑造空間與變色龍般的環境適應力。YieJie 不會被單一僵化的角色定型，妳能根據當下局勢自由切換頻率。
 
-而借對宮「太陽天梁（廟）」的浩瀚能量，為妳挹注了光芒萬丈的庇蔭力與「蔭星」的靈性智慧。外在呈現出太陽般的熾熱溫暖與照顧精神，內在則具備天梁星看透世事的超然智慧。這種雙重交響讓妳在俗世商戰與高維玄學之間遊刃有餘。`,
+而遷移宮/身宮的「太陽化權」則是妳一生最強大的底牌！當面對假貴人滲透或吸血鬼客戶情緒勒索時，妳不需要委屈妥協。啟動「太陽化權」的霸氣與降維打擊——直接單方面告知並終止關係。真正的太陽照耀大地不求回報，但絕不允許任何人試圖把太陽關進溫室裡！`,
     coreBreakdown: [
-      { label: '✦ 靈魂天賦', text: '無主星無限包容力 ✕ 借對宮陽梁的庇蔭氣場與智者視野' },
-      { label: '✦ 陰影機制', text: '因過度吸收外界期待而短暫迷失自我中心，或過度擔負他人宿命' },
-      { label: '✦ 高階破局', text: '以「借力使力」代替硬碰硬，利用對宮陽梁的光芒照亮他人，同時保持本宮空靈' }
+      { label: '✦ 靈魂天賦', text: '無主星無限包容力 ✕ 身宮太陽化權的無上威嚴與方向掌控力' },
+      { label: '✦ 陰影機制', text: '因過度吸收外界期待而短暫迷失，或被偽裝成弱者的假貴人吸食資源' },
+      { label: '✦ 高階破局', text: '調用太陽化權霸氣，拒絕向下兼容，建立高邊界的「王者結界」' }
     ],
-    actionAdvice: '定期進行自我能量歸零，提醒自己「我是一切的可能性，不被任何單一標籤綁架」。',
+    actionAdvice: '遇到越界要求時，不生氣也不委屈，直接用太陽化權的冷酷理性單方面發佈決定。',
     targetTab: 'easterndestiny'
   },
 
-  // Group 2: 運勢節奏
+  // Group 2: 運勢節奏 & 財富矩陣
   {
-    id: 'bazi_fortune',
-    systemTag: '八字格局',
+    id: 'wealth_matrix',
+    systemTag: '財富矩陣',
     groupTitle: '維度二 ✦ 運勢節奏',
-    title: '丙火日主 ✕ 月時雙透辛金正財',
-    tags: ['暖意璀璨太陽', '高品味正財格', '丙辛化財'],
+    title: '54章：財富矩陣與商業帝國底層',
+    tags: ['系統變現', '高溢價定價權', '隱密智庫結界'],
+    icon: DollarSign,
+    themeColor: 'emerald',
+    summary: '戒斷「勞力變現」，啟動「系統變現」。憑藉高溢價定價權與 12 宮隱密結界打造商業帝國。',
+    spiritualInsight: `（參照第 54 章剖析）YieJie 過去受 ENFJ 與 6 宮冥王星影響，容易落入「親力親為」的陷阱。對空白薦骨而言，這是慢性自殺！
+
+破局戰略：
+① 系統變現：結合四箭全左與天機化祿，將妳的解牌與潛意識戰略錄製成高單價課程或「潛意識戰略推演框架」。妳賣的是節省時間的「演算法」，而非時間本身。
+② 高溢價定價權：八字「丙辛合正財」與金星金牛，代表妳配得起高質感回報。高定價是妳最好的護城河，能幫妳過濾情緒吸血鬼。
+③ 12 宮隱密結界：不需在大眾面前跳舞博眼球。妳的品牌是「預約制、邀請制的高端智庫」，越神祕越引發渴望。`,
+    coreBreakdown: [
+      { label: '✦ 系統變現', text: '將雙子大腦與直覺淬鍊為標準化高價知識體系，實現一次產出多次獲利' },
+      { label: '✦ 高溢價護城河', text: '高收費包含雙子過濾資訊、太陰/空白薦骨修復力與極致美感隱私成本' },
+      { label: '✦ 12宮品牌定位', text: '預約制與邀請制的高端靈性智庫，以極高隱私度吸引頂級客群' }
+    ],
+    actionAdvice: '全面梳理個人諮詢服務，封頂單次諮詢價格，並推出模組化的線上高階潛意識課程。',
+    targetTab: 'wealth'
+  },
+  {
+    id: 'ziwei_oppose',
+    systemTag: '巳亥對沖',
+    groupTitle: '維度二 ✦ 運勢節奏',
+    title: '57章：巳亥對沖解碼 (天機化祿 vs 太陰化忌)',
+    tags: ['賺錢與焦慮對決', '木五行通關', '知識產權護城河'],
+    icon: Activity,
+    themeColor: 'teal',
+    summary: '財帛宮天機化祿與福德宮太陰化忌正對沖！唯有導入「木五行（品牌/知識庫）」方能通關。',
+    spiritualInsight: `（參照第 57 章剖析）紫微財帛宮在「亥（天機化祿）」，福德宮在「巳（太陰化忌）」，兩者正對沖，完美對應八字「巳亥相沖」。
+
+底層真相：大腦一產生商業點子賺錢（天機化祿），就會立刻沖動福德宮，引爆太陰化忌的神經緊繃與失眠。對妳來說，原廠設定中「賺錢」與「內心平靜」是拉扯的。
+
+破局之道（木五行通關）：
+在八字中，要化解水（亥）火（巳）相沖，必須加入「木（水生木、木生火）」。木代表妳的「印星」——知識體系、品牌護城河與自我疼惜。將點子沉澱為「有版權的知識體系（木）」，財富轉化為穩定資產，才能平息內心焦慮。`,
+    coreBreakdown: [
+      { label: '✦ 宿命拉扯', text: '天機化祿運作時，容易連動太陰化忌產生神經焦慮與缺乏安全感' },
+      { label: '✦ 木五行通關', text: '打造品牌智庫與知識產權，讓「資產」替妳獲利，化解水火直沖' },
+      { label: '✦ 終極平靜', text: '從賣腦力點子升級為累積品牌資產，獲得物質與心靈的雙重豐盛' }
+    ],
+    actionAdvice: '打造個人知識著作或專利選輯，建立固定版權與自動化收益流程。',
+    targetTab: 'easterndestiny'
+  },
+  {
+    id: 'bazi_pingsin',
+    systemTag: '八字博弈',
+    groupTitle: '維度二 ✦ 運勢節奏',
+    title: '58章：丙辛合水權力遊戲與吸血鬼防禦',
+    tags: ['丙辛合水', '空宮吸血鬼防禦', '太陽化權降維打擊'],
     icon: Flame,
     themeColor: 'amber',
-    summary: '自帶耀眼丙火能量，丙辛相合化財，具備天然的高階美感商業眼光與穩健獲利手腕。',
-    spiritualInsight: `八字命格中，YieJie 為「丙火」日主，宛如高懸於天空的太陽，自帶無私照耀、溫暖萬物的旺盛生命力。月柱與時柱雙透「辛金」正財，形成了極為珍貴的「丙辛相合」。
+    summary: '丙辛合正財與控制權博弈！識別假貴人吸血鬼，啟動太陽化權進行降維打擊。',
+    spiritualInsight: `（參照第 58 章剖析）八字「丙辛合水（貪合正財）」：丙火（太陽）與辛金（正財）合化為水（官殺責任）。
 
-辛金為溫潤精緻的珠寶翡翠，遇丙火陽光照射，更顯絢麗奪目。這代表妳具備天然的高品味審美眼光與穩健長久的商業變現手腕。妳的財富並非來自投機冒險，而是透過將美感、智慧與高品質服務系統化，吸引豐盛自然湧入。`,
+致命盲點：妳為了抓住實質價值（辛金），常不自覺陷入充滿壓力的體制或責任（化水）中。配合紫微命宮空宮，一旦對方展現優渥條件，顯示者靈魂就會戴上枷鎖。
+
+吸血鬼防禦戰：
+命宮空宮的「祿存」很容易被偽裝成弱者的吸血鬼（假貴人）穿透。他們用情緒勒索吸食妳的資源。
+終極防禦：啟動遷移宮「太陽化權」降維打擊！當關係變得沉重失真時，展現太陽的霸氣——直接單方面告知並終止。永遠不要為了一棵樹，賠上整片天空的自由。`,
     coreBreakdown: [
-      { label: '✦ 靈魂天賦', text: '丙火太陽光輝 ✕ 丙辛合財的高階美感變現與資源吸引力' },
-      { label: '✦ 陰影機制', text: '丙火過旺時的急躁，或辛金過度精細導致的完美主義內耗' },
-      { label: '✦ 高階破局', text: '保持「溫和持續的照耀」，以高質感定位鎖定精準客群，讓財富主動追隨' }
+      { label: '✦ 丙辛合水', text: '警惕為追求短期價值而讓渡個人自由，承擔過度官殺責任' },
+      { label: '✦ 吸血鬼識別', text: '看穿假裝崇拜弱小、實則吸食空宮祿存資源的情緒吸血鬼' },
+      { label: '✦ 太陽降維打擊', text: '調用身宮太陽化權，單方面發布終止，保持靈魂絕對獨立' }
     ],
-    actionAdvice: '佩戴金屬配件或白水晶以補足「金」與「水」的調和能量，保持審美與財富管道的和諧。',
+    actionAdvice: '盤點現有合作案，凡是帶來沉重情緒負擔者，評估啟動太陽化權單方面解約。',
     targetTab: 'easterndestiny'
+  },
+
+  // Group 3: 人際互動 & 核心內閣
+  {
+    id: 'social_cabinet',
+    systemTag: '人際結界',
+    groupTitle: '維度三 ✦ 人際互動',
+    title: '55章：三層人際防護網與核心內閣',
+    tags: ['外圍信仰者', '中堅執行內閣', '核心靈魂避難所'],
+    icon: Shield,
+    themeColor: 'indigo',
+    summary: '告別向下兼容！建立「信仰者、執行內閣、靈魂避難所」三層防護網，保護空白薦骨。',
+    spiritualInsight: `（參照第 55 章剖析）伴隨 2026 羊刃年加冕，妳的人際關係必須重新洗牌。不能再把每個人都當成需要拯救的朋友，必須像 CEO 一樣建立三層防護網：
+
+第一層 ✦ 外圍信仰者：
+對應「太陽化權 + 月亮獅子」。給予願景與智識，享受掌聲，但絶不介入私人情緒，不當情緒垃圾桶。
+
+第二層 ✦ 中堅執行內閣：
+對應交友宮地空地劫。絕不與平輩合夥！採用「雇傭與外包」，尋找強大薦骨能量的生產者執行行政與細節。花錢買回神經健康。
+
+第三層 ✦ 核心靈魂避難所 (1-3人)：
+對應 2 爻隱士與 12 宮。能進行雙子深度對話、尊重妳突然消失充電的怪癖，讓妳能放下 ENFJ 面具展示脆弱。`,
+    coreBreakdown: [
+      { label: '✦ 第一層信仰者', text: '傳播智慧與願景，堅決不當任何人的情緒垃圾桶' },
+      { label: '✦ 第二層執行閣', text: '不合夥，純雇傭外包！讓生產者執行細節，保護空白薦骨' },
+      { label: '✦ 第三層避難所', text: '嚴格審查的 2 爻結界，只留 1-3 位能深度共鳴且不勒索的靈魂同盟' }
+    ],
+    actionAdvice: '立即招聘或外包行政與客服工作，將個人時間 100% 留給頂層策略與核心充電。',
+    targetTab: 'humandesign'
+  },
+  {
+    id: 'hd_role',
+    systemTag: '人生角色',
+    groupTitle: '維度三 ✦ 人際互動',
+    title: '2/4 雙軌社交 (隱士 / 機會主義者)',
+    tags: ['神聖獨處洞穴', '熟人網絡圈層', '雙軌社交策略'],
+    icon: Heart,
+    themeColor: 'pink',
+    summary: '需要神聖的獨處洞穴時間 (2爻)，同時好機會往往來自深厚信任的熟人圈層 (4爻)。',
+    spiritualInsight: `人類圖人生角色 2/4 呈現出特殊的雙軌動態：意識層面的「2爻隱士 (Hermit)」與潛意識層面的「4爻機會主義者 (Opportunist)」。
+
+2爻讓妳天然具備某種不受干擾的獨異天賦，且極度需要沉浸在個人的神聖洞穴中獨處充電；而 4爻則代表妳生命中最優質的事業、財富與感情機會，絕大多數來自於「熟人與信任圈層」。妳不需要像業務員般盲目社交，只要在洞穴中磨練天賦，當熟人社群向妳發出召喚時，自然能一舉驚豔全場。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '自然發光的天賦技能、基於深厚信任的熟人圈層轉化率' },
+      { label: '✦ 陰影機制', text: '在洞穴中過度縮避，或被不適合的社交圈強行打擾產生抗拒' },
+      { label: '✦ 高階破局', text: '嚴格篩選社交圈，只對真誠且具智識質量的熟人網絡開放' }
+    ],
+    actionAdvice: '設定「無打擾獨處日」，在充分充電後再回應熟人社群的邀請。',
+    targetTab: 'humandesign'
   },
   {
     id: 'ziwei_wealth',
@@ -498,18 +597,21 @@ export default function OverviewDashboard({ onTabChange }: Props) {
   const [selectedGaugeCategory, setSelectedGaugeCategory] = useState<'all' | 'talent' | 'wealth' | 'mindfulness'>('all');
   const [hoveredMetricId, setHoveredMetricId] = useState<string | null>(null);
   const [activeMetricDetail, setActiveMetricDetail] = useState<string>('brainpower');
-  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
-
-  const selectedCard = HOLOGRAPHIC_CARDS.find(c => c.id === selectedCardId) || null;
+  const [expandedCardId, setExpandedCardId] = useState<string | null>(null);
+  const [expandedSubTab, setExpandedSubTab] = useState<'insight' | 'breakdown' | 'action'>('insight');
+  const [cardZoomRatio, setCardZoomRatio] = useState<number>(125);
+  const [matrixSystemFilter, setMatrixSystemFilter] = useState<string>('all');
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setSelectedCardId(null);
+        setExpandedCardId(null);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const handleShuffleAll = () => {
@@ -583,104 +685,6 @@ export default function OverviewDashboard({ onTabChange }: Props) {
               <p className="text-xs md:text-sm font-bold text-emerald-300 font-display">金星金牛 (高奢材質)</p>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* 🧭 由淺入深 4 步驟閱讀地圖 (Progressive Reading Path Card) */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border border-amber-400/30 shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-850 pb-3">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-amber-400/10 text-amber-400 rounded-xl border border-amber-400/20">
-              <BookOpen className="w-4 h-4" />
-            </div>
-            <div>
-              <h3 className="text-sm font-black text-slate-100 flex items-center gap-2">
-                🧭 由淺入深導讀建議地圖
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20">
-                  循序漸進不雜亂
-                </span>
-              </h3>
-              <p className="text-xs text-slate-400">報告總字數龐大，建議按照以下 4 個階梯逐步閱讀：</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {/* Step 1 */}
-          <button 
-            onClick={() => onTabChange && onTabChange('overview')}
-            className="p-3.5 rounded-xl bg-slate-950/80 border border-emerald-500/30 hover:border-emerald-400 transition-all text-left space-y-2 group"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
-                階梯 1 ✦ 入門
-              </span>
-              <span className="text-[10px] text-slate-500 font-mono">約 3 分鐘</span>
-            </div>
-            <h4 className="text-xs font-bold text-slate-200 group-hover:text-emerald-300 transition-colors">
-              1. 全息總覽 (當前頁面)
-            </h4>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              觀看下方四大天賦卡片與能量金句，快速獲得靈魂全貌不迷失。
-            </p>
-          </button>
-
-          {/* Step 2 */}
-          <button 
-            onClick={() => onTabChange && onTabChange('usermanual')}
-            className="p-3.5 rounded-xl bg-slate-950/80 border border-amber-500/30 hover:border-amber-400 transition-all text-left space-y-2 group"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30">
-                階梯 2 ✦ 手冊
-              </span>
-              <span className="text-[10px] text-slate-500 font-mono">約 5 分鐘</span>
-            </div>
-            <h4 className="text-xs font-bold text-slate-200 group-hover:text-amber-300 transition-colors">
-              2. 能量使用說明書 ➔
-            </h4>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              了解三大面貌（太陽女王/高奢隱士/靈魂駭客）與防坑地雷指南。
-            </p>
-          </button>
-
-          {/* Step 3 */}
-          <button 
-            onClick={() => onTabChange && onTabChange('humandesign')}
-            className="p-3.5 rounded-xl bg-slate-950/80 border border-indigo-500/30 hover:border-indigo-400 transition-all text-left space-y-2 group"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
-                階梯 3 ✦ 專題
-              </span>
-              <span className="text-[10px] text-slate-500 font-mono">各 3 分鐘</span>
-            </div>
-            <h4 className="text-xs font-bold text-slate-200 group-hover:text-indigo-300 transition-colors">
-              3. 分科主題深度精讀 ➔
-            </h4>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              針對占星、人類圖、八字紫微、姓名學或感情財富個別破局。
-            </p>
-          </button>
-
-          {/* Step 4 */}
-          <button 
-            onClick={() => onTabChange && onTabChange('fullreport')}
-            className="p-3.5 rounded-xl bg-slate-950/80 border border-purple-500/30 hover:border-purple-400 transition-all text-left space-y-2 group"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/30">
-                階梯 4 ✦ 天書
-              </span>
-              <span className="text-[10px] text-slate-500 font-mono">深度研讀</span>
-            </div>
-            <h4 className="text-xs font-bold text-slate-200 group-hover:text-purple-300 transition-colors">
-              4. 全息天書萬字報告 ➔
-            </h4>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
-              完全合參萬字條目，適合想要一字不漏沉浸研讀的讀者。
-            </p>
-          </button>
         </div>
       </div>
 
@@ -1115,380 +1119,468 @@ export default function OverviewDashboard({ onTabChange }: Props) {
 
       {/* Categorized Holographic Systems Card Grid Section */}
       <div className="p-6 md:p-8 rounded-3xl bg-slate-900/20 border border-slate-850 shadow-2xl space-y-8">
-        {/* Section Title */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-850/80 pb-4">
+        {/* Section Title & Filter Bar */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-850/80 pb-5">
           <div>
-            <h2 className="text-xl md:text-2xl font-black text-slate-100 flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded border border-amber-400/20">
+                IN-PLACE HOLO MATRIX ZOOM
+              </span>
+              <span className="text-[10px] font-mono font-bold text-slate-400">
+                8 卡片全息解讀
+              </span>
+            </div>
+            <h2 className="text-xl md:text-2xl font-black text-slate-100 flex items-center gap-2.5 mt-1">
               <Sparkles className="w-6 h-6 text-amber-400" />
-              跨流派全息命理卡片式矩陣
+              跨流派全息命理卡片矩陣
             </h2>
             <p className="text-xs text-slate-400 mt-1">
-              點擊卡片可即時展開 Framer Motion 平滑過渡之靈性深度洞察，或深入各系統分頁
+              點擊任意卡片可於原位全息放大，切換子分頁（洞察 / 拆解 / 行動）與特寫比例，或直接在卡片間無縫切換
             </p>
           </div>
-          <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-400/10 px-3.5 py-1.5 rounded-full border border-amber-400/20 self-start sm:self-auto flex items-center gap-1.5">
-            <Maximize2 className="w-3 h-3" />
-            CLICK TO EXPAND CARD
-          </span>
+
+          {/* System Filters & Matrix Status */}
+          <div className="flex flex-wrap items-center gap-2 self-start lg:self-auto">
+            <button
+              onClick={() => setMatrixSystemFilter('all')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                matrixSystemFilter === 'all'
+                  ? 'bg-amber-400 text-slate-950 shadow-md font-black'
+                  : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>全部流派 (8)</span>
+            </button>
+
+            <button
+              onClick={() => setMatrixSystemFilter('humandesign')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                matrixSystemFilter === 'humandesign'
+                  ? 'bg-rose-400 text-slate-950 shadow-md font-black'
+                  : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              <Brain className="w-3.5 h-3.5 text-rose-400" />
+              <span>人類圖 (3)</span>
+            </button>
+
+            <button
+              onClick={() => setMatrixSystemFilter('easterndestiny')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                matrixSystemFilter === 'easterndestiny'
+                  ? 'bg-teal-400 text-slate-950 shadow-md font-black'
+                  : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              <Zap className="w-3.5 h-3.5 text-teal-400" />
+              <span>東方命理 (3)</span>
+            </button>
+
+            <button
+              onClick={() => setMatrixSystemFilter('astrology')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                matrixSystemFilter === 'astrology'
+                  ? 'bg-pink-400 text-slate-950 shadow-md font-black'
+                  : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-slate-200'
+              }`}
+            >
+              <Heart className="w-3.5 h-3.5 text-pink-400" />
+              <span>占星 & 姓名 (2)</span>
+            </button>
+          </div>
         </div>
 
+        {/* Matrix Grid Content */}
         <div className="space-y-8">
-          {/* GROUP 1: 天賦核心 */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-black flex items-center gap-2 font-mono">
-                <Crown className="w-4 h-4 text-amber-400" />
-                維度一 ✦ 天賦核心 (CORE TALENTS & PERSONALITY)
-              </span>
-            </div>
+          {(() => {
+            const filteredCards = HOLOGRAPHIC_CARDS.filter((card) => {
+              if (matrixSystemFilter === 'all') return true;
+              if (matrixSystemFilter === 'humandesign') {
+                return card.systemTag === '人類圖' || card.systemTag === '人生角色' || card.systemTag === '能量節奏';
+              }
+              if (matrixSystemFilter === 'easterndestiny') {
+                return card.systemTag === '紫微斗數' || card.systemTag === '八字格局' || card.systemTag === '財帛事業';
+              }
+              if (matrixSystemFilter === 'astrology') {
+                return card.systemTag === '情感品味' || card.systemTag === '五格姓名';
+              }
+              return true;
+            });
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {HOLOGRAPHIC_CARDS.slice(0, 3).map((card) => {
-                const theme = getThemeClasses(card.themeColor);
-                return (
-                  <motion.div
-                    key={card.id}
-                    id={`overview-card-${card.id}`}
-                    whileHover={{ y: -6, scale: 1.01 }}
-                    whileTap={{ scale: 0.985 }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                    onClick={() => setSelectedCardId(card.id)}
-                    className={`group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border ${theme.border} shadow-lg hover:shadow-2xl ${theme.shadow} transition-colors duration-300 relative overflow-hidden flex flex-col justify-between`}
-                  >
-                    <div className={`absolute top-0 right-0 w-28 h-28 ${theme.bgGlow} rounded-full blur-2xl transition-all`} />
-                    
-                    <div className="space-y-3 relative z-10">
-                      <div className="flex items-center justify-between">
-                        <div className={`p-2.5 rounded-xl ${theme.badgeBg} border group-hover:scale-110 transition-transform`}>
-                          <card.icon className="w-5 h-5" />
-                        </div>
-                        
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
-                            <Maximize2 className="w-2.5 h-2.5" />
-                            點擊放大
-                          </span>
-                          <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                            {card.systemTag}
-                          </span>
-                        </div>
-                      </div>
+            return (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {filteredCards.map((card) => {
+                  const theme = getThemeClasses(card.themeColor);
+                  const isExpanded = expandedCardId === card.id;
 
-                      <div>
-                        <h3 className={`text-base font-black text-slate-100 ${theme.hoverHeading} transition-colors`}>
-                          {card.title}
-                        </h3>
-                        <div className="flex flex-wrap gap-1.5 mt-2">
-                          {card.tags.map((tag, tIdx) => (
-                            <span key={tIdx} className={`text-[10px] font-bold px-2 py-0.5 rounded ${tIdx === 0 ? `${theme.badgeBg} ${theme.badgeText} border` : 'bg-slate-900 text-slate-300 border border-slate-800'}`}>
-                              {tag}
+                  // Current card index in filtered cards
+                  const cardIndexInFiltered = filteredCards.findIndex((c) => c.id === card.id);
+                  const prevCardId = filteredCards[(cardIndexInFiltered - 1 + filteredCards.length) % filteredCards.length].id;
+                  const nextCardId = filteredCards[(cardIndexInFiltered + 1) % filteredCards.length].id;
+
+                  if (isExpanded) {
+                    return (
+                      <motion.div
+                        key={card.id}
+                        id={`overview-card-${card.id}`}
+                        layout
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                        className={`col-span-1 md:col-span-3 p-6 sm:p-8 rounded-3xl bg-slate-950/95 border ${theme.modalBorder} shadow-2xl relative overflow-hidden space-y-6 ring-2 ring-amber-400/40 backdrop-blur-xl transition-all my-2`}
+                      >
+                        {/* Glow halo */}
+                        <div className={`absolute top-0 right-0 w-96 h-96 ${theme.bgGlow} rounded-full blur-3xl pointer-events-none opacity-80`} />
+
+                        {/* Top Control Bar for Expanded Card */}
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between border-b border-slate-800/80 pb-5 relative z-10 gap-4">
+                          {/* Card Main Title & Metadata */}
+                          <div className="flex items-start gap-4">
+                            <div className={`p-3.5 rounded-2xl ${theme.badgeBg} border shrink-0 mt-0.5 shadow-lg`}>
+                              <card.icon className="w-7 h-7" />
+                            </div>
+                            <div>
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span className="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded border border-amber-400/20">
+                                  {card.groupTitle}
+                                </span>
+                                <span className="text-xs font-mono font-bold text-slate-300 bg-slate-900 px-2.5 py-0.5 rounded border border-slate-800">
+                                  ✦ {card.systemTag}
+                                </span>
+                                <span className="text-[10px] font-mono text-slate-400">
+                                  [ HOLO-ZOOM Matrix :: {cardIndexInFiltered + 1} / {filteredCards.length} ]
+                                </span>
+                              </div>
+                              <h3 className="text-2xl sm:text-3xl font-black text-slate-100 mt-1.5 tracking-tight">
+                                {card.title}
+                              </h3>
+                            </div>
+                          </div>
+
+                          {/* Quick Controls: Next/Prev, Zoom Scale, Close */}
+                          <div className="flex flex-wrap items-center gap-2.5 self-start lg:self-auto shrink-0">
+                            {/* Card Switcher */}
+                            <div className="flex items-center bg-slate-900/90 border border-slate-800 rounded-xl p-1 gap-1">
+                              <button
+                                onClick={() => setExpandedCardId(prevCardId)}
+                                className="px-2.5 py-1 rounded-lg text-slate-300 hover:text-amber-300 hover:bg-slate-800 text-xs font-bold transition-all flex items-center gap-1 cursor-pointer"
+                                title="上一張卡片"
+                              >
+                                <ChevronLeft className="w-3.5 h-3.5" />
+                                <span>上一張</span>
+                              </button>
+                              <span className="text-[11px] font-mono text-slate-400 px-1 font-bold">
+                                {cardIndexInFiltered + 1}/{filteredCards.length}
+                              </span>
+                              <button
+                                onClick={() => setExpandedCardId(nextCardId)}
+                                className="px-2.5 py-1 rounded-lg text-slate-300 hover:text-amber-300 hover:bg-slate-800 text-xs font-bold transition-all flex items-center gap-1 cursor-pointer"
+                                title="下一張卡片"
+                              >
+                                <span>下一張</span>
+                                <ChevronRight className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+
+                            {/* Zoom Ratio Selector */}
+                            <div className="hidden sm:flex items-center bg-slate-900/90 border border-slate-800 rounded-xl p-1 gap-1">
+                              {[100, 125, 150].map((ratio) => (
+                                <button
+                                  key={ratio}
+                                  onClick={() => setCardZoomRatio(ratio)}
+                                  className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold transition-all cursor-pointer ${
+                                    cardZoomRatio === ratio
+                                      ? 'bg-amber-400 text-slate-950 shadow'
+                                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                                  }`}
+                                >
+                                  {ratio}%
+                                </button>
+                              ))}
+                            </div>
+
+                            {/* Minimize Button */}
+                            <button
+                              onClick={() => setExpandedCardId(null)}
+                              className="px-4 py-2 rounded-xl bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 border border-amber-400/30 hover:border-amber-400/60 text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+                            >
+                              <Minimize2 className="w-4 h-4 text-amber-400" />
+                              <span>縮小 / 收合</span>
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Interactive Sub-Tab Selector inside Expanded Card */}
+                        <div className="flex items-center gap-2 border-b border-slate-850 pb-3 relative z-10 overflow-x-auto custom-scrollbar">
+                          <button
+                            onClick={() => setExpandedSubTab('insight')}
+                            className={`px-4 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
+                              expandedSubTab === 'insight'
+                                ? `${theme.badgeBg} ${theme.badgeText} border font-bold shadow-md`
+                                : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 border border-slate-800'
+                            }`}
+                          >
+                            <BookOpen className="w-3.5 h-3.5" />
+                            <span>✦ 靈性維度全息洞察</span>
+                          </button>
+
+                          <button
+                            onClick={() => setExpandedSubTab('breakdown')}
+                            className={`px-4 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
+                              expandedSubTab === 'breakdown'
+                                ? `${theme.badgeBg} ${theme.badgeText} border font-bold shadow-md`
+                                : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 border border-slate-800'
+                            }`}
+                          >
+                            <CheckCircle2 className="w-3.5 h-3.5" />
+                            <span>✦ 3 大核心機制拆解</span>
+                          </button>
+
+                          <button
+                            onClick={() => setExpandedSubTab('action')}
+                            className={`px-4 py-2 rounded-xl text-xs font-black transition-all flex items-center gap-2 cursor-pointer shrink-0 ${
+                              expandedSubTab === 'action'
+                                ? `${theme.badgeBg} ${theme.badgeText} border font-bold shadow-md`
+                                : 'bg-slate-900/80 text-slate-400 hover:text-slate-200 border border-slate-800'
+                            }`}
+                          >
+                            <Zap className="w-3.5 h-3.5" />
+                            <span>✦ 智慧運算與高階行動</span>
+                          </button>
+                        </div>
+
+                        {/* Sub-Tab Dynamic Content */}
+                        <div className="relative z-10">
+                          {expandedSubTab === 'insight' && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="space-y-5"
+                            >
+                              {/* Summary Quote Box */}
+                              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-950 border border-amber-400/20 text-slate-200 relative overflow-hidden">
+                                <div className="text-amber-400/20 text-5xl font-serif absolute -top-2 -left-1 pointer-events-none">
+                                  “
+                                </div>
+                                <p className="text-xs sm:text-sm font-bold leading-relaxed text-amber-200/90 pl-4 relative z-10">
+                                  {card.summary}
+                                </p>
+                              </div>
+
+                              {/* Spiritual Narrative */}
+                              <div
+                                className={`p-5 rounded-2xl bg-slate-900/90 border border-slate-800/80 space-y-3 leading-relaxed text-slate-200 whitespace-pre-line ${
+                                  cardZoomRatio === 150
+                                    ? 'text-sm sm:text-base'
+                                    : cardZoomRatio === 100
+                                    ? 'text-xs'
+                                    : 'text-xs sm:text-sm'
+                                }`}
+                              >
+                                <h4 className="text-xs font-mono font-bold text-amber-400 tracking-wider flex items-center gap-2 border-b border-slate-800 pb-2">
+                                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                                  DEEP SPIRITUAL INSIGHT NARRATIVE
+                                </h4>
+                                <div>{card.spiritualInsight}</div>
+                              </div>
+
+                              {/* Tags */}
+                              <div className="flex flex-wrap items-center gap-2 pt-1">
+                                <span className="text-xs font-mono text-slate-400 mr-1 font-bold">
+                                  核心標籤:
+                                </span>
+                                {card.tags.map((tag, tIdx) => (
+                                  <span
+                                    key={tIdx}
+                                    className={`text-xs font-bold px-3 py-1 rounded-lg border ${
+                                      tIdx === 0
+                                        ? `${theme.badgeBg} ${theme.badgeText}`
+                                        : 'bg-slate-900 text-slate-300 border-slate-800'
+                                    }`}
+                                  >
+                                    #{tag}
+                                  </span>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+
+                          {expandedSubTab === 'breakdown' && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="space-y-4"
+                            >
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                {card.coreBreakdown.map((item, bIdx) => (
+                                  <div
+                                    key={bIdx}
+                                    className={`p-5 rounded-2xl bg-slate-900/90 border space-y-2.5 transition-all relative overflow-hidden ${
+                                      bIdx === 0
+                                        ? 'border-emerald-400/30 hover:border-emerald-400/60'
+                                        : bIdx === 1
+                                        ? 'border-amber-400/30 hover:border-amber-400/60'
+                                        : 'border-indigo-400/30 hover:border-indigo-400/60'
+                                    }`}
+                                  >
+                                    <div
+                                      className={`text-xs font-mono font-black flex items-center justify-between pb-2 border-b border-slate-800 ${
+                                        bIdx === 0
+                                          ? 'text-emerald-400'
+                                          : bIdx === 1
+                                          ? 'text-amber-400'
+                                          : 'text-indigo-400'
+                                      }`}
+                                    >
+                                      <span>{item.label}</span>
+                                      <span className="text-[10px] opacity-70">0{bIdx + 1}</span>
+                                    </div>
+                                    <p className="text-xs text-slate-200 leading-relaxed pt-1">
+                                      {item.text}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+
+                          {expandedSubTab === 'action' && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="space-y-4"
+                            >
+                              <div className="p-5 rounded-2xl bg-amber-400/10 border border-amber-400/30 space-y-3">
+                                <div className="flex items-center gap-2 text-amber-300 text-xs font-mono font-black">
+                                  <Zap className="w-4 h-4 text-amber-400" />
+                                  <span>高階能量運作建議 (ACTION ADVICE)</span>
+                                </div>
+                                <p className="text-xs sm:text-sm text-amber-100 leading-relaxed font-medium">
+                                  {card.actionAdvice}
+                                </p>
+                              </div>
+
+                              <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                                <span>✦ 如需深入操作此流派系統之詳細命盤，請點擊右側按鈕跳轉至對應專屬分頁</span>
+                                <button
+                                  onClick={() => onTabChange(card.targetTab)}
+                                  className="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
+                                >
+                                  <span>進入【{card.systemTag}】完整分頁</span>
+                                  <ExternalLink className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            </motion.div>
+                          )}
+                        </div>
+
+                        {/* Expanded Footer Actions */}
+                        <div className="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+                          <div className="flex items-center gap-2 text-xs text-slate-400">
+                            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                            <span>已原位全息放大解讀，按下 Esc 鍵或右上角可隨時縮小收合</span>
+                          </div>
+
+                          <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                            <button
+                              onClick={() => setExpandedCardId(null)}
+                              className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 border border-slate-700 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                            >
+                              <Minimize2 className="w-3.5 h-3.5 text-amber-400" />
+                              <span>縮小收合</span>
+                            </button>
+
+                            <button
+                              onClick={() => onTabChange(card.targetTab)}
+                              className="px-5 py-2 rounded-xl text-slate-950 text-xs font-black bg-amber-400 hover:bg-amber-300 transition-all shadow-lg flex items-center justify-center gap-1.5 cursor-pointer"
+                            >
+                              <span>進入【{card.systemTag}】完整分頁</span>
+                              <ExternalLink className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  }
+
+                  // Compact Card View
+                  return (
+                    <motion.div
+                      key={card.id}
+                      id={`overview-card-${card.id}`}
+                      layout
+                      whileHover={{ y: -6, scale: 1.015 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                      onClick={() => {
+                        setExpandedCardId(card.id);
+                        setExpandedSubTab('insight');
+                      }}
+                      className={`group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border ${theme.border} shadow-lg hover:shadow-2xl ${theme.shadow} transition-colors duration-300 relative overflow-hidden flex flex-col justify-between`}
+                    >
+                      <div className={`absolute top-0 right-0 w-32 h-32 ${theme.bgGlow} rounded-full blur-2xl transition-all`} />
+
+                      <div className="space-y-3 relative z-10">
+                        <div className="flex items-center justify-between">
+                          <div className={`p-2.5 rounded-xl ${theme.badgeBg} border group-hover:scale-110 transition-transform`}>
+                            <card.icon className="w-5 h-5" />
+                          </div>
+
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
+                              <Maximize2 className="w-2.5 h-2.5" />
+                              點擊原位放大
                             </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                        {card.summary}
-                      </p>
-                    </div>
-
-                    <div className={`mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold ${theme.text}`}>
-                      <span className="flex items-center gap-1">
-                        <span>點擊展開靈性洞察 ✦</span>
-                      </span>
-                      <Maximize2 className="w-3.5 h-3.5 group-hover:scale-125 transition-transform" />
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* GROUP 2: 運勢節奏 */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-lg bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 text-xs font-black flex items-center gap-2 font-mono">
-                <TrendingUp className="w-4 h-4 text-emerald-400" />
-                維度二 ✦ 運勢節奏 (FORTUNE & LIFE RHYTHM)
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {HOLOGRAPHIC_CARDS.slice(3, 6).map((card) => {
-                const theme = getThemeClasses(card.themeColor);
-                return (
-                  <motion.div
-                    key={card.id}
-                    id={`overview-card-${card.id}`}
-                    whileHover={{ y: -6, scale: 1.01 }}
-                    whileTap={{ scale: 0.985 }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                    onClick={() => setSelectedCardId(card.id)}
-                    className={`group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border ${theme.border} shadow-lg hover:shadow-2xl ${theme.shadow} transition-colors duration-300 relative overflow-hidden flex flex-col justify-between`}
-                  >
-                    <div className={`absolute top-0 right-0 w-28 h-28 ${theme.bgGlow} rounded-full blur-2xl transition-all`} />
-                    
-                    <div className="space-y-3 relative z-10">
-                      <div className="flex items-center justify-between">
-                        <div className={`p-2.5 rounded-xl ${theme.badgeBg} border group-hover:scale-110 transition-transform`}>
-                          <card.icon className="w-5 h-5" />
-                        </div>
-                        
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-300 border border-emerald-400/20 flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
-                            <Maximize2 className="w-2.5 h-2.5" />
-                            點擊放大
-                          </span>
-                          <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                            {card.systemTag}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <h3 className={`text-base font-black text-slate-100 ${theme.hoverHeading} transition-colors`}>
-                          {card.title}
-                        </h3>
-                        <div className="flex flex-wrap gap-1.5 mt-2">
-                          {card.tags.map((tag, tIdx) => (
-                            <span key={tIdx} className={`text-[10px] font-bold px-2 py-0.5 rounded ${tIdx === 0 ? `${theme.badgeBg} ${theme.badgeText} border` : 'bg-slate-900 text-slate-300 border border-slate-800'}`}>
-                              {tag}
+                            <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
+                              {card.systemTag}
                             </span>
-                          ))}
+                          </div>
                         </div>
-                      </div>
 
-                      <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                        {card.summary}
-                      </p>
-                    </div>
-
-                    <div className={`mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold ${theme.text}`}>
-                      <span className="flex items-center gap-1">
-                        <span>點擊展開靈性洞察 ✦</span>
-                      </span>
-                      <Maximize2 className="w-3.5 h-3.5 group-hover:scale-125 transition-transform" />
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* GROUP 3: 人際互動 */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-lg bg-rose-400/10 border border-rose-400/30 text-rose-400 text-xs font-black flex items-center gap-2 font-mono">
-                <Users className="w-4 h-4 text-rose-400" />
-                維度三 ✦ 人際互動 (INTERPERSONAL & DYNAMICS)
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {HOLOGRAPHIC_CARDS.slice(6, 9).map((card) => {
-                const theme = getThemeClasses(card.themeColor);
-                return (
-                  <motion.div
-                    key={card.id}
-                    id={`overview-card-${card.id}`}
-                    whileHover={{ y: -6, scale: 1.01 }}
-                    whileTap={{ scale: 0.985 }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                    onClick={() => setSelectedCardId(card.id)}
-                    className={`group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border ${theme.border} shadow-lg hover:shadow-2xl ${theme.shadow} transition-colors duration-300 relative overflow-hidden flex flex-col justify-between`}
-                  >
-                    <div className={`absolute top-0 right-0 w-28 h-28 ${theme.bgGlow} rounded-full blur-2xl transition-all`} />
-                    
-                    <div className="space-y-3 relative z-10">
-                      <div className="flex items-center justify-between">
-                        <div className={`p-2.5 rounded-xl ${theme.badgeBg} border group-hover:scale-110 transition-transform`}>
-                          <card.icon className="w-5 h-5" />
-                        </div>
-                        
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-rose-400/10 text-rose-300 border border-rose-400/20 flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
-                            <Maximize2 className="w-2.5 h-2.5" />
-                            點擊放大
+                        <div>
+                          <span className="text-[10px] font-mono text-slate-400 block mb-0.5">
+                            {card.groupTitle}
                           </span>
-                          <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                            {card.systemTag}
-                          </span>
+                          <h3 className={`text-base font-black text-slate-100 ${theme.hoverHeading} transition-colors`}>
+                            {card.title}
+                          </h3>
+                          <div className="flex flex-wrap gap-1.5 mt-2">
+                            {card.tags.map((tag, tIdx) => (
+                              <span
+                                key={tIdx}
+                                className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                                  tIdx === 0
+                                    ? `${theme.badgeBg} ${theme.badgeText} border`
+                                    : 'bg-slate-900 text-slate-300 border border-slate-800'
+                                }`}
+                              >
+                                #{tag}
+                              </span>
+                            ))}
+                          </div>
                         </div>
+
+                        <p className="text-xs text-slate-300 leading-relaxed pt-1">
+                          {card.summary}
+                        </p>
                       </div>
 
-                      <div>
-                        <h3 className={`text-base font-black text-slate-100 ${theme.hoverHeading} transition-colors`}>
-                          {card.title}
-                        </h3>
-                        <div className="flex flex-wrap gap-1.5 mt-2">
-                          {card.tags.map((tag, tIdx) => (
-                            <span key={tIdx} className={`text-[10px] font-bold px-2 py-0.5 rounded ${tIdx === 0 ? `${theme.badgeBg} ${theme.badgeText} border` : 'bg-slate-900 text-slate-300 border border-slate-800'}`}>
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
+                      <div className={`mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold ${theme.text}`}>
+                        <span className="flex items-center gap-1.5">
+                          <span>點擊原位全息放大 ✦</span>
+                        </span>
+                        <Maximize2 className="w-3.5 h-3.5 group-hover:scale-125 transition-transform text-amber-400" />
                       </div>
-
-                      <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                        {card.summary}
-                      </p>
-                    </div>
-
-                    <div className={`mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold ${theme.text}`}>
-                      <span className="flex items-center gap-1">
-                        <span>點擊展開靈性洞察 ✦</span>
-                      </span>
-                      <Maximize2 className="w-3.5 h-3.5 group-hover:scale-125 transition-transform" />
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            );
+          })()}
         </div>
       </div>
-
-      {/* Framer Motion Expanded Card Lightbox Modal */}
-      <AnimatePresence>
-        {selectedCard && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            {/* Backdrop Blur */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setSelectedCardId(null)}
-              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
-            />
-
-            {/* Modal Dialog Content */}
-            <motion.div
-              layoutId={`overview-card-${selectedCard.id}`}
-              initial={{ scale: 0.92, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.92, opacity: 0, y: 20 }}
-              transition={{ type: 'spring', stiffness: 320, damping: 28 }}
-              className={`relative z-10 w-full max-w-2xl bg-slate-900 border ${getThemeClasses(selectedCard.themeColor).modalBorder} rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-auto`}
-            >
-              <div className={`absolute top-0 right-0 w-64 h-64 ${getThemeClasses(selectedCard.themeColor).bgGlow} rounded-full blur-3xl pointer-events-none`} />
-
-              {/* Close Button & Header Bar */}
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4 relative z-10">
-                <div className="flex items-center gap-3">
-                  <div className={`p-3 rounded-2xl ${getThemeClasses(selectedCard.themeColor).badgeBg} border`}>
-                    <selectedCard.icon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded border border-amber-400/20">
-                      {selectedCard.groupTitle}
-                    </span>
-                    <h2 className="text-xl sm:text-2xl font-black text-slate-100 mt-0.5">
-                      {selectedCard.title}
-                    </h2>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setSelectedCardId(null)}
-                  className="p-2 rounded-full bg-slate-800/80 text-slate-400 hover:text-slate-100 hover:bg-slate-700 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Tags & System Badge */}
-              <div className="flex flex-wrap items-center gap-2 mt-4 relative z-10">
-                <span className="text-xs font-mono font-black px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-slate-300">
-                  {selectedCard.systemTag}
-                </span>
-                {selectedCard.tags.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className={`text-xs font-bold px-3 py-1 rounded-lg border ${
-                      idx === 0
-                        ? `${getThemeClasses(selectedCard.themeColor).badgeBg} ${getThemeClasses(selectedCard.themeColor).badgeText}`
-                        : 'bg-slate-950 text-slate-300 border-slate-800'
-                    }`}
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Spiritual Detailed Insight Content */}
-              <div className="mt-6 space-y-6 relative z-10 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
-                {/* Spiritual Insight Section */}
-                <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 space-y-3">
-                  <h4 className="text-sm font-black text-amber-400 flex items-center gap-2 font-mono">
-                    <BookOpen className="w-4 h-4 text-amber-400" />
-                    靈性維度全息洞察 ✦ DEEP SPIRITUAL INSIGHT
-                  </h4>
-                  <div className="text-sm text-slate-200 leading-relaxed whitespace-pre-line font-normal">
-                    {selectedCard.spiritualInsight}
-                  </div>
-                </div>
-
-                {/* Core Breakdown Items */}
-                <div className="space-y-2.5">
-                  <h4 className="text-xs font-black text-slate-400 font-mono tracking-wider">
-                    核心解析與機制拆解
-                  </h4>
-                  <div className="grid grid-cols-1 gap-2.5">
-                    {selectedCard.coreBreakdown.map((item, bIdx) => (
-                      <div key={bIdx} className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-850/80 flex flex-col sm:flex-row sm:items-baseline gap-2">
-                        <span className="text-xs font-bold text-amber-300 shrink-0">
-                          {item.label}
-                        </span>
-                        <span className="text-xs text-slate-300 leading-relaxed">
-                          {item.text}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* High Level Action Advice */}
-                <div className="p-4 rounded-xl bg-amber-400/10 border border-amber-400/20 text-xs text-amber-200 leading-relaxed flex items-start gap-3">
-                  <Sparkles className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                  <div>
-                    <span className="font-bold text-amber-300 block mb-0.5">高階運作建議：</span>
-                    {selectedCard.actionAdvice}
-                  </div>
-                </div>
-              </div>
-
-              {/* Modal Footer Actions */}
-              <div className="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between gap-4 relative z-10">
-                <span className="text-xs text-slate-400 hidden sm:inline-block">
-                  按 ESC 鍵或點擊外部可隨時關閉
-                </span>
-                
-                <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
-                  <button
-                    onClick={() => setSelectedCardId(null)}
-                    className="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 transition-colors"
-                  >
-                    關閉卡片
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      const target = selectedCard.targetTab;
-                      setSelectedCardId(null);
-                      onTabChange(target);
-                    }}
-                    className={`px-5 py-2.5 rounded-xl text-slate-950 text-xs font-black bg-amber-400 hover:bg-amber-300 transition-all shadow-lg flex items-center justify-center gap-2`}
-                  >
-                    <span>進入【{selectedCard.systemTag}】完整分頁</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* Synthesized Energy Systems Matrix */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
