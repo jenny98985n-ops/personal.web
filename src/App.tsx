@@ -1,6 +1,6 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { 
-  Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, Menu, X, BookOpen, Loader2
+  Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, Menu, X, BookOpen, Loader2, Sun, Moon
 } from 'lucide-react';
 
 const OverviewDashboard = lazy(() => import('./components/OverviewDashboard'));
@@ -18,6 +18,18 @@ type TabType = 'overview' | 'fullreport' | 'astrology' | 'humandesign' | 'easter
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    return (localStorage.getItem('app-theme') as 'dark' | 'light') || 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('app-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   const tabs = [
     { id: 'overview', name: '全息總覽', icon: Sparkles, color: 'text-indigo-400' },
@@ -80,12 +92,25 @@ export default function App() {
               );
             })}
           </nav>
+
+          <div className="pt-4 border-t border-slate-800">
+            <button
+              onClick={toggleTheme}
+              className="w-full flex items-center justify-between p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-sm font-mono"
+            >
+              <span className="flex items-center gap-2">
+                {theme === 'dark' ? <Moon className="w-4 h-4 text-indigo-400" /> : <Sun className="w-4 h-4 text-amber-500" />}
+                <span>主題模式：{theme === 'dark' ? '深邃黑' : '極簡白'}</span>
+              </span>
+              <span className="text-xs bg-amber-400/10 text-amber-400 px-2 py-1 rounded border border-amber-400/20">切換</span>
+            </button>
+          </div>
         </div>
       )}
 
       {/* Desktop Persistent Sidebar */}
       <aside className="hidden md:flex md:w-72 lg:w-80 flex-shrink-0 bg-slate-950 border-r border-slate-850 flex-col justify-between p-6 h-screen sticky top-0">
-        <div className="space-y-6 overflow-y-auto max-h-[calc(100vh-120px)] pr-1 scrollbar-none">
+        <div className="space-y-6 overflow-y-auto max-h-[calc(100vh-160px)] pr-1 scrollbar-none">
           {/* Brand Seal in Bold Typography style */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
@@ -130,8 +155,26 @@ export default function App() {
         </div>
 
         {/* Desktop Sidebar Footer */}
-        <div className="pt-4 border-t border-slate-850">
-          <div className="text-[9px] text-slate-600 font-mono uppercase tracking-widest">
+        <div className="pt-4 border-t border-slate-850 space-y-3">
+          <button
+            onClick={toggleTheme}
+            className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-400/50 text-slate-300 hover:text-slate-100 transition-all text-xs font-mono cursor-pointer shadow-sm group"
+            id="theme-toggle-btn"
+          >
+            <span className="flex items-center gap-2">
+              {theme === 'dark' ? (
+                <Moon className="w-3.5 h-3.5 text-indigo-400 group-hover:rotate-12 transition-transform" />
+              ) : (
+                <Sun className="w-3.5 h-3.5 text-amber-500 group-hover:rotate-45 transition-transform" />
+              )}
+              <span className="font-sans font-medium">{theme === 'dark' ? '深邃黑' : '極簡白'}</span>
+            </span>
+            <span className="text-[10px] text-amber-400 font-mono bg-amber-400/10 px-2 py-0.5 rounded-md border border-amber-400/20">
+              切換主題
+            </span>
+          </button>
+
+          <div className="text-[9px] text-slate-500 font-mono uppercase tracking-widest text-center">
             跨流派天賦系統 ✦ Vol. 2026
           </div>
         </div>

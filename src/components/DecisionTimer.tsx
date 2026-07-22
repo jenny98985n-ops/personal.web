@@ -54,35 +54,8 @@ function CompassIcon(props: any) {
   );
 }
 
-const TEMPLATE_PRESETS = [
-  {
-    title: "購買高單價設計師家具 / 精緻用品",
-    category: 'wealth' as const,
-    notes: "符合金星金牛對「極致質感」的追求，但也需要防止雙子座的三分鐘熱度。評估實用性與 CP 值。",
-  },
-  {
-    title: "承諾一項為期數個月的新合作專案",
-    category: 'career' as const,
-    notes: "評估是否能保有「智識的擴張與時間的自由」。我天生是顯示者，想發起，但薦骨空白，執行面是否能外包？",
-  },
-  {
-    title: "答應週末的高強度社交/聚會邀約",
-    category: 'relationship' as const,
-    notes: "空白薦骨容易吸附他人能量。我是否留足了「神聖洞穴日」與不被打擾的充電時間？還是因人情委屈配合？",
-  },
-  {
-    title: "向伴侶/朋友表達內心深處的敏感不滿",
-    category: 'relationship' as const,
-    notes: "我是情緒中心權威，必須等情緒波浪走完，歸於清明平靜。此時的表達是否有攻擊性？是否完成了「告知」？",
-  },
-];
-
 export default function DecisionTimer() {
   const [decisions, setDecisions] = useState<Decision[]>([]);
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState<Decision['category']>('wealth');
-  const [notes, setNotes] = useState('');
-  const [isAccelerated, setIsAccelerated] = useState(false); // Quick 3-min test mode
   const [activeTab, setActiveTab] = useState<'active' | 'history'>('active');
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<number>(Date.now());
@@ -127,46 +100,6 @@ export default function DecisionTimer() {
 
     return () => clearInterval(interval);
   }, [decisions]);
-
-  const handleAddDecision = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!title.trim()) return;
-
-    // Standard cooling time is 72 hours (259200000 ms)
-    // Test mode cooling time is 3 minutes (180000 ms)
-    const coolingDuration = isAccelerated ? 3 * 60 * 1000 : 72 * 60 * 60 * 1000;
-    
-    const newDecision: Decision = {
-      id: Math.random().toString(36).substring(2, 11),
-      title: title.trim(),
-      category,
-      notes: notes.trim(),
-      createdAt: Date.now(),
-      targetAt: Date.now() + coolingDuration,
-      status: 'cooling',
-      isTestMode: isAccelerated,
-      reflections: {
-        emotionalClarity: false,
-        informedOthers: false,
-        qualityChecked: false,
-        boundaryChecked: false
-      }
-    };
-
-    const next = [newDecision, ...decisions];
-    saveDecisions(next);
-    setExpandedId(newDecision.id);
-    
-    // Reset form
-    setTitle('');
-    setNotes('');
-  };
-
-  const applyPreset = (preset: typeof TEMPLATE_PRESETS[0]) => {
-    setTitle(preset.title);
-    setCategory(preset.category);
-    setNotes(preset.notes);
-  };
 
   const handleToggleReflection = (decisionId: string, key: keyof ReflectionAnswers) => {
     const next = decisions.map(d => {
@@ -260,111 +193,8 @@ export default function DecisionTimer() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column: Input Form & Blueprint Presets */}
-        <div className="space-y-6 lg:col-span-1">
-          <div className="p-5 rounded-2xl bg-slate-900/30 border border-slate-850 space-y-4">
-            <h3 className="text-sm font-black text-slate-100 flex items-center gap-2">
-              <Plus className="w-4 h-4 text-amber-400" />
-              發起一項重大決策
-            </h3>
-            
-            <form onSubmit={handleAddDecision} className="space-y-3.5 text-xs">
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">決策主題</label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="例如：購買頂級投影機、接受新項目合約..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-400/50 text-xs"
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">決策類別</label>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {CATEGORIES.map(cat => {
-                    const CatIcon = cat.icon;
-                    return (
-                      <button
-                        key={cat.id}
-                        type="button"
-                        onClick={() => setCategory(cat.id as any)}
-                        className={`p-2.5 rounded-lg border text-[10px] font-bold flex items-center gap-2 transition-all ${category === cat.id ? 'bg-slate-950 border-amber-400/50 text-amber-400 shadow-lg' : 'bg-slate-950/40 border-slate-850 text-slate-400 hover:border-slate-800'}`}
-                      >
-                        <CatIcon className={`w-3.5 h-3.5 ${category === cat.id ? cat.color : 'text-slate-500'}`} />
-                        <span>{cat.name.split('與')[0]}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Developer Test Toggle */}
-              <div className="p-3 rounded-xl bg-slate-950 border border-slate-850 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-bold text-amber-400 flex items-center gap-1">
-                    <FastForward className="w-3.5 h-3.5" />
-                    測試加速模式
-                  </span>
-                  <p className="text-[9px] text-slate-500 leading-normal mt-0.5">將 72 小時縮短為 3 分鐘，便於即時預覽計時完成與確認流程。</p>
-                </div>
-                <input
-                  type="checkbox"
-                  checked={isAccelerated}
-                  onChange={(e) => setIsAccelerated(e.target.checked)}
-                  className="w-4 h-4 rounded text-amber-400 focus:ring-0 cursor-pointer accent-amber-400"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={!title.trim()}
-                className={`w-full py-2.5 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5 ${title.trim() ? 'bg-amber-400 hover:bg-amber-500 text-slate-950 cursor-pointer shadow-lg' : 'bg-slate-800 text-slate-500 cursor-not-allowed'}`}
-              >
-                <Clock className="w-4 h-4" />
-                送入冷卻艙（開始倒數）
-              </button>
-            </form>
-          </div>
-
-          {/* Presets Panel */}
-          <div className="p-5 rounded-2xl bg-slate-900/30 border border-slate-850 space-y-3">
-            <h4 className="text-xs font-black text-slate-100 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              能量藍圖高頻模板 (Presets)
-            </h4>
-            <p className="text-[10px] text-slate-400 leading-normal">
-              為賴以婕的星盤、人類圖量身篩選的典型高頻決策，點擊可快速填入：
-            </p>
-            <div className="space-y-2 text-xs pt-1">
-              {TEMPLATE_PRESETS.map((preset, index) => {
-                const matchedCat = CATEGORIES.find(c => c.id === preset.category);
-                const Icon = matchedCat?.icon || Info;
-                return (
-                  <div
-                    key={index}
-                    onClick={() => applyPreset(preset)}
-                    className="p-3 rounded-xl bg-slate-950/60 hover:bg-slate-950 border border-slate-850/60 hover:border-slate-800 cursor-pointer transition-all space-y-1.5 group"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${matchedCat?.bg} ${matchedCat?.color} border ${matchedCat?.border}`}>
-                        {matchedCat?.name}
-                      </span>
-                      <ArrowRight className="w-3 h-3 text-slate-600 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all" />
-                    </div>
-                    <p className="font-bold text-[11px] text-slate-200 leading-relaxed group-hover:text-amber-300 transition-colors">{preset.title}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column: Active Decisions & History Lists */}
-        <div className="lg:col-span-2 space-y-4">
-          <AnimatePresence mode="wait">
+      <div className="space-y-4">
+        <AnimatePresence mode="wait">
             {activeTab === 'active' ? (
               <motion.div
                 key="active"
@@ -698,7 +528,6 @@ export default function DecisionTimer() {
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
       </div>
     </div>
   );
