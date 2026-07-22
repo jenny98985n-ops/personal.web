@@ -3512,33 +3512,6 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
         {/* Content Area (Right Column) */}
         <div className="lg:col-span-3 space-y-6">
           
-          {/* Quick Dimension Navigation Strip */}
-          <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-850 flex items-center gap-2 overflow-x-auto scrollbar-none">
-            <span className="text-[10px] font-mono font-bold text-slate-500 uppercase flex-shrink-0 px-1">維度速查：</span>
-            {categories.map((cat) => {
-              const CatIcon = cat.icon;
-              const active = selectedCategory === cat.id;
-              const progress = categoryReadProgress[cat.id];
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold flex-shrink-0 transition-all border ${
-                    active 
-                      ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-md shadow-amber-400/10' 
-                      : 'bg-slate-950 text-slate-400 hover:text-slate-200 border-slate-800 hover:border-slate-700'
-                  }`}
-                >
-                  <CatIcon className="w-3 h-3" />
-                  <span>{cat.name}</span>
-                  <span className={`text-[10px] font-mono px-1 rounded ${active ? 'bg-slate-950/20 text-slate-950' : 'bg-slate-900 text-slate-500'}`}>
-                    {progress?.total || 0}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
           {/* Main Filter & Search Bar */}
           <div className="p-4 rounded-2xl bg-slate-900 border border-slate-850 space-y-4">
             <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
