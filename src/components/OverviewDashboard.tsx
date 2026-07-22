@@ -3,10 +3,159 @@ import { LAI_YI_CHIEH_DATA } from '../types';
 import { 
   Sparkles, Brain, Flame, Zap, CheckCircle2, AlertCircle, 
   Compass, Heart, DollarSign, Activity, Eye, Shield, Award, HelpCircle,
-  RefreshCw, Shuffle, Crown, TrendingUp, Users, ArrowRight
+  RefreshCw, Shuffle, Crown, TrendingUp, Users, ArrowRight,
+  Sliders, Gauge, BarChart3, PieChart, Info, ChevronDown, ChevronUp
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import EnergyQuoteWidget from './EnergyQuoteWidget';
+
+interface EnergyMetric {
+  id: string;
+  name: string;
+  shortName: string;
+  score: number;
+  category: 'talent' | 'wealth' | 'mindfulness';
+  categoryLabel: string;
+  weightTag: string;
+  keyDrivers: string[];
+  gradient: string;
+  badgeBg: string;
+  badgeText: string;
+  badgeBorder: string;
+  icon: React.ElementType;
+  description: string;
+  strategyTip: string;
+  systemResonance: string;
+}
+
+const ENERGY_METRICS: EnergyMetric[] = [
+  {
+    id: 'brainpower',
+    name: '腦力網絡 (Brainpower)',
+    shortName: '腦力網絡',
+    score: 96,
+    category: 'talent',
+    categoryLabel: '天賦動力',
+    weightTag: '96% ✦ 核心主導',
+    keyDrivers: ['太陽/上升雙子', '四箭全左邏輯大腦', '超級神經網絡'],
+    gradient: 'from-amber-400 via-yellow-400 to-amber-500',
+    badgeBg: 'bg-amber-400/10',
+    badgeText: 'text-amber-400',
+    badgeBorder: 'border-amber-400/30',
+    icon: Brain,
+    description: '雙子星群與四箭全左超級大腦完美共振，具備頂級資訊敏銳度、結構化思維與極速知識吸收力。',
+    strategyTip: '避免消耗於手工作業，專注於架構設計、頂層策劃與 AI 自動化系統發起。',
+    systemResonance: '西洋占星 ✕ 人類圖 ✕ 紫微斗數 (對宮巨門昌曲)'
+  },
+  {
+    id: 'initiating',
+    name: '發起開路 (Initiating Power)',
+    shortName: '發起開路',
+    score: 92,
+    category: 'talent',
+    categoryLabel: '天賦動力',
+    weightTag: '92% ✦ 破局開路',
+    keyDrivers: ['顯示者 Manifestor', '35-36 冒險體驗通道', '丙火日主'],
+    gradient: 'from-rose-500 via-amber-400 to-amber-500',
+    badgeBg: 'bg-rose-400/10',
+    badgeText: 'text-rose-400',
+    badgeBorder: 'border-rose-400/30',
+    icon: Zap,
+    description: '生來打破現狀，具備獨立發起與開創新局的強大爆發能量，不需向任何人尋求許可。',
+    strategyTip: '發起前主動「告知」周遭夥伴，能化解 90% 的人際阻力與對立情緒。',
+    systemResonance: '人類圖 ✕ 八字丙火 ✕ 基因天命 35'
+  },
+  {
+    id: 'wealth',
+    name: '財富變現 (Monetization)',
+    shortName: '財富變現',
+    score: 94,
+    category: 'wealth',
+    categoryLabel: '財富事業',
+    weightTag: '94% ✦ 點子印鈔機',
+    keyDrivers: ['財帛天機化祿', '月時雙透辛金正財', '金星金牛高奢質感'],
+    gradient: 'from-emerald-400 via-teal-400 to-emerald-500',
+    badgeBg: 'bg-emerald-400/10',
+    badgeText: 'text-emerald-400',
+    badgeBorder: 'border-emerald-400/30',
+    icon: DollarSign,
+    description: '企劃與點子化祿，靠大腦與質感高溢價輕鬆獲利，自帶春日花開貴人與熟人圈層聚財磁場。',
+    strategyTip: '善用 4 爻熟人圈層與貴人引薦，杜絕勞力賤賣，大膽為智力成果與美感標高價。',
+    systemResonance: '紫微財帛宮 ✕ 八字正財格 ✕ 姓名學 32 吉木'
+  },
+  {
+    id: 'charisma',
+    name: '王者氣場 (Regal Charisma)',
+    shortName: '王者氣場',
+    score: 90,
+    category: 'talent',
+    categoryLabel: '天賦動力',
+    weightTag: '90% ✦ 領袖魅力',
+    keyDrivers: ['月亮獅子 3 宮', '遷移宮太陽化權', '天梁蔭星庇佑'],
+    gradient: 'from-amber-500 via-orange-400 to-amber-400',
+    badgeBg: 'bg-orange-400/10',
+    badgeText: 'text-orange-400',
+    badgeBorder: 'border-orange-400/30',
+    icon: Crown,
+    description: '具備大智若愚的造王者氣場與慷慨特質，渴望在大眾發言台上被看見、被肯定與獲得熱烈掌聲。',
+    strategyTip: '打造個人品牌與專屬發言台（如知識社群/著作），理直氣壯接受大眾的正向讚賞。',
+    systemResonance: '西洋占星 3 宮 ✕ 紫微太陽化權 ✕ 八字月令'
+  },
+  {
+    id: 'emotion',
+    name: '情緒冷卻 (Emotional Cool-down)',
+    shortName: '情緒冷卻',
+    score: 88,
+    category: 'mindfulness',
+    categoryLabel: '身心調頻',
+    weightTag: '88% ✦ 72h法則',
+    keyDrivers: ['情緒內在權威', '福德宮太陰化忌', '情緒波浪衝浪'],
+    gradient: 'from-blue-500 via-indigo-400 to-blue-400',
+    badgeBg: 'bg-blue-400/10',
+    badgeText: 'text-blue-400',
+    badgeBorder: 'border-blue-400/30',
+    icon: Activity,
+    description: '重大決策不可在情緒高低點定論。經過 72 小時平靜沉澱後，理智決策勝率近乎 100%。',
+    strategyTip: '建立衝動隔離艙，任何重大契約或大筆消費實施至少 3 天冷卻期。',
+    systemResonance: '人類圖情緒權威 ✕ 紫微福德宮 ✕ 占星火星'
+  },
+  {
+    id: 'empathy',
+    name: '共情護城 (Empathy Boundary)',
+    shortName: '共情護城',
+    score: 85,
+    category: 'mindfulness',
+    categoryLabel: '身心調頻',
+    weightTag: '85% ✦ 邊界防禦',
+    keyDrivers: ['卯宮無主星', '薦骨中心空白', '2/4 人生角色'],
+    gradient: 'from-purple-500 via-pink-400 to-purple-400',
+    badgeBg: 'bg-purple-400/10',
+    badgeText: 'text-purple-400',
+    badgeBorder: 'border-purple-400/30',
+    icon: Shield,
+    description: '海綿般敏銳共情吸收力。若缺乏邊界易透支借來的薦骨能量、過度迎合他人阻礙自我成長。',
+    strategyTip: '明確不妥協原則清單，定期回歸獨處洞穴（2 爻）進行物理接地與海鹽淨化。',
+    systemResonance: '紫微無主星 ✕ 人類圖空白薦骨 ✕ 2/4 雙軌社交'
+  },
+  {
+    id: 'spirituality',
+    name: '靈性直覺 (Spiritual Depth)',
+    shortName: '靈性直覺',
+    score: 89,
+    category: 'mindfulness',
+    categoryLabel: '身心調頻',
+    weightTag: '89% ✦ 潛意識雷達',
+    keyDrivers: ['12 宮太陽隱士', '土星雙魚靈感', '第四宮凱龍合相'],
+    gradient: 'from-teal-400 via-cyan-400 to-teal-500',
+    badgeBg: 'bg-teal-400/10',
+    badgeText: 'text-teal-400',
+    badgeBorder: 'border-teal-400/30',
+    icon: Sparkles,
+    description: '深邃潛意識連結與靈性探索雷達，能將深層情緒創傷淬煉為療癒人心的智者話語。',
+    strategyTip: '在安靜夜間進行冥想與靈魂書寫，將無形靈感築造成現實中的高質感城堡。',
+    systemResonance: '西洋占星 12 宮 ✕ 紫微天梁蔭星 ✕ 基因天命'
+  }
+];
 
 interface GoldenSaying {
   id: number;
@@ -59,6 +208,9 @@ export default function OverviewDashboard({ onTabChange }: Props) {
   const [activeTabRelation, setActiveTabRelation] = useState<'mind' | 'heart' | 'power'>('mind');
   const [activeIndices, setActiveIndices] = useState<number[]>([0, 1, 2, 3, 4]);
   const [isSpinning, setIsSpinning] = useState(false);
+  const [selectedGaugeCategory, setSelectedGaugeCategory] = useState<'all' | 'talent' | 'wealth' | 'mindfulness'>('all');
+  const [hoveredMetricId, setHoveredMetricId] = useState<string | null>(null);
+  const [activeMetricDetail, setActiveMetricDetail] = useState<string>('brainpower');
 
   const handleShuffleAll = () => {
     setIsSpinning(true);
@@ -129,6 +281,366 @@ export default function OverviewDashboard({ onTabChange }: Props) {
             <div className="space-y-1">
               <span className="text-[10px] text-slate-500 font-mono block tracking-wider">外觀與材質</span>
               <p className="text-xs md:text-sm font-bold text-emerald-300 font-display">金星金牛 (高奢材質)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 能量儀表板與雷達矩陣 (Energy Radar & Gauges Matrix Dashboard) */}
+      <div className="p-6 md:p-8 rounded-3xl bg-slate-900/40 border border-slate-850 shadow-2xl space-y-8 relative overflow-hidden" id="energy-gauge-dashboard-section">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Section Header */}
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-850 pb-6">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2">
+              <div className="p-2 bg-amber-400/10 text-amber-400 rounded-xl border border-amber-400/20">
+                <Gauge className="w-5 h-5 animate-pulse" />
+              </div>
+              <h2 className="text-xl md:text-2xl font-black text-slate-100 tracking-tight flex items-center gap-2">
+                命理指標能量儀表板
+                <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20">
+                  VISUAL WEIGHT RADAR
+                </span>
+              </h2>
+            </div>
+            <p className="text-xs md:text-sm text-slate-400 leading-relaxed max-w-2xl">
+              取代繁雜純文字堆疊，將「西洋占星、人類圖、八字、紫微斗數、姓名學」核心指標量化為<strong className="text-amber-300">視覺化權重進度條與 7 維度能量雷達圖</strong>，直觀透視你的天賦強項與能量場動態。
+            </p>
+          </div>
+
+          {/* Category Filter Controls */}
+          <div className="flex flex-wrap items-center gap-1.5 bg-slate-950 p-1.5 rounded-xl border border-slate-850 self-start md:self-auto">
+            <button
+              onClick={() => setSelectedGaugeCategory('all')}
+              className={`px-3 py-1.5 text-xs font-black rounded-lg transition-all cursor-pointer ${
+                selectedGaugeCategory === 'all'
+                  ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-400/10'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              全部指標 ({ENERGY_METRICS.length})
+            </button>
+            <button
+              onClick={() => setSelectedGaugeCategory('talent')}
+              className={`px-3 py-1.5 text-xs font-black rounded-lg transition-all cursor-pointer ${
+                selectedGaugeCategory === 'talent'
+                  ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-400/10'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              天賦爆發 ({ENERGY_METRICS.filter(m => m.category === 'talent').length})
+            </button>
+            <button
+              onClick={() => setSelectedGaugeCategory('wealth')}
+              className={`px-3 py-1.5 text-xs font-black rounded-lg transition-all cursor-pointer ${
+                selectedGaugeCategory === 'wealth'
+                  ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-400/10'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              財富變現 ({ENERGY_METRICS.filter(m => m.category === 'wealth').length})
+            </button>
+            <button
+              onClick={() => setSelectedGaugeCategory('mindfulness')}
+              className={`px-3 py-1.5 text-xs font-black rounded-lg transition-all cursor-pointer ${
+                selectedGaugeCategory === 'mindfulness'
+                  ? 'bg-amber-400 text-slate-950 shadow-md shadow-amber-400/10'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              身心調頻 ({ENERGY_METRICS.filter(m => m.category === 'mindfulness').length})
+            </button>
+          </div>
+        </div>
+
+        {/* Overview Key Indicators Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="p-4 rounded-2xl bg-slate-950 border border-slate-850 space-y-1">
+            <span className="text-[10px] font-mono text-slate-500 block uppercase">綜合能量原型</span>
+            <p className="text-xs md:text-sm font-black text-amber-300 flex items-center gap-1.5">
+              <Crown className="w-3.5 h-3.5 text-amber-400" />
+              爆發型軍師 (Initiating Strategist)
+            </p>
+          </div>
+          <div className="p-4 rounded-2xl bg-slate-950 border border-slate-850 space-y-1">
+            <span className="text-[10px] font-mono text-slate-500 block uppercase">平均天賦頻率</span>
+            <p className="text-xs md:text-sm font-black text-emerald-400 flex items-center gap-1.5">
+              <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+              90.6 / 100 (超頻高階運作)
+            </p>
+          </div>
+          <div className="p-4 rounded-2xl bg-slate-950 border border-slate-850 space-y-1">
+            <span className="text-[10px] font-mono text-slate-500 block uppercase">最強獲利槓桿</span>
+            <p className="text-xs md:text-sm font-black text-slate-200 flex items-center gap-1.5">
+              <DollarSign className="w-3.5 h-3.5 text-amber-400" />
+              企劃化祿 ✕ 熟人貴人引介
+            </p>
+          </div>
+          <div className="p-4 rounded-2xl bg-slate-950 border border-slate-850 space-y-1">
+            <span className="text-[10px] font-mono text-slate-500 block uppercase">最佳避坑心法</span>
+            <p className="text-xs md:text-sm font-black text-blue-400 flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5 text-blue-400" />
+              72h情緒冷卻 ✕ 獨處洞穴
+            </p>
+          </div>
+        </div>
+
+        {/* Radar Chart + Gauges Progress Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Left Column: Interactive Radar Web Chart */}
+          <div className="lg:col-span-5 p-6 rounded-2xl bg-slate-950 border border-slate-850 flex flex-col items-center justify-between space-y-6 relative overflow-hidden shadow-xl">
+            <div className="w-full flex items-center justify-between border-b border-slate-900 pb-3">
+              <div className="flex items-center gap-2">
+                <PieChart className="w-4 h-4 text-amber-400" />
+                <span className="text-xs font-black text-slate-200 uppercase tracking-wider font-mono">
+                  7 維度命理權重雷達圖
+                </span>
+              </div>
+              <span className="text-[10px] font-mono text-slate-500">HOVER TO HIGHLIGHT</span>
+            </div>
+
+            {/* SVG Radar */}
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-square flex items-center justify-center">
+              <svg viewBox="0 0 320 320" className="w-full h-full overflow-visible">
+                <defs>
+                  <linearGradient id="radarAreaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.45" />
+                    <stop offset="50%" stopColor="#f43f5e" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.25" />
+                  </linearGradient>
+                  <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+
+                {/* Grid Rings */}
+                {[20, 40, 60, 80, 100].map((lvl) => {
+                  const ringPts = ENERGY_METRICS.map((_, i) => {
+                    const angle = (2 * Math.PI * i) / ENERGY_METRICS.length - Math.PI / 2;
+                    const r = (105 * lvl) / 100;
+                    return `${(160 + r * Math.cos(angle)).toFixed(1)},${(160 + r * Math.sin(angle)).toFixed(1)}`;
+                  }).join(' ');
+                  return (
+                    <polygon
+                      key={lvl}
+                      points={ringPts}
+                      fill="none"
+                      stroke={lvl === 100 ? "rgba(251, 191, 36, 0.35)" : "rgba(255, 255, 255, 0.08)"}
+                      strokeWidth={lvl === 100 ? "1.5" : "1"}
+                      strokeDasharray={lvl === 100 ? "none" : "3 3"}
+                    />
+                  );
+                })}
+
+                {/* Axis lines */}
+                {ENERGY_METRICS.map((_, i) => {
+                  const angle = (2 * Math.PI * i) / ENERGY_METRICS.length - Math.PI / 2;
+                  const x2 = 160 + 105 * Math.cos(angle);
+                  const y2 = 160 + 105 * Math.sin(angle);
+                  return (
+                    <line
+                      key={i}
+                      x1={160}
+                      y1={160}
+                      x2={x2}
+                      y2={y2}
+                      stroke="rgba(255, 255, 255, 0.12)"
+                      strokeDasharray="2 2"
+                    />
+                  );
+                })}
+
+                {/* Polygon Area */}
+                <polygon
+                  points={ENERGY_METRICS.map((m, i) => {
+                    const angle = (2 * Math.PI * i) / ENERGY_METRICS.length - Math.PI / 2;
+                    const r = (105 * m.score) / 100;
+                    return `${(160 + r * Math.cos(angle)).toFixed(1)},${(160 + r * Math.sin(angle)).toFixed(1)}`;
+                  }).join(' ')}
+                  fill="url(#radarAreaGradient)"
+                  stroke="#fbbf24"
+                  strokeWidth="2.5"
+                  filter="url(#glow)"
+                  className="transition-all duration-300"
+                />
+
+                {/* Nodes and Labels */}
+                {ENERGY_METRICS.map((m, i) => {
+                  const angle = (2 * Math.PI * i) / ENERGY_METRICS.length - Math.PI / 2;
+                  const r = (105 * m.score) / 100;
+                  const nx = 160 + r * Math.cos(angle);
+                  const ny = 160 + r * Math.sin(angle);
+
+                  const lx = 160 + 128 * Math.cos(angle);
+                  const ly = 160 + 128 * Math.sin(angle);
+
+                  const isSelected = activeMetricDetail === m.id || hoveredMetricId === m.id;
+
+                  return (
+                    <g 
+                      key={m.id} 
+                      className="cursor-pointer group"
+                      onMouseEnter={() => setHoveredMetricId(m.id)}
+                      onMouseLeave={() => setHoveredMetricId(null)}
+                      onClick={() => setActiveMetricDetail(m.id)}
+                    >
+                      <circle
+                        cx={nx}
+                        cy={ny}
+                        r={isSelected ? 7 : 4.5}
+                        fill={isSelected ? "#38bdf8" : "#fbbf24"}
+                        stroke="#0f172a"
+                        strokeWidth="2"
+                        className="transition-all duration-300"
+                      />
+                      <text
+                        x={lx}
+                        y={ly}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fill={isSelected ? "#38bdf8" : "#cbd5e1"}
+                        fontSize="10"
+                        fontWeight={isSelected ? "900" : "600"}
+                        className="select-none font-mono transition-colors"
+                      >
+                        {m.shortName}
+                      </text>
+                    </g>
+                  );
+                })}
+              </svg>
+            </div>
+
+            {/* Radar Active Metric Preview */}
+            {(() => {
+              const activeMetric = ENERGY_METRICS.find(m => m.id === (hoveredMetricId || activeMetricDetail)) || ENERGY_METRICS[0];
+              const MetricIcon = activeMetric.icon;
+              return (
+                <div className="w-full p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2 animate-fade-in">
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center gap-2 text-xs font-black text-slate-100">
+                      <MetricIcon className="w-4 h-4 text-amber-400" />
+                      {activeMetric.name}
+                    </span>
+                    <span className="text-xs font-mono font-black text-amber-400">
+                      {activeMetric.score}%
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-snug">
+                    {activeMetric.description}
+                  </p>
+                  <div className="pt-1 text-[10px] text-amber-300/90 font-mono flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-amber-400 flex-shrink-0" />
+                    <span>{activeMetric.systemResonance}</span>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* Right Column: Visual Progress Meters & Strategy Breakdown */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="flex items-center justify-between pb-1">
+              <h3 className="text-sm font-black text-slate-200 uppercase tracking-wider font-mono flex items-center gap-2">
+                <BarChart3 className="w-4 h-4 text-amber-400" />
+                量化指標權重與進度條列表
+              </h3>
+              <span className="text-[10px] text-slate-500 font-mono">CLICK TO EXPAND DETAILS</span>
+            </div>
+
+            <div className="space-y-3.5">
+              {ENERGY_METRICS
+                .filter(m => selectedGaugeCategory === 'all' || m.category === selectedGaugeCategory)
+                .map((metric) => {
+                  const Icon = metric.icon;
+                  const isExpanded = activeMetricDetail === metric.id;
+                  const isHovered = hoveredMetricId === metric.id;
+
+                  return (
+                    <div
+                      key={metric.id}
+                      onClick={() => setActiveMetricDetail(metric.id)}
+                      onMouseEnter={() => setHoveredMetricId(metric.id)}
+                      onMouseLeave={() => setHoveredMetricId(null)}
+                      className={`p-4 rounded-2xl bg-slate-950 border transition-all duration-300 cursor-pointer ${
+                        isExpanded || isHovered
+                          ? 'border-amber-400/50 bg-slate-900/60 shadow-lg shadow-amber-400/5'
+                          : 'border-slate-850 hover:border-slate-750'
+                      }`}
+                    >
+                      {/* Metric Header Row */}
+                      <div className="flex items-center justify-between gap-3 mb-2.5">
+                        <div className="flex items-center gap-2.5">
+                          <div className={`p-2 rounded-xl bg-slate-900 border border-slate-800 ${metric.badgeText}`}>
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="text-sm font-black text-slate-100">{metric.name}</h4>
+                              <span className={`text-[9px] font-mono font-bold px-2 py-0.5 rounded-full ${metric.badgeBg} ${metric.badgeText} ${metric.badgeBorder} border`}>
+                                {metric.categoryLabel}
+                              </span>
+                            </div>
+                            <span className="text-[10px] text-slate-400 font-mono">{metric.weightTag}</span>
+                          </div>
+                        </div>
+
+                        {/* Numeric Score Badge */}
+                        <div className="text-right">
+                          <span className="text-base font-black font-mono text-slate-100">{metric.score}</span>
+                          <span className="text-[10px] font-mono text-slate-500 block">/ 100</span>
+                        </div>
+                      </div>
+
+                      {/* Visual Progress Meter Bar */}
+                      <div className="relative w-full h-3 bg-slate-900 rounded-full overflow-hidden border border-slate-800/80 p-0.5">
+                        <div
+                          className={`h-full rounded-full bg-gradient-to-r ${metric.gradient} transition-all duration-700 relative`}
+                          style={{ width: `${metric.score}%` }}
+                        >
+                          <div className="absolute inset-0 bg-white/20 animate-pulse" />
+                        </div>
+                      </div>
+
+                      {/* Driver Tags Row */}
+                      <div className="flex flex-wrap items-center gap-1.5 mt-3">
+                        {metric.keyDrivers.map((driver, dIdx) => (
+                          <span
+                            key={dIdx}
+                            className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800"
+                          >
+                            {driver}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Expanded Strategy Tip Box */}
+                      {isExpanded && (
+                        <div className="mt-4 pt-3 border-t border-slate-850/80 space-y-2 animate-fade-in">
+                          <p className="text-xs text-slate-300 leading-relaxed">
+                            {metric.description}
+                          </p>
+                          <div className="p-3 rounded-xl bg-amber-400/5 border border-amber-400/15 text-xs text-amber-300 space-y-1">
+                            <span className="font-bold flex items-center gap-1 text-amber-400">
+                              <Sparkles className="w-3.5 h-3.5" />
+                              高階運作策略指引
+                            </span>
+                            <p className="leading-relaxed text-[11px] text-slate-300">
+                              {metric.strategyTip}
+                            </p>
+                          </div>
+                          <div className="text-[10px] text-slate-400 font-mono pt-1">
+                            跨流派共振：<span className="text-slate-300">{metric.systemResonance}</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

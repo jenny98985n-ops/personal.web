@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { 
-  Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, Menu, X, BookOpen, BookOpenCheck, Loader2, Sun, Moon
+  Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, Menu, X, BookOpen, BookOpenCheck, Loader2, Sun, Moon, ArrowUp
 } from 'lucide-react';
 
 import OverviewDashboard from './components/OverviewDashboard';
@@ -23,11 +23,28 @@ export default function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     return (localStorage.getItem('app-theme') as 'dark' | 'light') || 'dark';
   });
+  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('app-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 250) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
@@ -209,6 +226,19 @@ export default function App() {
           </Suspense>
         </main>
       </div>
+
+      {/* Floating Scroll To Top Button (一鍵回到頂部) */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-amber-400 text-slate-950 font-bold shadow-2xl shadow-amber-400/40 hover:bg-amber-300 hover:scale-110 active:scale-95 transition-all duration-300 border border-amber-300 cursor-pointer flex items-center justify-center group"
+          title="一鍵回到頁面頂部"
+          aria-label="一鍵回到頁面頂部"
+          id="scroll-to-top-btn"
+        >
+          <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform" />
+        </button>
+      )}
 
     </div>
   );
