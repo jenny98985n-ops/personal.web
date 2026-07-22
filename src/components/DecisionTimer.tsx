@@ -301,17 +301,6 @@ export default function DecisionTimer() {
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">靈魂自省筆記 / 起因 (備註)</label>
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  rows={3}
-                  placeholder="記錄你當下的直覺、渴望，或面臨的誘惑。這將在 72 小時後成為你核對情緒平靜度的鏡子..."
-                  className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-400/50 text-xs resize-none"
-                />
-              </div>
-
               {/* Developer Test Toggle */}
               <div className="p-3 rounded-xl bg-slate-950 border border-slate-850 flex items-center justify-between">
                 <div>

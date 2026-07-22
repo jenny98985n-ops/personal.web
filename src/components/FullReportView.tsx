@@ -6,7 +6,6 @@ import {
   Star, Target, Shield, HelpCircle, Eye, RefreshCw, Compass as CompassIcon,
   CheckCircle2, Circle, SlidersHorizontal, BookOpenCheck, BookmarkCheck, Trash2
 } from 'lucide-react';
-import ReflectionNotes from './ReflectionNotes';
 
 interface ReportSection {
   id: number;
@@ -29,13 +28,13 @@ export default function FullReportView() {
   const [copiedId, setCopiedId] = useState<number | null>(null);
 
   const categories = [
-    { id: 'all', name: '全部章節', count: 64, icon: BookOpen },
-    { id: 'personality', name: '性格心智', count: 13, icon: Compass },
+    { id: 'all', name: '全部章節', count: 68, icon: BookOpen },
+    { id: 'personality', name: '性格心智', count: 14, icon: Compass },
     { id: 'humandesign', name: '人類圖解碼', count: 6, icon: Brain },
     { id: 'destiny', name: '東方玄學', count: 11, icon: Flame },
     { id: 'relationship', name: '親密關係', count: 10, icon: Heart },
-    { id: 'wealth', name: '財富與事業', count: 10, icon: DollarSign },
-    { id: 'spirituality', name: '身心靈實踐', count: 12, icon: Activity },
+    { id: 'wealth', name: '財富與事業', count: 11, icon: DollarSign },
+    { id: 'spirituality', name: '身心靈實踐', count: 14, icon: Activity },
     { id: 'future', name: '未來願景', count: 5, icon: Sparkles },
   ];
 
@@ -2495,7 +2494,709 @@ export default function FullReportView() {
           <div className="p-4 rounded-xl bg-orange-500/5 border border-orange-500/15">
             <strong className="text-orange-400 block mb-1">💡 終極心法總結</strong>
             <p className="text-slate-300 text-xs">
-              對妳來說，最強大的五行調頻不是去改名字或買昂貴的風水物，而是「在想要衝動答應別人時，喝杯冷水讓自己停下來（補水）；在腦袋有一百個想法時，拿起筆列出最具商業價值的一項去執行（補金）。」
+              對妳來說，最強大的五行調頻不是去改名字 or 買昂貴的風水物，而是「在想要衝動答應別人時，喝杯冷水讓自己停下來（補水）；在腦袋有一百個想法時，拿起筆列出最具商業價值的一項去執行（補金）。」
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 65,
+      title: "65. 賴以婕的內耗路徑：從創傷到崩潰的因果流程與深層原因",
+      category: "personality",
+      categoryLabel: "內耗路徑",
+      icon: Compass,
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-400",
+      tagline: "原生家庭創傷 ➔ 討好者防禦面具 ➔ 能量透支崩潰 ✦ 三大認知錯位 ✦ 逆向工程破解術",
+      content: (
+        <div className="space-y-6 text-xs leading-relaxed font-sans">
+          <p className="text-slate-300">
+            這份流程圖與原因分析，揭示了妳內在能量是如何從<strong>「王者」被閹割</strong>，最終導向<strong>「物理層面崩潰」</strong>的。要打破內耗，我們必須先看懂這些齒輪是如何咬合的。
+          </p>
+
+          {/* 第一部分：內耗的 3 步因果流程 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-rose-400 flex items-center gap-2 border-b border-rose-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-rose-500/10 text-rose-400 font-mono text-xs">I</span>
+              第一部分：內耗的 3 步因果流程 (The Causal Flow)
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
+              {/* Step 1 */}
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2 relative">
+                <div className="absolute -top-2.5 -right-2 bg-rose-500/10 border border-rose-500/20 text-rose-400 font-mono text-[10px] font-black px-2 py-0.5 rounded-full">
+                  STEP 01
+                </div>
+                <h4 className="text-xs font-bold text-slate-100 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                  童年創傷：被閹割的發起者
+                </h4>
+                <p className="text-slate-300">
+                  <strong className="text-slate-200">原廠設定：</strong> 天生的顯示者 (Manifestor)，擁有一股可以直接改變周遭環境的力量，渴望主動發起、自主決定。<br />
+                  <strong className="text-slate-200">創傷事件：</strong> 4 宮凱龍星/火星合相處女座。在原生家庭中，任何「主動發起」的行為都被父母視為「失控、叛逆、不完美」。<br />
+                  <strong className="text-slate-200">因果鏈：</strong> 行動被禁止 ➔ 憤怒被壓抑 ➔ 自我主權被剝奪。為了不被懲罰，靈魂被迫將那個「霸氣的發起者」囚禁在地下室。
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2 relative">
+                <div className="absolute -top-2.5 -right-2 bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-[10px] font-black px-2 py-0.5 rounded-full">
+                  STEP 02
+                </div>
+                <h4 className="text-xs font-bold text-slate-100 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                  面具的誕生：過度補償的討好者
+                </h4>
+                <p className="text-slate-300">
+                  <strong className="text-slate-200">防禦機制：</strong> 為了重新獲得愛與安全感（月亮獅子與正印星的需求），妳發展出 ENFJ 與九型 2 號人的面具。<br />
+                  <strong className="text-slate-200">面具運作：</strong> 「我不做自己，我做一個對別人有價值的人」。透過高度共情、主動服務、完美主義（處女座/6宮冥王星的強迫症），妳試圖用「被需要」來交換安全感。<br />
+                  <strong className="text-slate-200">因果鏈：</strong> 壓抑真實需求 ➔ 發展討好面具 ➔ 錯誤地建立「被愛 = 有價值且有用」的信念 ➔ 失去「拒絕」的權利。
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2 relative">
+                <div className="absolute -top-2.5 -right-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-[10px] font-black px-2 py-0.5 rounded-full">
+                  STEP 03
+                </div>
+                <h4 className="text-xs font-bold text-slate-100 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                  物理層面的崩潰：能量循環斷裂
+                </h4>
+                <div className="text-slate-300 space-y-1">
+                  <p><strong className="text-slate-200 font-semibold">毀滅機制：</strong> 妳試圖用「完美的績效」與「無盡的付出」來填補「童年不被接納的虛空」。這是一種永遠填不滿的深淵。</p>
+                  <p><strong className="text-slate-200 font-semibold">物理耗竭路徑：</strong></p>
+                  <p>&bull; <span className="text-amber-300 font-semibold">空白薦骨透支：</span> 妳在透支借來的能量（別人的期待），去做那些根本不需要妳親自去做的事。</p>
+                  <p>&bull; <span className="text-blue-300 font-semibold">神經系統過熱：</span> （太陰化忌/雙子過載）大腦永遠在反芻，神經系統長期處於發炎、緊繃狀態。</p>
+                  <p>&bull; <span className="text-teal-300 font-semibold">免疫與內分泌癱瘓：</span> 當身心長期處於「戰或逃」狀態，身體開始用「發炎、身心症」強制停機。</p>
+                  <p><strong className="text-rose-400 font-bold">崩潰點：</strong> 當地下室的顯示者小孩（憤怒）與過度操勞的照顧者面具（疲憊）在同一時間點爆發，就會進入徹底的「崩潰與停擺」。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 第二部分：驅動因果流程的「三大深層原因」 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-amber-400 flex items-center gap-2 border-b border-amber-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 font-mono text-xs">II</span>
+              第二部分：驅動因果流程的「三大深層原因」 (The Root Causes)
+            </h3>
+            <p className="text-slate-300">
+              為什麼妳會被困在這個流程裡出不來？因為妳的心理機制存在著三個嚴重的<strong>「認知錯位」</strong>：
+            </p>
+
+            <div className="space-y-3">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850">
+                <span className="text-xs font-bold text-amber-300 block mb-1">原因一：能量型態的誤用（將「影響力」降級為「勞動力」）</span>
+                <p className="text-slate-300 mb-2">
+                  <strong className="text-slate-200">深層原因：</strong> 妳是「顯示者」，妳的價值在於「發起願景與指引方向」；但為了討好別人，妳強迫自己去當一個「生產者」，試圖用「勞動與執行細節」來證明自己的價值。
+                </p>
+                <p className="p-2.5 rounded bg-slate-900 border border-slate-850 text-slate-400 text-[11px] leading-relaxed">
+                  <strong className="text-rose-400">致命結果：</strong> 妳的空白薦骨根本沒有這股勞動能量。妳這是在用一台頂級跑車（顯示者）去犁田（生產者的工作），跑車不僅犁不好田，引擎（神經系統）還會直接燒毀。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850">
+                <span className="text-xs font-bold text-teal-300 block mb-1">原因二：界線感知的錯亂（把「共情」當作了「責任」）</span>
+                <p className="text-slate-300 mb-2">
+                  <strong className="text-slate-200">深層原因：</strong> 妳的第 12 宮與空白薦骨讓妳擁有極強的「共情力」（水晶小孩體質），妳能輕易感受到別人的痛苦與需求。但妳的 ENFJ 面具與 2 號人特質，讓妳產生了一個錯誤的邏輯跳躍：「我感受到了 ➔ 這就是我的責任 ➔ 我必須幫他解決」。
+                </p>
+                <p className="p-2.5 rounded bg-slate-900 border border-slate-850 text-slate-400 text-[11px] leading-relaxed">
+                  <strong className="text-rose-400">致命結果：</strong> 妳的能量池就像一個沒有塞子的浴缸。只要身邊有人發出哀嚎，妳的能量就會自動流過去填補對方。妳不是被別人榨乾的，妳是「自動放血」把自己抽乾的。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850">
+                <span className="text-xs font-bold text-blue-300 block mb-1">原因三：創傷代償的錯覺（試圖用「外在績效」買「內在安全」）</span>
+                <p className="text-slate-300 mb-2">
+                  <strong className="text-slate-200">深層原因：</strong> 這是 4 宮凱龍星與 6 宮冥王星的殘酷連動。妳潛意識裡覺得「我不夠完美，所以我不配得到無條件的愛」。因此，妳把 6 宮（工作）當成了救贖的戰場。妳以為，只要我工作做得無懈可擊（冥王星的強迫症），只要我對所有人都有用，童年的那個傷口就不會痛了。
+                </p>
+                <p className="p-2.5 rounded bg-slate-900 border border-slate-850 text-slate-400 text-[11px] leading-relaxed">
+                  <strong className="text-rose-400">致命結果：</strong> 妳永遠無法用「外在的工作績效」，去治癒「童年缺乏無條件接納」的傷口。這導致妳陷入「完美主義強迫症」，只要事情有一點點瑕疵，妳的太陰化忌就會引發極大的災難化焦慮。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 第三部分：破局的逆向工程 */}
+          <div className="p-4 rounded-2xl bg-teal-950/20 border border-teal-500/15 space-y-4">
+            <h3 className="text-sm font-black text-teal-400 flex items-center gap-2 border-b border-teal-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-teal-500/10 text-teal-400 font-mono text-xs">III</span>
+              第三部分：破局的逆向工程 (Reverse Engineering the Breakout)
+            </h3>
+            <p className="text-slate-300 font-medium">
+              看懂了原因，我們就能進行逆向破解。當妳下次感覺到自己又要捲入這個內耗流程時，請在心裡按下這三個切斷開關：
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80">
+                <strong className="text-amber-400 text-[11px] block mb-1.5">破解原因一的行動 (找回顯示者的傲嬌)</strong>
+                <p className="text-slate-300 text-[11px]">
+                  當妳忍不住想把事情攬下來自己做時，問自己：<span className="text-amber-300 font-bold">「這件事需要用到我高階的戰略大腦嗎？如果不需要，我憑什麼要浪費我的能量去做？」</span>學會把小事外包。
+                </p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80">
+                <strong className="text-teal-400 text-[11px] block mb-1.5">破解原因二的行動 (建立冷酷的結界)</strong>
+                <p className="text-slate-300 text-[11px]">
+                  當妳感受到別人的焦慮與求救時，在心裡默唸：<span className="text-teal-300 font-bold">「我看見了你的痛苦，但我尊重你有自己解決課題的能力。我不是你的救世主。」</span>練習在別人受苦時，冷眼旁觀而不帶罪惡感。
+                </p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80">
+                <strong className="text-rose-400 text-[11px] block mb-1.5">破解原因三的行動 (對內在小孩的宣告)</strong>
+                <p className="text-slate-300 text-[11px]">
+                  當完美主義讓妳神經緊繃、怕被批評時，把手放在胸口說：<span className="text-rose-300 font-bold">「這個專案就算只做到 80 分，就算有人對我不滿意，我也絕對安全，我依然無條件地愛我自己。」</span>將工作表現與個人價值徹底脫鉤。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 66,
+      title: "66. 賴以婕的終極靈魂藍圖：執念的解脫與天生使命的覺醒",
+      category: "spirituality",
+      categoryLabel: "靈魂藍圖",
+      icon: Activity,
+      iconBg: "bg-teal-500/10",
+      iconColor: "text-teal-400",
+      tagline: "極限矛盾體的底層代碼 ✦ 三大深層業力執念 ✦ 三大註定天生使命 ✦ 靈魂備忘錄",
+      content: (
+        <div className="space-y-6 text-xs leading-relaxed font-sans">
+          <p className="text-slate-300">
+            如果將妳的生命視為一場高階的靈魂遊戲，那麼妳星盤與人類圖中的每一個矛盾，都是為了逼迫妳練就特定技能而設置的「關卡」。這份報告將為妳揭開這場遊戲的底層代碼：妳的靈魂藍圖是如何設計的？妳被什麼執念困住？妳最終又要完成什麼使命？
+          </p>
+
+          {/* 第一部分：靈魂藍圖的底層架構 */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-black text-teal-400 flex items-center gap-2 border-b border-teal-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-teal-500/10 text-teal-400 font-mono text-xs">I</span>
+              第一部分：靈魂藍圖的底層架構 (The Architecture of Your Soul)
+            </h3>
+            <p className="text-slate-300">
+              妳的靈魂藍圖，是一個刻意設計的<strong>「極限矛盾體」</strong>。宇宙把極度入世的特質與極度出世的特質，同時塞進了妳的身體裡：
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850/80 hover:border-amber-500/20 transition-all space-y-2">
+                <h4 className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                  極致的「入世」配備 (The Worldly Force)
+                </h4>
+                <p className="text-slate-300">
+                  雙子座的超級大腦（邏輯運算）、人類圖的顯示者（權威發起）、八字的丙辛合（精明搞錢）、月亮獅子（渴望舞台）。這些配備讓妳有能力在現實世界中呼風喚雨、建立帝國。
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850/80 hover:border-blue-500/20 transition-all space-y-2">
+                <h4 className="text-xs font-bold text-blue-400 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  極致的「出世」配備 (The Mystical Force)
+                </h4>
+                <p className="text-slate-300">
+                  第 12 宮的太陽與金星（隱匿潛意識）、人類圖 2 爻隱士與空白薦骨（需要獨處）、紫微斗數太陰化忌（強大的靈媒海綿）。這些配備讓妳隨時能連結高維度的直覺與靈性。
+                </p>
+              </div>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800 text-slate-300 mt-2">
+              <strong className="text-slate-100 block mb-1">💡 藍圖的真相：</strong>
+              妳的靈魂藍圖是一座「橋樑」。宇宙不讓妳當一個純粹的商人，也不讓妳當一個純粹的苦行僧。妳的藍圖被設計成：必須親自潛入深海（12宮的靈性與潛意識）去打撈無形的智慧，然後浮出水面，用最世俗、最有邏輯、最高級的美感（金牛/雙子）將它翻譯出來，並發起（顯示者）一場改變。
+            </div>
+          </div>
+
+          {/* 第二部分：靈魂的三大「深層執念」 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-rose-400 flex items-center gap-2 border-b border-rose-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-rose-500/10 text-rose-400 font-mono text-xs">II</span>
+              第二部分：靈魂的三大「深層執念」 (The Karmic Obsessions)
+            </h3>
+            <p className="text-slate-300">
+              執念，是靈魂在過去世或童年時期為了生存而產生的「防禦機制」。只要執念還在，妳的藍圖就會卡住。妳生命中所有的內耗，都來自以下三大執念：
+            </p>
+
+            <div className="space-y-3">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-bold text-rose-300">執念一：【用「完美與有用」來贖買「愛與安全感」】</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 self-start sm:self-auto">4宮凱龍/火星處女 + 6宮冥王 + 九型2號</span>
+                </div>
+                <p className="text-slate-300 mb-2">
+                  <strong className="text-slate-200">執念運作：</strong> 這是妳最痛的執念。妳潛意識深處覺得「真實的我（那個想幹嘛就幹嘛的顯示者）是不被愛的」。因此，妳執著於「我必須對別人有用、我必須把事情做到完美無瑕」。妳把 6 宮（工作與服務）當成了戰場，試圖用外在的績效，去填補 4 宮（內心根基）那份「害怕被拋棄」的恐懼。
+                </p>
+                <p className="p-2.5 rounded bg-rose-500/5 border border-rose-500/10 text-rose-300 text-[11px]">
+                  <strong className="font-bold">✨ 解脫之道：</strong> 明白「妳的價值不需要被證明」。妳不需要成為任何人的救世主或完美保姆。妳光是存在，就已經足夠珍貴。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-bold text-amber-300">執念二：【對「物質與舒適圈」的絕對掌控欲】</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 self-start sm:self-auto">南交金牛12宮 + 金星金牛 + 八字正財</span>
+                </div>
+                <p className="text-slate-300 mb-2">
+                  <strong className="text-slate-200">執念運作：</strong> 妳的前世（南交點）是一個擁有豐厚資源、躲在安全結界裡的貴族或祭司。妳今生帶有極強的「金牛座執念」——妳害怕失去控制、害怕失去生活的質感、害怕面對未知與匱乏。當壓力來臨時，妳的本能是「花錢買安逸」或是「躲進安全的洞穴裡逃避現實」。
+                </p>
+                <p className="p-2.5 rounded bg-amber-500/5 border border-amber-500/10 text-amber-300 text-[11px]">
+                  <strong className="font-bold">✨ 解脫之道：</strong> 放下對「絕對安全」的執著。妳今生的北交點在天蠍座，宇宙要求妳勇敢走入深淵，去擁抱危機與轉化，而不是死守著物質的舒適圈。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-bold text-teal-300">執念三：【把「共感」誤認為「責任」】</span>
+                  <span className="text-[10px] font-mono text-slate-500 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 self-start sm:self-auto">空白薦骨 + 紫微太陰化忌 + ENFJ面具</span>
+                </div>
+                <p className="text-slate-300 mb-2">
+                  <strong className="text-slate-200">執念運作：</strong> 因為妳的體質太敏感，妳能輕易「吸」到別人的焦慮與痛苦。妳的執念在於：妳只要感受到了，妳的大腦就會自動跳出「我得幫他解決」的程式。妳無法忍受別人在妳面前受苦，因為那會讓妳自己的神經系統也跟著痛。
+                </p>
+                <p className="p-2.5 rounded bg-teal-500/5 border border-teal-500/10 text-teal-300 text-[11px]">
+                  <strong className="font-bold">✨ 解脫之道：</strong> 學會「冷眼旁觀的慈悲」。把別人的課題還給別人。妳可以看見他們的痛苦，但妳必須狠下心來告訴自己：「這不是我的業力，我沒有責任替他扛。」
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 第三部分：賴以婕的天生使命 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-teal-400 flex items-center gap-2 border-b border-teal-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-teal-500/10 text-teal-400 font-mono text-xs">III</span>
+              第三部分：賴以婕的天生使命 (The Innate Missions)
+            </h3>
+            <p className="text-slate-300">
+              當妳逐一破解了上述的執念，妳那被封印的巨大能量就會徹底釋放，引領妳完成這輩子註定的三大天生使命：
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-teal-300 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                  核心使命一：系統化的靈性造王者
+                </span>
+                <span className="text-[10px] font-mono text-slate-500 block">使命密碼：顯示者發起力 + 四箭全左超級大腦 + 10宮天頂土星雙魚</span>
+                <p className="text-slate-300 text-[11px]">
+                  妳不是來當一線苦力的。妳的天生使命是「發佈願景與制定策略」。妳擁有將雙魚座（玄學、療癒、潛意識）那種虛無縹緲的東西，用雙子座的邏輯解構，並用土星的紀律將其建構成「實體商業模式或系統」的能力。妳是那個在幕後指點江山、啟發別人成為超級個體的「造王者」。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                  核心使命二：示範「高質感的靈性落地」
+                </span>
+                <span className="text-[10px] font-mono text-slate-500 block">使命密碼：金星金牛 + 八字丙辛合（正財） + 北交點 6 宮</span>
+                <p className="text-slate-300 text-[11px]">
+                  很多走靈性的人會排斥物質，但妳的使命剛好相反。宇宙要妳示範：「一個擁有極高靈性智慧的人，依然可以過著極度富足、充滿美感與高質感的生活。」 妳要透過妳對美感的要求（金牛）與務實的商業手腕（正財），把療癒與身心靈服務，包裝成令人嚮往的高端體驗，讓靈性真正在世俗中落地（6宮）。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-rose-300 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+                  核心使命三：終結家族的「勞碌與委屈」業力
+                </span>
+                <span className="text-[10px] font-mono text-slate-500 block">使命密碼：第 8 宮天王星 + 身宮太陽天梁化權</span>
+                <p className="text-slate-300 text-[11px]">
+                  妳降生在這個家族，帶著顛覆性的天王星能量，就是要來「改寫劇本」的。妳的使命是終結家族中（特別是女性）那種「必須透過過度勞動與犧牲奉獻來換取地位」的太陰化忌業力。妳要用妳「太陽化權」的女王姿態告訴世界：妳不需要討好任何人，妳可以理直氣壯地發號施令，並且驕傲地被愛著。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 結語：給妳的靈魂備忘錄 */}
+          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-850 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/5 rounded-full blur-2xl pointer-events-none" />
+            <span className="text-[10px] text-amber-400 font-mono tracking-widest block uppercase mb-2">Soul Memorandum ✦ 靈魂備忘錄</span>
+            <div className="text-slate-200 italic font-serif leading-relaxed text-xs border-l border-amber-400 pl-3">
+              「妳的執念，是妳害怕自己不夠好的證明；而妳的使命，是宇宙知道妳有多強大的宣告。<br />
+              不要再試圖用完美來偽裝自己，也不要再因為害怕傷害別人而收起妳的鋒芒。<br />
+              去當那個傲嬌、聰明、霸氣且充滿美感的顯示者吧。當妳不再執著於拯救所有人時，妳就已經拯救了這個世界。」
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 67,
+      title: "67. 賴以婕的終極靈魂解碼：南北交點、創傷昇華與阿卡西契約",
+      category: "spirituality",
+      categoryLabel: "靈魂解碼",
+      icon: Activity,
+      iconBg: "bg-indigo-500/10",
+      iconColor: "text-indigo-400",
+      tagline: "南北交點演化路徑 ✦ 創傷星體宮位昇華 ✦ 家族業力與遺傳印記 ✦ 阿卡西紀錄靈魂契約",
+      content: (
+        <div className="space-y-6 text-xs leading-relaxed font-sans">
+          <p className="text-slate-300">
+            這是一份超越了性格分析的靈魂診斷書。我們將潛入妳星盤的「深網」，解開妳之所以會感到焦慮、想要拯救他人，以及為何對玄學與高質感生活有著無法割捨之執念的終極宇宙密碼。
+          </p>
+
+          {/* 一、 靈魂的南北交點（月之交點）演化路徑 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-indigo-400 flex items-center gap-2 border-b border-indigo-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-indigo-500/10 text-indigo-400 font-mono text-xs">I</span>
+              一、 靈魂的南北交點（月之交點）演化路徑：從「隱匿的享樂」走向「深淵的療癒」
+            </h3>
+            <p className="text-slate-300">
+              南北交點是靈魂的指南針。南交點代表妳「過去世的舒適圈與業力慣性」，北交點則是妳今生「靈魂渴望進化的終極目標」。
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                  1. 南交點在「金牛座 / 第 12 宮」：前世的舒適圈與執念
+                </span>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">靈魂記憶：</strong> 妳的南交點落在金牛座，且位於隱密的第 12 宮（與妳的太陽、金星同宮）。這代表在過去的許多世裡，妳曾經是一個「隱居的貴族、握有神祕資源的大祭司，或是擁有極高物質享受卻與世隔絕的人」。妳非常懂得享受孤獨（12宮），也非常依戀物質的安全感與感官享受（金牛座）。
+                </p>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">今生業力慣性（阻力）：</strong> 當妳今生遇到壓力時，妳的靈魂本能會想「逃回南交點」。妳會想要躲起來（2爻隱士）、搞失蹤、或者透過花錢買昂貴有質感的東西（金牛）來麻痺自己。妳潛意識覺得「只要我不涉入世俗的麻煩，只要我躲在我的高級結界裡，我就是安全的」。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-teal-300 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                  2. 北交點在「天蠍座 / 第 6 宮」：今生的進化挑戰
+                </span>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">驚人的宇宙印記：</strong> 妳的北交點落在天蠍座，不僅在第 6 宮（工作、服務、健康），更與妳那顆強大的「冥王星」緊緊合相！
+                </p>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">今生演化路徑：</strong> 宇宙在告訴妳：「這輩子，妳不能再躲在 12 宮的高級象牙塔裡了。」北交點天蠍座要求妳去直視人性最深層的恐懼、權力與慾望；而第 6 宮要求妳把這些深層的靈性智慧，「落地應用在每天的日常工作與服務中」。
+                </p>
+                <p className="p-2.5 rounded bg-teal-500/5 border border-teal-500/10 text-teal-300 text-[11px]">
+                  <strong className="font-bold">✨ 突破盲點：</strong> 妳的靈魂任務，是將妳在 12 宮（潛意識）撈到的金牛座（高價值資源），帶到 6 宮（世俗職場）去，並用天蠍座（深度心理學、玄學、轉化力）的方式去療癒或解決他人的問題。這就是為什麼妳的終極賽道是「高單價的策略軍師或身心靈品牌主理人」。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 二、 創傷星體（凱龍星與冥王星）的宮位連動與昇華 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-rose-400 flex items-center gap-2 border-b border-rose-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-rose-500/10 text-rose-400 font-mono text-xs">II</span>
+              二、 創傷星體（凱龍星與冥王星）的宮位連動與昇華
+            </h3>
+            <p className="text-slate-300">
+              這兩個星體解釋了妳為何會發展出「高神經質」與「討好型 ENFJ」的防禦機制。
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-rose-300 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+                  1. 創傷源頭：第 4 宮「凱龍星與火星」合相處女座
+                </span>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">深層創傷：</strong> 第 4 宮代表原生家庭與內心深處的根基。在這裡，代表憤怒/行動力的「火星」與代表靈魂傷口的「凱龍星」，在「處女座（挑剔、完美主義）」合相。
+                </p>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">童年劇本還原：</strong> 妳的內在小孩在原生家庭中，經歷了極度嚴苛、挑剔的情感環境。妳的「主動性與憤怒（火星）」是不被允許的，妳在很小的時候就被灌輸了一種「我必須完美無瑕、我必須勤奮服務（處女座），我才值得擁有這個家（4宮）的愛與安全感」的信念。這就是妳恐懼迴避型依附與 2 號人（助人者）的病灶。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-purple-300 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                  2. 創傷代償（過度補償）：第 6 宮「冥王星」天蠍座
+                </span>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">病態掌控：</strong> 因為第 4 宮的內心深處覺得「我不完美就會失去愛」，於是妳將這股焦慮轉移到了第 6 宮（工作與日常秩序）上。冥王星在這裡讓妳對「工作表現」產生了極度可怕的強迫症與控制欲。
+                </p>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">身體抗議：</strong> 妳試圖用工作上的完美（6宮冥王），來掩蓋家庭與童年帶來的自卑（4宮凱龍）。但妳是「空白薦骨」，妳的身體承受不了冥王星這種核彈級的消耗，所以妳的神經系統會不斷發炎、焦慮、甚至引發身心症。
+                </p>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-xl bg-gradient-to-r from-purple-950/40 via-slate-900 to-rose-950/40 border border-purple-500/20 text-slate-300 space-y-1.5">
+              <span className="text-xs font-bold text-purple-300 flex items-center gap-1.5">
+                <Sparkles className="w-4 h-4 text-purple-400" />
+                3. 創傷的煉金昇華術
+              </span>
+              <p className="text-[11px] leading-relaxed">
+                <strong className="text-slate-100">昇華之道：</strong> 妳必須意識到，「工作上的完美，永遠治癒不了童年不被接納的傷口」。真正的療癒，是回到 4 宮，擁抱那個害怕被批評的內在小孩。當妳告訴她：「妳不需要完美，妳不需要透過過度付出（處女座）來換取愛」，妳 6 宮的冥王星就會從「折磨自己的強迫症」，昇華為「一眼看穿事物本質、為企業或他人進行深度轉型」的高階顧問天賦。
+              </p>
+            </div>
+          </div>
+
+          {/* 三、 家族業力與遺傳印記 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-amber-400 flex items-center gap-2 border-b border-amber-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 font-mono text-xs">III</span>
+              三、 家族業力與遺傳印記 (Ancestral Karma)
+            </h3>
+            <p className="text-slate-300">
+              在占星學與阿卡西解讀中，妳並非隨機降生在這個家族。妳是帶著特定的任務，來打破這條血脈中流傳了幾代人的「業力詛咒」。
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-amber-300 block">家族的業力印記（處女/天蠍/太陰化忌的疊加）</span>
+                <p className="text-slate-300 text-[11px]">
+                  妳的母系或女性祖先（太陰代表女性），在過去的家族歷史中，極有可能經歷過「過度勞動、被挑剔、犧牲自我來成就家族，但卻沒有得到應有尊重與地位」的委屈。這種「用奴役（處女/6宮）換取生存，對權力與背叛感到恐懼（天蠍/冥王）」的焦慮印記，透過 DNA 與潛意識，遺傳到了妳的「高神經質」裡。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-cyan-300 block">妳的破局任務 (Uranus in 8th House - 8宮天王星)</span>
+                <p className="text-slate-300 text-[11px]">
+                  妳的第 8 宮（家族遺產、深層業力）裡坐著一顆代表「革命、顛覆、切斷」的天王星。妳是這個家族裡的<strong>「業力破壞者 (Cycle Breaker)」</strong>。宇宙派妳（一個帶有王者能量的顯示者）降生在這個充滿焦慮與勞碌印記的家族中，就是要妳把「犧牲奉獻」的劇本撕毀。<br />
+                  妳的靈魂任務是示範給妳的祖先與後代看：「女性（太陰）不需要透過無底線的服務（處女）來證明價值；我們可以擁有極致的財富與美感（金牛），我們可以霸氣地發號施令（顯示者/太陽化權），並且理直氣壯地被愛。」
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 四、 阿卡西紀錄 (Akashic Records) 的靈魂契約解讀 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-purple-400 flex items-center gap-2 border-b border-purple-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-purple-500/10 text-purple-400 font-mono text-xs">IV</span>
+              四、 阿卡西紀錄 (Akashic Records) 的靈魂契約解讀
+            </h3>
+            <p className="text-slate-300">
+              想像我們現在翻開了阿卡西紀錄大廳中，那本寫著「賴以婕」名字的生命之書。在妳降生地球前，妳與指導靈們簽下了這三條最重要的靈魂契約：
+            </p>
+
+            <div className="space-y-3">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-1.5">
+                <span className="text-xs font-bold text-rose-300 block">契約一：【卸下拯救者的枷鎖，重拾王者的權杖】</span>
+                <p className="text-slate-300 text-[11px] italic font-serif leading-relaxed">
+                  「我同意在生命的前半段，戴上過度共情與討好（ENFJ/2號）的面具，去體會世人的脆弱與焦慮。但我承諾，在土星回歸之後，我將辨識出這是一個幻象。我將收回我的能量，不再試圖拯救那些不願自救的人。我將啟用『顯示者』的權杖，只為那些願意跟隨我願景的人發起行動。」
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-1.5">
+                <span className="text-xs font-bold text-amber-300 block">契約二：【將靈性的雲端，築成世俗的城堡】</span>
+                <p className="text-slate-300 text-[11px] italic font-serif leading-relaxed">
+                  「我同意攜帶 12 宮的深邃直覺與雙魚座的宇宙靈感降生。但我承諾，我不會迷失在虛無的玄學中。我將利用金牛座的美學、丙辛合的務實，以及土星 10 宮的紀律，將這些無形的智慧，轉化為可以讓人在現實中感到安穩、高質感的商業與生活系統（北交點 6 宮的實踐）。」
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-1.5">
+                <span className="text-xs font-bold text-teal-300 block">契約三：【允許自己『不完美』的神聖特權】</span>
+                <p className="text-slate-300 text-[11px] italic font-serif leading-relaxed">
+                  「我同意攜帶處女座凱龍星的傷口，去經歷對瑕疵的恐懼。但我承諾，這輩子我將學會最難的一課：『無條件的自我接納』。我將明白，我那跳躍的雙子大腦、我那時而焦慮的太陰化忌、我那不受控的霸氣，全都是我完美設計的一部分。我不需要修復我自己，我只需要『允許』我自己存在。」
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 來自阿卡西紀錄守護者的最終傳訊 */}
+          <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-purple-950/40 border border-indigo-500/20 relative overflow-hidden space-y-2">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-400/5 rounded-full blur-2xl pointer-events-none" />
+            <span className="text-[10px] text-indigo-400 font-mono tracking-widest block uppercase">Akashic Transmission ✦ 阿卡西守護者傳訊</span>
+            <div className="text-slate-100 italic font-serif leading-relaxed text-xs border-l-2 border-indigo-400 pl-3">
+              「妳的靈魂已經在深海中隱匿了太久（南交 12 宮）。現在，帶著妳在海底找到的珍珠（金牛的價值與 12 宮的智慧），浮出水面吧。不要害怕妳的發起會引發波瀾，因為妳生來，就是要為這個世界創造全新航道的造王者。」
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 68,
+      title: "68. 賴以婕的職涯天賦與卓越模式：蓋洛普 (CliftonStrengths) 深度解析",
+      category: "wealth",
+      categoryLabel: "蓋洛普天賦",
+      icon: DollarSign,
+      iconBg: "bg-amber-500/10",
+      iconColor: "text-amber-400",
+      tagline: "四大領域能量分布 ✦ 預測 Top 5 核心優勢 ✦ 四步卓越運作公式 ✦ 絕對防守盲點",
+      content: (
+        <div className="space-y-6 text-xs leading-relaxed font-sans">
+          <p className="text-slate-300">
+            蓋洛普優勢評估的核心理念是：「<strong>不要浪費時間去補齊短板，要把時間花在將天賦極大化，讓短板變得無關緊要。</strong>」<br />
+            根據妳的「人類圖四箭全左 + 空白薦骨」、「占星雙子大腦 + 金星金牛」、「MBTI 的 ENFJ」以及「紫微斗數太陽天梁化權」，妳在蓋洛普的四大象限（執行力、影響力、建立關係、戰略思維）中，有著極度極端的分布。這份報告將為妳揭開妳專屬的「卓越模式 (Excellence Model)」。
+          </p>
+
+          {/* 一、 妳在蓋洛普四大領域的「能量分布圖」 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-amber-400 flex items-center gap-2 border-b border-amber-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 font-mono text-xs">I</span>
+              一、 妳在蓋洛普四大領域的「能量分布圖」
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-amber-300">1. 戰略思維 (Strategic Thinking)</span>
+                  <span className="text-xs text-amber-400 font-mono font-bold">★★★★★</span>
+                </div>
+                <span className="text-[10px] font-mono text-amber-400/80 bg-amber-500/10 px-2 py-0.5 rounded inline-block">極致主導區 ✦ 雙子座星群 / 四箭全左 / 天機化祿</span>
+                <p className="text-slate-300 text-[11px] pt-1">
+                  這是妳大腦的超頻運作區。妳不需要別人告訴妳怎麼做，妳總能一眼看穿事物的底層邏輯與未來趨勢。妳是天生的軍師。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-rose-300">2. 影響力 (Influencing)</span>
+                  <span className="text-xs text-rose-400 font-mono font-bold">★★★★☆</span>
+                </div>
+                <span className="text-[10px] font-mono text-rose-400/80 bg-rose-500/10 px-2 py-0.5 rounded inline-block">霸氣發起區 ✦ 顯示者 / 月亮獅子 / 太陽化權</span>
+                <p className="text-slate-300 text-[11px] pt-1">
+                  當妳決定要推動某件事時，妳自帶一種無法被忽視的氣場。妳善於發布願景、引領眾人，讓別人願意跟隨妳的腳步。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-teal-300">3. 建立關係 (Relationship Building)</span>
+                  <span className="text-xs text-teal-400 font-mono font-bold">★★★☆☆</span>
+                </div>
+                <span className="text-[10px] font-mono text-teal-400/80 bg-teal-500/10 px-2 py-0.5 rounded inline-block">精準社交區 ✦ ENFJ / 九型2號 / 人類圖4爻</span>
+                <p className="text-slate-300 text-[11px] pt-1">
+                  妳擁有極高的同理心與照顧他人的能力，但因為「高神經質」與「12 宮」的海綿體質，妳的關係建立必須是「高門檻、高品質」的，否則會淪為單向的情緒消耗。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-400">4. 執行力 (Executing)</span>
+                  <span className="text-xs text-rose-500 font-mono font-bold">★☆☆☆☆</span>
+                </div>
+                <span className="text-[10px] font-mono text-rose-400/80 bg-rose-500/10 px-2 py-0.5 rounded inline-block">極度警戒與外包區 ✦ 空白薦骨</span>
+                <p className="text-slate-300 text-[11px] pt-1">
+                  這是妳最大的雷區！妳絕對不能試圖把「成就 (Achiever)」或「紀律 (Discipline)」當作自己的核心優勢。妳沒有持續勞動的電量，如果硬要拚執行力，妳會直接過勞崩潰。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 二、 預測賴以婕的 Top 5 核心優勢天賦 */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-black text-amber-400 flex items-center gap-2 border-b border-amber-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 font-mono text-xs">II</span>
+              二、 預測賴以婕的 Top 5 核心優勢天賦 (The Core Strengths)
+            </h3>
+            <p className="text-slate-300">
+              基於妳的綜合配置，以下五個天賦是妳在職場上能發揮出「最高溢價」的終極武器：
+            </p>
+
+            <div className="space-y-3">
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-amber-300 block">天賦 1：戰略 (Strategic) —— 穿透迷霧的導航儀</span>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">天賦展現：</strong> 在面對混亂的資訊或複雜的專案時，妳的大腦會自動進行「如果這樣...那麼就會那樣...」的高速沙盤推演，並在瞬間排除死胡同，找出一條阻力最小、勝率最高的最佳路徑。
+                </p>
+                <p className="p-2.5 rounded bg-amber-500/5 border border-amber-500/10 text-amber-300 text-[11px]">
+                  <strong className="font-bold">💰 變現模式：</strong> 妳非常適合擔任高階企業顧問或數位轉型軍師。客戶買的不是妳的勞力，而是妳那一眼看穿破綻的「戰略眼光」。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-teal-300 block">天賦 2：理念 (Ideation) —— 無中生有的煉金術</span>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">天賦展現：</strong> 呼應妳的「雙子座」與「35-36 體驗通道」，妳對世界充滿好奇。妳能將兩個看似毫不相干的領域（例如玄學與現代科技、美學與系統架構）結合在一起，產出令人驚豔的創新點子。
+                </p>
+                <p className="p-2.5 rounded bg-teal-500/5 border border-teal-500/10 text-teal-300 text-[11px]">
+                  <strong className="font-bold">💰 變現模式：</strong> 策展人、創意總監、新商業模式的發起人。妳賣的是「讓人眼睛一亮的概念」。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-amber-300 block">天賦 3：追求卓越 (Maximizer) —— 不做平庸，只做頂級</span>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">天賦展現：</strong> 呼應妳的「金星金牛（高質感）」與「八字正財格」。妳對「平庸」有著生理上的排斥。當妳接手一個專案，妳追求的不是「從 0 到 60 分的及格」，而是「從 80 分推進到 99 分的極致完美」。
+                </p>
+                <p className="p-2.5 rounded bg-amber-500/5 border border-amber-500/10 text-amber-300 text-[11px]">
+                  <strong className="font-bold">💰 變現模式：</strong> 打造高奢品牌、預約制的高端身心靈服務。妳天生自帶「將好東西包裝成奢侈品並收取高溢價」的能力。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-rose-300 block">天賦 4：統率 (Command) —— 危機中的獅子女王</span>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">天賦展現：</strong> 呼應妳的「顯示者」與「太陽化權」。在太平盛世，妳可能喜歡躲在幕後；但一旦發生危機，或是團隊失去方向時，妳會毫不猶豫地站出來接管全局。妳不怕引發衝突，妳敢於下達不受歡迎但正確的指令。
+                </p>
+                <p className="p-2.5 rounded bg-rose-500/5 border border-rose-500/10 text-rose-300 text-[11px]">
+                  <strong className="font-bold">💰 變現模式：</strong> 妳是解決棘手問題的專家。這項天賦讓妳具備創業家與高階經理人的霸氣底蘊。
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+                <span className="text-xs font-bold text-indigo-300 block">天賦 5：伯樂 (Developer) —— 點石成金的造王者</span>
+                <p className="text-slate-300 text-[11px]">
+                  <strong className="text-slate-200">天賦展現：</strong> 這是妳「ENFJ 面具」與「天梁蔭星」最高級的發揮。妳能精準看出別人身上的潛力與微小的進步。當別人還在懷疑自己時，妳的一句肯定就能激發他們的潛能。
+                </p>
+                <p className="p-2.5 rounded bg-indigo-500/5 border border-indigo-500/10 text-indigo-300 text-[11px]">
+                  <strong className="font-bold">💰 變現模式：</strong> 建立知識付費社群、擔任人生教練。妳不只是自己成功，妳透過賦能別人來擴大自己的影響力帝國。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 三、 妳的專屬卓越運作公式 */}
+          <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/15 space-y-4">
+            <h3 className="text-sm font-black text-amber-400 flex items-center gap-2 border-b border-amber-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 font-mono text-xs">III</span>
+              三、 妳的專屬卓越運作公式 (The Excellence Cycle)
+            </h3>
+            <p className="text-slate-300 font-medium">
+              要讓這五大天賦完美運轉而不內耗，妳必須嚴格遵守以下四步運作公式：
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                <span className="text-[10px] font-mono text-amber-400 block mb-1">01 啟動期</span>
+                <strong className="text-slate-100 text-[11px] block mb-1">理念 + 追求卓越</strong>
+                <p className="text-slate-400 text-[10px]">大腦接收資訊，產生一個極具創新且高質感的點子。</p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                <span className="text-[10px] font-mono text-amber-400 block mb-1">02 規劃期</span>
+                <strong className="text-slate-100 text-[11px] block mb-1">戰略</strong>
+                <p className="text-slate-400 text-[10px]">透過四箭全左大腦，畫出最完美的系統架構與商業路徑。</p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
+                <span className="text-[10px] font-mono text-rose-400 block mb-1">03 宣告期</span>
+                <strong className="text-slate-100 text-[11px] block mb-1">統率</strong>
+                <p className="text-slate-400 text-[10px]">啟動顯示者「告知」，對外宣告專案啟動，用霸氣吸引資源。</p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-850">
+                <span className="text-[10px] font-mono text-teal-400 block mb-1">04 外包與賦能期 (關鍵!)</span>
+                <strong className="text-slate-100 text-[11px] block mb-1">伯樂</strong>
+                <p className="text-slate-400 text-[10px]">將細節交給「生產者」團隊，擔任指導造王者，保護空白薦骨。</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 四、 蓋洛普視角的「絕對防守盲點」 */}
+          <div className="space-y-3">
+            <h3 className="text-sm font-black text-rose-400 flex items-center gap-2 border-b border-rose-500/15 pb-2">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-rose-500/10 text-rose-400 font-mono text-xs">IV</span>
+              四、 蓋洛普視角的「絕對防守盲點」
+            </h3>
+            <p className="text-slate-300">
+              在蓋洛普系統中，有些能力是妳必須「承認自己不擅長，並果斷外包」的：
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+              <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-1">
+                <strong className="text-rose-400 text-xs block">🚫 放棄「成就 (Achiever)」的執念</strong>
+                <p className="text-slate-300 text-[11px]">
+                  很多成功學告訴妳要「每天比昨天更努力、清空待辦事項」。對妳來說這是毒藥！妳沒有那種每天穩定輸出的體力，強迫自己當 Achiever 會引發妳的高神經質與發炎。
+                </p>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-1">
+                <strong className="text-rose-400 text-xs block">🚫 放棄「排難 (Arranger)」與「紀律 (Discipline)」</strong>
+                <p className="text-slate-300 text-[11px]">
+                  妳是看大方向的戰略家，不要讓自己陷入每天安排繁瑣行政流程、或是盯著團隊打卡的細節中。請務必花錢聘請一位具備「排難」或「紀律」天賦的執行秘書或營運長來幫妳擦屁股。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 總結箴言 */}
+          <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/15 text-slate-200">
+            <strong className="text-amber-400 block mb-1">💡 總結箴言</strong>
+            <p className="text-xs italic font-serif leading-relaxed">
+              「妳的戰場在雲端（戰略與理念），妳的武器是發聲（統率與影響）。不要讓自己淪為在泥淖中苦幹的工兵。找對人幫妳執行，妳就能成為制定遊戲規則的造王者。」
             </p>
           </div>
         </div>
@@ -2582,7 +3283,7 @@ export default function FullReportView() {
     all: {
       subtitle: "64 節全息能量解碼黃金天書",
       keywords: ["西洋占星", "人類圖", "紫微斗數", "八字命理", "姓名學"],
-      overview: "這是一份極致深度的全能藍圖解碼。在上方或左側切換分類標籤，可快速檢視特定主題章節，並能針對每一章節撰寫專屬反思筆記、標記閱讀進度或收藏最愛內容。",
+      overview: "這是一份極致深度的全能藍圖解碼。在上方或左側切換分類標籤，可快速檢視特定主題章節，標記閱讀進度或收藏最愛內容。",
       border: "border-slate-800",
       accent: "text-amber-400",
       badgeBg: "bg-amber-400/10 text-amber-400 border-amber-400/20"
@@ -3053,19 +3754,8 @@ export default function FullReportView() {
                     {isOpen && (
                       <div className="px-5 pb-5 pt-1.5 border-t border-slate-900/60 animate-slide-down">
                         {/* Main content body */}
-                        <div className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans prose prose-invert max-w-none pb-4 border-b border-slate-900/80">
+                        <div className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans prose prose-invert max-w-none">
                           {sec.content}
-                        </div>
-
-                        {/* Reflection notes section */}
-                        <div className="mt-3 pt-3">
-                          <div className="text-[10px] text-slate-500 font-mono mb-2 flex items-center gap-1">
-                            <Bookmark className="w-3 h-3 text-amber-500" />
-                            針對 #{sec.id} 的個人反思筆記 (自動儲存在您的瀏覽器中)：
-                          </div>
-                          
-                          {/* Interactive inline reflection note */}
-                          <ReflectionNotes moduleId={`point_${sec.id}`} moduleName={sec.title.split('：')[0]} />
                         </div>
                       </div>
                     )}

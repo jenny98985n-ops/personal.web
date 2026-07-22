@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
 import { Brain, Sparkles, Shield, Heart, Zap, RefreshCw, Layers, Compass, HelpCircle } from 'lucide-react';
-import ReflectionNotes from './ReflectionNotes';
 
 export default function HumanDesignView() {
   const data = LAI_YI_CHIEH_DATA.humanDesign;
@@ -355,9 +354,6 @@ export default function HumanDesignView() {
           </div>
         )}
       </div>
-
-      {/* 讀者心得筆記 */}
-      <ReflectionNotes moduleId="humandesign" moduleName="人類圖氣場與能量密碼" />
     </div>
   );
 }

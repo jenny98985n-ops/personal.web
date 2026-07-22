@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Sparkles, DollarSign, Briefcase, TrendingUp, Compass, AlertTriangle, Users, Lightbulb, ShieldCheck, HelpCircle, ArrowRight, Calendar, Coins } from 'lucide-react';
-import ReflectionNotes from './ReflectionNotes';
 
 export default function WealthCareerView() {
   const [selectedTimeline, setSelectedTimeline] = useState<'35-44' | '2026' | '2027'>('35-44');
@@ -385,9 +384,6 @@ export default function WealthCareerView() {
           </div>
         </div>
       </div>
-
-      {/* 讀者心得筆記 */}
-      <ReflectionNotes moduleId="wealth" moduleName="財富與事業拓展藍圖" />
     </div>
   );
 }

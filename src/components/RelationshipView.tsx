@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Sparkles, Heart, AlertCircle, ShieldAlert, CheckCircle2, User, HelpCircle } from 'lucide-react';
-import ReflectionNotes from './ReflectionNotes';
 
 export default function RelationshipView() {
   const [freedomLevel, setFreedomLevel] = useState<number>(50); // Slider for freedom vs security
@@ -188,9 +187,6 @@ export default function RelationshipView() {
           </div>
         </div>
       </div>
-
-      {/* 讀者心得筆記 */}
-      <ReflectionNotes moduleId="love" moduleName="親密關係與愛情配方" />
     </div>
   );
 }

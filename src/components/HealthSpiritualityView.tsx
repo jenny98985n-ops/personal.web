@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Eye, Shield, Activity, BatteryCharging, Moon, Compass, Heart, RefreshCw, Waves, Trash2, CheckCircle2, Flame, Lock, Unlock, AlertCircle, Send, MessageSquare, Award, ChevronRight, DollarSign } from 'lucide-react';
-import ReflectionNotes from './ReflectionNotes';
 
 export default function HealthSpiritualityView() {
   const [shieldActive, setShieldActive] = useState<boolean>(false);
@@ -1483,30 +1482,6 @@ export default function HealthSpiritualityView() {
                     「謝謝你的回饋。我非常理解這會帶給你失望或不便，但我必須守護我的能量底線，這對我的健康至關重要。希望我們下次在彼此狀態都好時，能有更高質量的相處。祝好！」
                   </p>
                 </div>
-
-                {/* Option 3: Custom Text Input */}
-                <div 
-                  onClick={() => setUltimateResponseChoice('custom')}
-                  className={`p-4 rounded-xl border transition-all ${
-                    ultimateResponseChoice === 'custom' 
-                      ? 'bg-slate-900 border-amber-400 shadow-md' 
-                      : 'bg-slate-950/30 border-slate-850 hover:bg-slate-950'
-                  }`}
-                >
-                  <span className="text-[10px] font-bold text-purple-400 block mb-1">【自訂】寫下妳此時最真實、最堅固的界線回覆</span>
-                  {ultimateResponseChoice === 'custom' ? (
-                    <div className="space-y-2 mt-2">
-                      <textarea
-                        value={customUltimateResponse}
-                        onChange={(e) => setCustomUltimateResponse(e.target.value)}
-                        placeholder="在此輸入妳對對方的冷靜、堅定界線宣告（例如：『我了解你的情況，但我已經決定了，祝週末愉快...』）"
-                        className="w-full h-20 bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-amber-400"
-                      />
-                    </div>
-                  ) : (
-                    <p className="text-xs text-slate-500 leading-normal">點選此處，自訂輸入妳的邊界告知話術進行深度自我操練。</p>
-                  )}
-                </div>
               </div>
             </div>
 
@@ -1728,9 +1703,6 @@ export default function HealthSpiritualityView() {
           </div>
         </div>
       </div>
-
-      {/* 讀者心得筆記 */}
-      <ReflectionNotes moduleId="spirituality" moduleName="能量、健康與靈性實踐" />
     </div>
   );
 }

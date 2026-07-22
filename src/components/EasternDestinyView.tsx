@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
 import { Flame, Sparkles, AlertCircle, HelpCircle, Award } from 'lucide-react';
-import ReflectionNotes from './ReflectionNotes';
 
 const getGridAreaClass = (palaceName: string) => {
   if (palaceName.includes('福德宮') || palaceName.includes('福德')) return 'col-start-1 row-start-1';
@@ -456,9 +455,6 @@ export default function EasternDestinyView() {
           </div>
         </div>
       </div>
-
-      {/* 讀者心得筆記 */}
-      <ReflectionNotes moduleId="easterndestiny" moduleName="八字與紫微斗數天命" />
     </div>
   );
 }

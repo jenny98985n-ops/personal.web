@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
 import { Award, CheckCircle, HelpCircle, Shield, Sparkles, AlertTriangle, Flame, Activity, Zap, Layers, RefreshCw } from 'lucide-react';
-import ReflectionNotes from './ReflectionNotes';
 
 export default function NameNumerologyView() {
   const data = LAI_YI_CHIEH_DATA.nameNumerology;
@@ -404,9 +403,6 @@ export default function NameNumerologyView() {
           </div>
         </div>
       </div>
-
-      {/* 讀者心得筆記 */}
-      <ReflectionNotes moduleId="name" moduleName="姓名五格命盤分析" />
     </div>
   );
 }

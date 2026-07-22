@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
 import { Compass, Sparkles, AlertCircle, HelpCircle, Eye, CornerRightDown, CheckCircle } from 'lucide-react';
-import ReflectionNotes from './ReflectionNotes';
 
 export default function AstrologyView() {
   const data = LAI_YI_CHIEH_DATA.astrology;
@@ -289,9 +288,6 @@ export default function AstrologyView() {
           </div>
         </div>
       </div>
-      
-      {/* 讀者心得筆記 */}
-      <ReflectionNotes moduleId="astrology" moduleName="西洋占星全息星盤" />
     </div>
   );
 }
