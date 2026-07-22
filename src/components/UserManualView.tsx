@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { 
   BookOpen, ShieldAlert, Cpu, Zap, BatteryCharging, Users, 
-  Sparkles, CheckCircle2, AlertTriangle, Heart, Flame, Brain, Crown, Ghost
+  Sparkles, CheckCircle2, AlertTriangle, Heart, Flame, Brain, Crown, Ghost,
+  Search, SlidersHorizontal, Layers, ChevronDown, ChevronUp, Check, Eye
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import ReportMarkdown, { FeatureCardBlock } from './ReportMarkdown';
 
 export default function UserManualView() {
   const [activeChapter, setActiveChapter] = useState<'all' | 'ch1' | 'ch2' | 'ch3' | 'ch4'>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [viewMode, setViewMode] = useState<'detailed' | 'summary'>('detailed');
+  const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (id: string) => {
+    setCollapsedSections(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   return (
     <div className="space-y-8 animate-fade-in" id="user-manual-section">
@@ -100,7 +108,7 @@ export default function UserManualView() {
                 認識 YieJie，你必須適應她隨時切換、且反差極大的三種截然不同的頻率。這不是偽裝，而是她為了應對這個世界所發展出的高階生存策略：
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <FeatureCardBlock title="1. 社交與職場上的「太陽女王」" badge="The Alpha Charmer" variant="amber" icon={Crown}>
+                <FeatureCardBlock title="1. 社交與職場上的「太陽女王」" variant="amber" icon={Crown}>
                   <p className="text-xs text-slate-300 leading-relaxed">
                     當她選擇走入人群、或是接下某個專案時，她是那個絕對不容忽視的發光體。這得益於她骨子裡的「顯示者（Manifestor）」基因與「獅子座月亮」的驕傲。她極具領導魅力，說話一針見血，總能輕易主導話題走向，並在混亂的局面中瞬間理出頭緒。
                   </p>
@@ -112,7 +120,7 @@ export default function UserManualView() {
                   </div>
                 </FeatureCardBlock>
 
-                <FeatureCardBlock title="2. 獨處時的「高奢隱士」" badge="The High-End Hermit" variant="emerald" icon={Ghost}>
+                <FeatureCardBlock title="2. 獨處時的「高奢隱士」" variant="emerald" icon={Ghost}>
                   <p className="text-xs text-slate-300 leading-relaxed">
                     這是她最需要、也最私密的一面，往往只有她最親近的人才能窺見。由於她的體質極度敏感（人類圖空白薦骨與太陰化忌的影響），她就像一塊會呼吸的情緒海綿，無時無刻不在吸收周遭環境的能量。因此，人群對她來說是一種巨大的能量消耗。
                   </p>
@@ -121,7 +129,7 @@ export default function UserManualView() {
                   </p>
                 </FeatureCardBlock>
 
-                <FeatureCardBlock title="3. 深海裡的「靈魂駭客」" badge="The Soul Hacker" variant="indigo" icon={Brain}>
+                <FeatureCardBlock title="3. 深海裡的「靈魂駭客」" variant="indigo" icon={Brain}>
                   <p className="text-xs text-slate-300 leading-relaxed">
                     當她凝視你的眼睛，準備為你解讀塔羅、阿卡西紀錄，或是為你的人生卡關提供諮詢時，你會看到一個完全不同的她。她的「雙子座超級大腦」與「12宮深邃直覺」會在此刻完美連線。
                   </p>
@@ -244,6 +252,81 @@ export default function UserManualView() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Reading Optimization Control Bar */}
+      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 space-y-4 shadow-xl">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/20 text-amber-400 flex items-center justify-center">
+              <SlidersHorizontal className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-xs font-black text-slate-100 flex items-center gap-2">
+                說明書 ✦ 系統化閱讀優化台
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20">
+                  速讀模式
+                </span>
+              </h3>
+              <p className="text-[10px] text-slate-400">快速搜尋關聯主題，或切換至精華劃重點模式</p>
+            </div>
+          </div>
+
+          {/* Mode Switcher Buttons */}
+          <div className="flex items-center gap-2 bg-slate-950 p-1 rounded-xl border border-slate-800 self-start sm:self-auto">
+            <button
+              onClick={() => setViewMode('detailed')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                viewMode === 'detailed' 
+                  ? 'bg-amber-400 text-slate-950 shadow-sm' 
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              完整條目
+            </button>
+            <button
+              onClick={() => setViewMode('summary')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                viewMode === 'summary' 
+                  ? 'bg-amber-400 text-slate-950 shadow-sm' 
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Zap className="w-3.5 h-3.5" />
+              1分鐘劃重點
+            </button>
+          </div>
+        </div>
+
+        {/* Search Bar & Chapter Navigation */}
+        <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+          <div className="relative flex-grow">
+            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder="搜尋說明書關鍵字（如：雙子、隱士、72小時、冷暴力、地雷...）"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-slate-950 border border-slate-800 focus:border-amber-400/50 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-200 placeholder:text-slate-600 focus:outline-none transition-all"
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500 hover:text-slate-300"
+              >
+                清空
+              </button>
+            )}
+          </div>
+
+          <div className="text-[11px] text-slate-400 font-mono flex items-center gap-2 shrink-0">
+            <span>顯示模式：</span>
+            <span className="text-amber-300 font-bold bg-amber-400/10 px-2.5 py-1 rounded-md border border-amber-400/20">
+              {viewMode === 'summary' ? '⚡️ 精華劃重點' : '📖 完整解析'}
+            </span>
           </div>
         </div>
       </div>
