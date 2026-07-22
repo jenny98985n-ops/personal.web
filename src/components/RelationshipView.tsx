@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, Heart, AlertCircle, ShieldAlert, CheckCircle2, User, HelpCircle } from 'lucide-react';
+import FullReportView from './FullReportView';
 
 export default function RelationshipView() {
   const [freedomLevel, setFreedomLevel] = useState<number>(50); // Slider for freedom vs security
@@ -186,6 +187,25 @@ export default function RelationshipView() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Full Report Chapter Integration */}
+      <div className="pt-8 border-t border-slate-850 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-rose-500/10 via-slate-900 to-pink-500/10 border border-rose-500/20">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center">
+              <Heart className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm md:text-base font-black text-slate-100">全息天書 ✦ 情感與親密關係專屬章節</h3>
+              <p className="text-[11px] text-slate-400">邏輯分流：系統自動匯入全息天書中關於朋友變情人、傲嬌女王與夫妻宮伴侶原型的解析</p>
+            </div>
+          </div>
+          <span className="text-[10px] font-mono text-rose-300 bg-slate-950 px-3 py-1 rounded-full border border-rose-400/30 self-start sm:self-auto">
+            親密關係維度 (Relationship)
+          </span>
+        </div>
+        <FullReportView initialCategory="relationship" hideBanner={true} />
       </div>
     </div>
   );

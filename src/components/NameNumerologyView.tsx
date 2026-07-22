@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
 import { Award, CheckCircle, HelpCircle, Shield, Sparkles, AlertTriangle, Flame, Activity, Zap, Layers, RefreshCw } from 'lucide-react';
+import FullReportView from './FullReportView';
 
 export default function NameNumerologyView() {
   const data = LAI_YI_CHIEH_DATA.nameNumerology;
@@ -402,6 +403,25 @@ export default function NameNumerologyView() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Full Report Chapter Integration */}
+      <div className="pt-8 border-t border-slate-850 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-slate-900 to-amber-500/10 border border-emerald-500/20">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <Award className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm md:text-base font-black text-slate-100">全息天書 ✦ 姓名能量與個人特質專屬章節</h3>
+              <p className="text-[11px] text-slate-400">邏輯分流：系統自動匯入全息天書中屬於賴以婕姓名數理與人格界線的解析</p>
+            </div>
+          </div>
+          <span className="text-[10px] font-mono text-emerald-300 bg-slate-950 px-3 py-1 rounded-full border border-emerald-400/30 self-start sm:self-auto">
+            姓名能量維度 (Name Numerology)
+          </span>
+        </div>
+        <FullReportView initialCategory="destiny" hideBanner={true} />
       </div>
     </div>
   );

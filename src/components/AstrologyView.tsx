@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
 import { Compass, Sparkles, AlertCircle, HelpCircle, Eye, CornerRightDown, CheckCircle } from 'lucide-react';
+import FullReportView from './FullReportView';
 
 export default function AstrologyView() {
   const data = LAI_YI_CHIEH_DATA.astrology;
@@ -287,6 +288,25 @@ export default function AstrologyView() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Full Report Chapter Integration */}
+      <div className="pt-8 border-t border-slate-850 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-blue-500/10 via-slate-900 to-amber-500/10 border border-blue-500/20">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
+              <Compass className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm md:text-base font-black text-slate-100">全息天書 ✦ 西洋占星與性格心智專屬章節</h3>
+              <p className="text-[11px] text-slate-400">邏輯分流：系統自動匯入全息天書中屬於性格與心智運作的精闢解碼</p>
+            </div>
+          </div>
+          <span className="text-[10px] font-mono text-amber-300 bg-slate-950 px-3 py-1 rounded-full border border-amber-400/30 self-start sm:self-auto">
+            性格心智維度 (Personality)
+          </span>
+        </div>
+        <FullReportView initialCategory="personality" hideBanner={true} />
       </div>
     </div>
   );

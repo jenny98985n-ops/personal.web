@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Eye, Shield, Activity, BatteryCharging, Moon, Compass, Heart, RefreshCw, Waves, Trash2, CheckCircle2, Flame, Lock, Unlock, AlertCircle, Send, MessageSquare, Award, ChevronRight, DollarSign } from 'lucide-react';
+import FullReportView from './FullReportView';
 
 export default function HealthSpiritualityView() {
   const [shieldActive, setShieldActive] = useState<boolean>(false);
@@ -1702,6 +1703,25 @@ export default function HealthSpiritualityView() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Full Report Chapter Integration */}
+      <div className="pt-8 border-t border-slate-850 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-teal-500/10 via-slate-900 to-indigo-500/10 border border-teal-500/20">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center">
+              <Activity className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm md:text-base font-black text-slate-100">全息天書 ✦ 健康靈性與能量療癒專屬章節</h3>
+              <p className="text-[11px] text-slate-400">邏輯分流：系統自動匯入全息天書中關於12宮隱士充電、空白薦骨抗內耗與身心靈療癒的章節</p>
+            </div>
+          </div>
+          <span className="text-[10px] font-mono text-teal-300 bg-slate-950 px-3 py-1 rounded-full border border-teal-400/30 self-start sm:self-auto">
+            健康靈性維度 (Spirituality)
+          </span>
+        </div>
+        <FullReportView initialCategory="spirituality" hideBanner={true} />
       </div>
     </div>
   );

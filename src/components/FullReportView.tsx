@@ -20,9 +20,14 @@ interface ReportSection {
   content: React.ReactNode;
 }
 
-export default function FullReportView() {
+interface FullReportViewProps {
+  initialCategory?: string;
+  hideBanner?: boolean;
+}
+
+export default function FullReportView({ initialCategory = 'all', hideBanner = false }: FullReportViewProps) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [expandedSections, setExpandedSections] = useState<Record<number, boolean>>({
     1: true, 2: true, 5: true, 7: true, 8: true, 22: true, 23: true, 24: true
   });
@@ -3378,41 +3383,43 @@ export default function FullReportView() {
     <div className="space-y-6 animate-fade-in relative z-10">
       
       {/* Banner */}
-      <div className="relative overflow-hidden bg-slate-900/40 rounded-3xl p-6 md:p-8 border border-slate-850 shadow-2xl">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-[10px] font-bold text-amber-400 tracking-wider uppercase font-display">
-              <Sparkles className="w-3 h-3 animate-pulse text-amber-400" />
-              2026 全息能量解碼終極報告
+      {!hideBanner && (
+        <div className="relative overflow-hidden bg-slate-900/40 rounded-3xl p-6 md:p-8 border border-slate-850 shadow-2xl">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-[10px] font-bold text-amber-400 tracking-wider uppercase font-display">
+                <Sparkles className="w-3 h-3 animate-pulse text-amber-400" />
+                2026 全息能量解碼終極報告
+              </div>
+              <h1 className="text-2xl md:text-4xl font-black text-slate-100 tracking-tighter leading-none">
+                全息天書解碼報告 <span className="text-amber-400 block md:inline md:ml-1 text-sm md:text-xl font-light tracking-wide font-mystic">✦ 33 節黃金智慧全書 ✦</span>
+              </h1>
+              <p className="text-[11px] md:text-xs text-slate-400 max-w-2xl leading-relaxed">
+                整合西洋占星、人類圖、紫微斗數、八字命理與姓名學，為<strong>賴以婕 (Jenny)</strong> 打造的頂層天命智慧天書。
+              </p>
             </div>
-            <h1 className="text-2xl md:text-4xl font-black text-slate-100 tracking-tighter leading-none">
-              全息天書解碼報告 <span className="text-amber-400 block md:inline md:ml-1 text-sm md:text-xl font-light tracking-wide font-mystic">✦ 33 節黃金智慧全書 ✦</span>
-            </h1>
-            <p className="text-[11px] md:text-xs text-slate-400 max-w-2xl leading-relaxed">
-              整合西洋占星、人類圖、紫微斗數、八字命理與姓名學，為<strong>賴以婕 (Jenny)</strong> 打造的頂層天命智慧天書。
-            </p>
-          </div>
-          
-          {/* Circular Progress Stats */}
-          <div className="flex items-center gap-4 bg-slate-950/40 p-4 rounded-2xl border border-slate-850">
-            <div className="relative w-12 h-12 flex items-center justify-center">
-              <svg className="w-full h-full transform -rotate-90">
-                <circle cx="24" cy="24" r="20" className="stroke-slate-800" strokeWidth="3" fill="transparent" />
-                <circle cx="24" cy="24" r="20" className="stroke-amber-400 transition-all duration-500" strokeWidth="3" fill="transparent"
-                  strokeDasharray={`${2 * Math.PI * 20}`}
-                  strokeDashoffset={`${2 * Math.PI * 20 * (1 - overallStats.percent / 100)}`} />
-              </svg>
-              <span className="absolute text-xs font-black text-slate-200">{overallStats.percent}%</span>
-            </div>
-            <div>
-              <div className="text-[10px] text-slate-500 font-mono tracking-wider">READING PROGRESS</div>
-              <div className="text-sm font-black text-slate-100 font-mono">已研讀 {overallStats.read} / {overallStats.total} 章</div>
-              <div className="text-[10px] text-amber-400/80 font-mono">已收藏 {overallStats.bookmarked} 篇最愛章節</div>
+            
+            {/* Circular Progress Stats */}
+            <div className="flex items-center gap-4 bg-slate-950/40 p-4 rounded-2xl border border-slate-850">
+              <div className="relative w-12 h-12 flex items-center justify-center">
+                <svg className="w-full h-full transform -rotate-90">
+                  <circle cx="24" cy="24" r="20" className="stroke-slate-800" strokeWidth="3" fill="transparent" />
+                  <circle cx="24" cy="24" r="20" className="stroke-amber-400 transition-all duration-500" strokeWidth="3" fill="transparent"
+                    strokeDasharray={`${2 * Math.PI * 20}`}
+                    strokeDashoffset={`${2 * Math.PI * 20 * (1 - overallStats.percent / 100)}`} />
+                </svg>
+                <span className="absolute text-xs font-black text-slate-200">{overallStats.percent}%</span>
+              </div>
+              <div>
+                <div className="text-[10px] text-slate-500 font-mono tracking-wider">READING PROGRESS</div>
+                <div className="text-sm font-black text-slate-100 font-mono">已研讀 {overallStats.read} / {overallStats.total} 章</div>
+                <div className="text-[10px] text-amber-400/80 font-mono">已收藏 {overallStats.bookmarked} 篇最愛章節</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main Grid Layout: Categories Navigation + Main List */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">

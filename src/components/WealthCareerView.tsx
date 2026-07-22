@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sparkles, DollarSign, Briefcase, TrendingUp, Compass, AlertTriangle, Users, Lightbulb, ShieldCheck, HelpCircle, ArrowRight, Calendar, Coins } from 'lucide-react';
+import FullReportView from './FullReportView';
 
 export default function WealthCareerView() {
   const [selectedTimeline, setSelectedTimeline] = useState<'35-44' | '2026' | '2027'>('35-44');
@@ -383,6 +384,25 @@ export default function WealthCareerView() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Full Report Chapter Integration */}
+      <div className="pt-8 border-t border-slate-850 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-slate-900 to-amber-500/10 border border-emerald-500/20">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <DollarSign className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm md:text-base font-black text-slate-100">全息天書 ✦ 財富事業與天賦專屬章節</h3>
+              <p className="text-[11px] text-slate-400">邏輯分流：系統自動匯入全息天書中關於財帛宮天機化祿、腦力變現與事業藍圖的章節</p>
+            </div>
+          </div>
+          <span className="text-[10px] font-mono text-emerald-300 bg-slate-950 px-3 py-1 rounded-full border border-emerald-400/30 self-start sm:self-auto">
+            財富事業維度 (Wealth)
+          </span>
+        </div>
+        <FullReportView initialCategory="wealth" hideBanner={true} />
       </div>
     </div>
   );
