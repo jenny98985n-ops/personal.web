@@ -1,10 +1,11 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { 
-  Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, Menu, X, BookOpen, Loader2, Sun, Moon
+  Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, Menu, X, BookOpen, BookOpenCheck, Loader2, Sun, Moon
 } from 'lucide-react';
 
 import OverviewDashboard from './components/OverviewDashboard';
 import EnergyQuoteWidget from './components/EnergyQuoteWidget';
+const UserManualView = lazy(() => import('./components/UserManualView'));
 const AstrologyView = lazy(() => import('./components/AstrologyView'));
 const HumanDesignView = lazy(() => import('./components/HumanDesignView'));
 const EasternDestinyView = lazy(() => import('./components/EasternDestinyView'));
@@ -14,7 +15,7 @@ const WealthCareerView = lazy(() => import('./components/WealthCareerView'));
 const HealthSpiritualityView = lazy(() => import('./components/HealthSpiritualityView'));
 const FullReportView = lazy(() => import('./components/FullReportView'));
 
-type TabType = 'overview' | 'fullreport' | 'astrology' | 'humandesign' | 'easterndestiny' | 'name' | 'love' | 'wealth' | 'spirituality';
+type TabType = 'overview' | 'usermanual' | 'fullreport' | 'astrology' | 'humandesign' | 'easterndestiny' | 'name' | 'love' | 'wealth' | 'spirituality';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
@@ -34,6 +35,7 @@ export default function App() {
 
   const tabs = [
     { id: 'overview', name: '全息總覽', icon: Sparkles, color: 'text-indigo-400' },
+    { id: 'usermanual', name: '能量使用說明書', icon: BookOpenCheck, color: 'text-emerald-400' },
     { id: 'fullreport', name: '全息天書報告', icon: BookOpen, color: 'text-amber-400' },
     { id: 'astrology', name: '西洋占星', icon: Compass, color: 'text-blue-400' },
     { id: 'humandesign', name: '人類圖全析', icon: Brain, color: 'text-rose-400' },
@@ -195,6 +197,7 @@ export default function App() {
             </div>
           }>
             {activeTab === 'overview' && <OverviewDashboard onTabChange={(tab) => handleTabSelect(tab as TabType)} />}
+            {activeTab === 'usermanual' && <UserManualView />}
             {activeTab === 'fullreport' && <FullReportView />}
             {activeTab === 'astrology' && <AstrologyView />}
             {activeTab === 'humandesign' && <HumanDesignView />}

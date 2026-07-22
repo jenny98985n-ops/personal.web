@@ -6,8 +6,6 @@ import {
   RefreshCw, Shuffle, Crown, TrendingUp, Users, ArrowRight
 } from 'lucide-react';
 import { motion } from 'motion/react';
-import UserManualView from './UserManualView';
-import DecisionTimer from './DecisionTimer';
 import EnergyQuoteWidget from './EnergyQuoteWidget';
 
 interface GoldenSaying {
@@ -739,11 +737,23 @@ export default function OverviewDashboard({ onTabChange }: Props) {
       {/* Energy Mode Dual-Track Quote Carousel Widget */}
       <EnergyQuoteWidget compact={false} />
 
-      {/* Decision Timer (72-Hour Cooling Cabin) */}
-      <DecisionTimer />
-
-      {/* Official User Manual Section */}
-      <UserManualView />
+      {/* User Manual Standalone Quick Link */}
+      <div className="p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-slate-900 to-emerald-500/10 border border-amber-400/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/30">獨立特別專欄</span>
+            <h3 className="text-base font-black text-slate-100">Lai Yi Jie ✦ 能量使用說明書</h3>
+          </div>
+          <p className="text-xs text-slate-300">減阻尼 ✕ 抗內耗 ✕ 專屬官方原廠操作手冊（已設為獨立導覽選單）</p>
+        </div>
+        <button
+          onClick={() => onTabChange('usermanual')}
+          className="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-950 font-black text-xs transition-all flex items-center gap-2 cursor-pointer shadow-md flex-shrink-0"
+        >
+          <span>開啟完整使用說明書</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </button>
+      </div>
 
       {/* Core Advantages & Disadvantages */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
