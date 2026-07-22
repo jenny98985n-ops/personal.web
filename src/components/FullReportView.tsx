@@ -3346,6 +3346,34 @@ export default function FullReportView() {
     });
   }, [searchQuery, selectedCategory, filterType, readSections, bookmarks]);
 
+  const groupedSections = useMemo(() => {
+    const catMap = new Map<string, ReportSection[]>();
+    filteredSections.forEach(sec => {
+      const existing = catMap.get(sec.category) || [];
+      existing.push(sec);
+      catMap.set(sec.category, existing);
+    });
+
+    return categories
+      .filter(c => c.id !== 'all' && catMap.has(c.id))
+      .map(c => ({
+        category: c.id,
+        categoryName: c.name,
+        icon: c.icon,
+        sections: catMap.get(c.id) || []
+      }));
+  }, [filteredSections, categories]);
+
+  const toggleGroupSections = (secs: ReportSection[], expand: boolean) => {
+    setExpandedSections(prev => {
+      const next = { ...prev };
+      secs.forEach(s => {
+        next[s.id] = expand;
+      });
+      return next;
+    });
+  };
+
   return (
     <div className="space-y-6 animate-fade-in relative z-10">
       
@@ -3477,7 +3505,34 @@ export default function FullReportView() {
         {/* Content Area (Right Column) */}
         <div className="lg:col-span-3 space-y-6">
           
-          {/* Main Filter & Action Bar */}
+          {/* Quick Dimension Navigation Strip */}
+          <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-850 flex items-center gap-2 overflow-x-auto scrollbar-none">
+            <span className="text-[10px] font-mono font-bold text-slate-500 uppercase flex-shrink-0 px-1">維度速查：</span>
+            {categories.map((cat) => {
+              const CatIcon = cat.icon;
+              const active = selectedCategory === cat.id;
+              const progress = categoryReadProgress[cat.id];
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold flex-shrink-0 transition-all border ${
+                    active 
+                      ? 'bg-amber-400 text-slate-950 border-amber-400 shadow-md shadow-amber-400/10' 
+                      : 'bg-slate-950 text-slate-400 hover:text-slate-200 border-slate-800 hover:border-slate-700'
+                  }`}
+                >
+                  <CatIcon className="w-3 h-3" />
+                  <span>{cat.name}</span>
+                  <span className={`text-[10px] font-mono px-1 rounded ${active ? 'bg-slate-950/20 text-slate-950' : 'bg-slate-900 text-slate-500'}`}>
+                    {progress?.total || 0}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Main Filter & Search Bar */}
           <div className="p-4 rounded-2xl bg-slate-900 border border-slate-850 space-y-4">
             <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
               
@@ -3486,11 +3541,19 @@ export default function FullReportView() {
                 <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500" />
                 <input
                   type="text"
-                  placeholder="搜尋天書中的關鍵字 (例如：金牛、顯示者、太陰)..."
+                  placeholder="搜尋天書關鍵字 (例如：金牛、顯示者、太陰)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-850 rounded-xl text-xs placeholder-slate-500 text-slate-200 focus:outline-none focus:ring-1 focus:ring-amber-400/50"
+                  className="w-full pl-9 pr-8 py-2 bg-slate-950 border border-slate-850 rounded-xl text-xs placeholder-slate-500 text-slate-200 focus:outline-none focus:ring-1 focus:ring-amber-400/50"
                 />
+                {searchQuery && (
+                  <button 
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                  >
+                    ✕
+                  </button>
+                )}
               </div>
 
               {/* Status Filter Buttons */}
@@ -3499,7 +3562,7 @@ export default function FullReportView() {
                   onClick={() => setFilterType('all')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                     filterType === 'all' 
-                      ? 'bg-slate-900 text-amber-400 font-bold border border-slate-800' 
+                      ? 'bg-slate-900 text-amber-400 border border-slate-800' 
                       : 'text-slate-500 hover:text-slate-300'
                   }`}
                 >
@@ -3509,7 +3572,7 @@ export default function FullReportView() {
                   onClick={() => setFilterType('unread')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
                     filterType === 'unread' 
-                      ? 'bg-slate-900 text-amber-400 font-bold border border-slate-800' 
+                      ? 'bg-slate-900 text-amber-400 border border-slate-800' 
                       : 'text-slate-500 hover:text-slate-300'
                   }`}
                 >
@@ -3520,7 +3583,7 @@ export default function FullReportView() {
                   onClick={() => setFilterType('bookmarked')}
                   className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
                     filterType === 'bookmarked' 
-                      ? 'bg-slate-900 text-amber-400 font-bold border border-slate-800' 
+                      ? 'bg-slate-900 text-amber-400 border border-slate-800' 
                       : 'text-slate-500 hover:text-slate-300'
                   }`}
                 >
@@ -3531,30 +3594,37 @@ export default function FullReportView() {
 
             </div>
 
-            {/* Quick Collapse / Expand Buttons */}
-            <div className="flex items-center justify-between pt-2 border-t border-slate-950 text-xs text-slate-500">
-              <span className="font-mono">
-                已篩選出 {filteredSections.length} 個章節
-              </span>
+            {/* Quick Collapse / Expand Buttons & Active Filter Pill */}
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-950 text-xs text-slate-500">
+              <div className="flex items-center gap-2">
+                <span className="font-mono">
+                  篩選出 {filteredSections.length} 個章節
+                </span>
+                {searchQuery && (
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20">
+                    關鍵字: 「{searchQuery}」
+                  </span>
+                )}
+              </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => toggleAll(true)}
-                  className="text-[10px] font-mono px-2.5 py-1 rounded bg-slate-950 border border-slate-850 text-slate-400 hover:text-slate-200"
+                  className="text-[10px] font-mono px-2.5 py-1 rounded bg-slate-950 border border-slate-850 text-slate-400 hover:text-slate-200 cursor-pointer"
                 >
-                  展開本頁
+                  全部展開
                 </button>
                 <button
                   onClick={() => toggleAll(false)}
-                  className="text-[10px] font-mono px-2.5 py-1 rounded bg-slate-950 border border-slate-850 text-slate-400 hover:text-slate-200"
+                  className="text-[10px] font-mono px-2.5 py-1 rounded bg-slate-950 border border-slate-850 text-slate-400 hover:text-slate-200 cursor-pointer"
                 >
-                  折疊本頁
+                  全部折疊
                 </button>
               </div>
             </div>
           </div>
 
           {/* Active Category Highlights Summary Deck */}
-          {categoryDetails[selectedCategory] && (
+          {selectedCategory !== 'all' && categoryDetails[selectedCategory] && (
             <div className={`p-5 md:p-6 rounded-2xl bg-slate-900/60 border ${categoryDetails[selectedCategory].border} relative overflow-hidden transition-all duration-300`}>
               <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400/5 rounded-full blur-3xl pointer-events-none" />
               <div className="relative z-10 space-y-3">
@@ -3577,7 +3647,7 @@ export default function FullReportView() {
                     <button
                       key={i}
                       onClick={() => setSearchQuery(kw)}
-                      className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-slate-950 hover:bg-slate-900 border border-slate-850 text-slate-400 hover:text-amber-300 transition-all"
+                      className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-slate-950 hover:bg-slate-900 border border-slate-850 text-slate-400 hover:text-amber-300 transition-all cursor-pointer"
                     >
                       #{kw}
                     </button>
@@ -3585,7 +3655,7 @@ export default function FullReportView() {
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery('')}
-                      className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-rose-500/10 text-rose-400 border border-rose-500/20"
+                      className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-rose-500/10 text-rose-400 border border-rose-500/20 cursor-pointer"
                     >
                       清除搜尋
                     </button>
@@ -3595,138 +3665,181 @@ export default function FullReportView() {
             </div>
           )}
 
-          {/* Grid of Report Sections */}
-          <div className="space-y-3">
-            <AnimatePresence mode="popLayout">
-              {filteredSections.map((sec, idx) => {
-                const IconComponent = sec.icon;
-                const isOpen = expandedSections[sec.id];
-                const isRead = !!readSections[sec.id];
-                const isBookmarked = !!bookmarks[sec.id];
-                
-                return (
-                  <motion.div
-                    key={sec.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.15, delay: Math.min(idx * 0.015, 0.15) }}
-                    className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                      isOpen 
-                        ? 'bg-slate-900/60 border-slate-800 animate-pulse-subtle' 
-                        : isRead 
-                          ? 'bg-slate-900/20 border-slate-900/65 opacity-80' 
-                          : 'bg-slate-900/35 border-slate-850 hover:bg-slate-900/50 hover:border-slate-800'
-                    }`}
-                    id={`report-section-${sec.id}`}
-                  >
-                    {/* Header (Click to expand) */}
-                    <div 
-                      onClick={() => toggleSection(sec.id)}
-                      className="p-4 flex items-start md:items-center justify-between gap-4 cursor-pointer select-none"
-                    >
-                      <div className="flex items-start md:items-center gap-3.5 min-w-0">
-                        
-                        {/* Custom Interactive Read Status Button */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleReadSection(sec.id);
-                          }}
-                          className="flex-shrink-0 p-1 hover:bg-slate-950 rounded-lg transition-colors mt-0.5 md:mt-0"
-                          title={isRead ? "標記為未讀" : "標記為已讀"}
-                        >
-                          {isRead ? (
-                            <CheckCircle2 className="w-4 h-4 text-emerald-500" fill="currentColor" stroke="transparent" />
-                          ) : (
-                            <Circle className="w-4 h-4 text-slate-600 hover:text-amber-400" />
-                          )}
-                        </button>
-
-                        {/* Icon Circle */}
-                        <div className={`w-9 h-9 rounded-xl ${sec.iconBg} flex items-center justify-center border border-white/5 flex-shrink-0`}>
-                          <IconComponent className={`w-4.5 h-4.5 ${sec.iconColor}`} />
-                        </div>
-                        
-                        <div className="min-w-0">
-                          <div className="flex flex-wrap items-center gap-1.5">
-                            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-950 text-slate-500 tracking-wider uppercase">
-                              {sec.categoryLabel}
-                            </span>
-                            <span className="text-[9px] text-slate-600 font-mono">#{sec.id}</span>
-                            {isBookmarked && (
-                              <span className="text-[9px] text-amber-400 font-mono flex items-center gap-0.5">
-                                <Star className="w-2.5 h-2.5" fill="currentColor" />
-                                已收藏
-                              </span>
-                            )}
-                          </div>
-                          <h3 className={`text-sm font-black tracking-tight mt-1 truncate ${isRead ? 'text-slate-300 line-through decoration-slate-800' : 'text-slate-100'}`}>
-                            {sec.title}
-                          </h3>
-                          <p className="text-[10px] text-slate-500 mt-0.5 truncate font-mono italic">
-                            {sec.tagline}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Right side controls */}
-                      <div className="flex items-center gap-1.5 flex-shrink-0">
-                        {/* Bookmark Toggle Button */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleBookmark(sec.id);
-                          }}
-                          className={`p-2 rounded-lg transition-colors ${
-                            isBookmarked 
-                              ? 'bg-amber-400/10 text-amber-400 hover:bg-amber-400/20' 
-                              : 'bg-slate-950 text-slate-600 hover:text-slate-300 hover:bg-slate-900'
-                          }`}
-                          title={isBookmarked ? "取消收藏" : "加入收藏"}
-                        >
-                          <Star className="w-3.5 h-3.5" fill={isBookmarked ? "currentColor" : "transparent"} />
-                        </button>
-
-                        {/* Copy Button */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleCopySection(sec.id, sec.title + '\n' + sec.tagline);
-                          }}
-                          className="p-2 rounded-lg bg-slate-950 hover:bg-slate-900 text-slate-600 hover:text-slate-300 transition-colors"
-                          title="複製標題與大綱"
-                        >
-                          {copiedId === sec.id ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-                        </button>
-
-                        {/* Expand Icon */}
-                        <div className="p-1.5 text-slate-600">
-                          {isOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Expanded Body Content */}
-                    {isOpen && (
-                      <div className="px-5 pb-5 pt-1.5 border-t border-slate-900/60 animate-slide-down">
-                        {/* Main content body */}
-                        <div className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans prose prose-invert max-w-none">
-                          {sec.content}
-                        </div>
-                      </div>
-                    )}
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-
-            {filteredSections.length === 0 && (
+          {/* Render Sections (Grouped By Category when 'all' is selected, or Flat list if single category) */}
+          <div className="space-y-8">
+            {groupedSections.length === 0 ? (
               <div className="p-12 text-center rounded-2xl bg-slate-900 border border-slate-850">
                 <HelpCircle className="w-10 h-10 text-slate-600 mx-auto mb-3" />
                 <p className="text-slate-400 text-sm font-medium">沒有找到任何符合的章節與解析內容</p>
                 <p className="text-xs text-slate-600 mt-1">請嘗試修改搜尋詞，或切換不同的分類與狀態標籤</p>
               </div>
+            ) : (
+              groupedSections.map((group) => {
+                const GroupIcon = group.icon;
+                const progress = categoryReadProgress[group.category];
+                return (
+                  <div key={group.category} className="space-y-3">
+                    {/* Category Group Header Bar */}
+                    <div className="flex items-center justify-between p-3.5 bg-slate-950/90 backdrop-blur-md border border-slate-800 rounded-2xl sticky top-2 z-20 shadow-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400">
+                          <GroupIcon className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <h2 className="text-sm font-black text-slate-100 flex items-center gap-2">
+                            <span>{group.categoryName}</span>
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-amber-400 border border-slate-800">
+                              {group.sections.length} 章
+                            </span>
+                          </h2>
+                          {progress && (
+                            <p className="text-[10px] text-slate-500 font-mono mt-0.5">
+                              進度：已研讀 {progress.read} / {progress.total} 章 ({progress.percent}%)
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => toggleGroupSections(group.sections, true)}
+                          className="text-[10px] font-mono px-2 py-1 rounded-md bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-slate-200 border border-slate-800 cursor-pointer"
+                        >
+                          展開本組
+                        </button>
+                        <button
+                          onClick={() => toggleGroupSections(group.sections, false)}
+                          className="text-[10px] font-mono px-2 py-1 rounded-md bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-slate-200 border border-slate-800 cursor-pointer"
+                        >
+                          折疊本組
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Section Cards inside this Category Group */}
+                    <div className="space-y-3 pl-1 md:pl-2">
+                      <AnimatePresence mode="popLayout">
+                        {group.sections.map((sec, idx) => {
+                          const IconComponent = sec.icon;
+                          const isOpen = expandedSections[sec.id];
+                          const isRead = !!readSections[sec.id];
+                          const isBookmarked = !!bookmarks[sec.id];
+
+                          return (
+                            <motion.div
+                              key={sec.id}
+                              initial={{ opacity: 0, y: 8 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, scale: 0.98 }}
+                              transition={{ duration: 0.15, delay: Math.min(idx * 0.012, 0.12) }}
+                              className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                                isOpen 
+                                  ? 'bg-slate-900/70 border-amber-400/30 shadow-md shadow-amber-400/5' 
+                                  : isRead 
+                                    ? 'bg-slate-900/25 border-slate-900/60 opacity-80' 
+                                    : 'bg-slate-900/40 border-slate-850 hover:bg-slate-900/60 hover:border-slate-800'
+                              }`}
+                              id={`report-section-${sec.id}`}
+                            >
+                              {/* Card Header Bar */}
+                              <div 
+                                onClick={() => toggleSection(sec.id)}
+                                className="p-4 flex items-start md:items-center justify-between gap-4 cursor-pointer select-none"
+                              >
+                                <div className="flex items-start md:items-center gap-3.5 min-w-0">
+                                  {/* Interactive Read Toggle Checkbox */}
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      toggleReadSection(sec.id);
+                                    }}
+                                    className="flex-shrink-0 p-1 hover:bg-slate-950 rounded-lg transition-colors mt-0.5 md:mt-0 cursor-pointer"
+                                    title={isRead ? "標記為未讀" : "標記為已讀"}
+                                  >
+                                    {isRead ? (
+                                      <CheckCircle2 className="w-4 h-4 text-emerald-500" fill="currentColor" stroke="transparent" />
+                                    ) : (
+                                      <Circle className="w-4 h-4 text-slate-600 hover:text-amber-400" />
+                                    )}
+                                  </button>
+
+                                  {/* Icon Circle */}
+                                  <div className={`w-9 h-9 rounded-xl ${sec.iconBg} flex items-center justify-center border border-white/5 flex-shrink-0`}>
+                                    <IconComponent className={`w-4.5 h-4.5 ${sec.iconColor}`} />
+                                  </div>
+
+                                  <div className="min-w-0">
+                                    <div className="flex flex-wrap items-center gap-1.5">
+                                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-950 text-amber-400/90 border border-slate-800 tracking-wider uppercase">
+                                        {sec.categoryLabel}
+                                      </span>
+                                      <span className="text-[9px] text-slate-500 font-mono">#{sec.id}</span>
+                                      {isBookmarked && (
+                                        <span className="text-[9px] text-amber-400 font-mono flex items-center gap-0.5">
+                                          <Star className="w-2.5 h-2.5" fill="currentColor" />
+                                          已收藏
+                                        </span>
+                                      )}
+                                    </div>
+                                    <h3 className={`text-sm font-black tracking-tight mt-1 truncate ${isRead ? 'text-slate-300 line-through decoration-slate-800' : 'text-slate-100'}`}>
+                                      {sec.title}
+                                    </h3>
+                                    <p className="text-[10px] text-slate-400 mt-0.5 truncate font-mono italic">
+                                      {sec.tagline}
+                                    </p>
+                                  </div>
+                                </div>
+
+                                {/* Right side controls */}
+                                <div className="flex items-center gap-1.5 flex-shrink-0">
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      toggleBookmark(sec.id);
+                                    }}
+                                    className={`p-2 rounded-lg transition-colors cursor-pointer ${
+                                      isBookmarked 
+                                        ? 'bg-amber-400/10 text-amber-400 hover:bg-amber-400/20' 
+                                        : 'bg-slate-950 text-slate-600 hover:text-slate-300 hover:bg-slate-900'
+                                    }`}
+                                    title={isBookmarked ? "取消收藏" : "加入收藏"}
+                                  >
+                                    <Star className="w-3.5 h-3.5" fill={isBookmarked ? "currentColor" : "transparent"} />
+                                  </button>
+
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleCopySection(sec.id, sec.title + '\n' + sec.tagline);
+                                    }}
+                                    className="p-2 rounded-lg bg-slate-950 hover:bg-slate-900 text-slate-600 hover:text-slate-300 transition-colors cursor-pointer"
+                                    title="複製標題與大綱"
+                                  >
+                                    {copiedId === sec.id ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                                  </button>
+
+                                  <div className="p-1.5 text-slate-500">
+                                    {isOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Expanded Body Content */}
+                              {isOpen && (
+                                <div className="px-5 pb-5 pt-2 border-t border-slate-900/80 animate-slide-down">
+                                  <div className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans prose prose-invert max-w-none space-y-3">
+                                    {sec.content}
+                                  </div>
+                                </div>
+                              )}
+                            </motion.div>
+                          );
+                        })}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                );
+              })
             )}
           </div>
 

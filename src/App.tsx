@@ -3,7 +3,8 @@ import {
   Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, Menu, X, BookOpen, Loader2, Sun, Moon
 } from 'lucide-react';
 
-const OverviewDashboard = lazy(() => import('./components/OverviewDashboard'));
+import OverviewDashboard from './components/OverviewDashboard';
+import EnergyQuoteWidget from './components/EnergyQuoteWidget';
 const AstrologyView = lazy(() => import('./components/AstrologyView'));
 const HumanDesignView = lazy(() => import('./components/HumanDesignView'));
 const EasternDestinyView = lazy(() => import('./components/EasternDestinyView'));
@@ -156,6 +157,9 @@ export default function App() {
 
         {/* Desktop Sidebar Footer */}
         <div className="pt-4 border-t border-slate-850 space-y-3">
+          {/* Energy Quote Widget in Sidebar */}
+          <EnergyQuoteWidget compact={true} />
+
           <button
             onClick={toggleTheme}
             className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-400/50 text-slate-300 hover:text-slate-100 transition-all text-xs font-mono cursor-pointer shadow-sm group"

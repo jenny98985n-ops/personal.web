@@ -8,6 +8,7 @@ import {
 import { motion } from 'motion/react';
 import UserManualView from './UserManualView';
 import DecisionTimer from './DecisionTimer';
+import EnergyQuoteWidget from './EnergyQuoteWidget';
 
 interface GoldenSaying {
   id: number;
@@ -734,6 +735,9 @@ export default function OverviewDashboard({ onTabChange }: Props) {
           </div>
         </div>
       </div>
+
+      {/* Energy Mode Dual-Track Quote Carousel Widget */}
+      <EnergyQuoteWidget compact={false} />
 
       {/* Decision Timer (72-Hour Cooling Cabin) */}
       <DecisionTimer />
