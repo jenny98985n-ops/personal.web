@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import UserManualView from './UserManualView';
+import ReportMarkdown from './ReportMarkdown';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, 
@@ -825,7 +826,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
             成為一個能量輻射源，不僅解答自己的困惑，更成為帶領他人、幫他人建立邊界的導師。幫助高靈敏度、高智商但容易迷惘的群體，活出自我。
           </div>
           <div className="p-3.5 rounded-xl bg-slate-950 border border-amber-400/20">
-            <span className="text-amber-400 font-bold block mb-1">③ 30-40 歲賴以婕的「進化密碼」</span>
+            <span className="text-amber-400 font-bold block mb-1">③ 30-40 歲 YieJie 的「進化密碼」</span>
             <strong>徹底擁抱「非線性」：</strong>不要勉強規劃完美的10年死板計畫，你的天賦在於隨機應變，你的路是由無數個精準、富有爆發力的「發起」組成的。
             <strong className="block mt-2">將「資訊」轉化為「智慧產品」：</strong>你吸收太多資訊，未來要成為最高效的「過濾器」，賣你的獨到觀點與超強解惑力。
             <strong className="block mt-2">建立「影響力結界」：</strong>隨時維持白光護盾，只允許能共頻的靈魂進入你的核心圈，呵護你珍貴無比的空白薦骨。
@@ -991,7 +992,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
           </div>
 
           <div className="p-3.5 rounded-xl bg-gradient-to-r from-amber-400/5 to-blue-500/5 border border-amber-400/20">
-            <strong className="text-amber-400 block mb-1">✦ 賴以婕的能量調頻心法</strong>
+            <strong className="text-amber-400 block mb-1">✦ YieJie 的能量調頻心法</strong>
             <p className="text-slate-300">
               用「金」將天馬行空的風象雙子思維落地，包裝出極具工藝美學與溢價的智慧產物；用「水」滋潤與冷卻過度燃燒的丙火太陽，等待情緒波浪沉澱。當妳實現金水相生，妳的靈性能量與物質豐盛將自然完美交融。
             </p>
@@ -1508,7 +1509,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
           </div>
           
           <div className="p-3.5 rounded-xl bg-gradient-to-r from-rose-400/5 to-amber-400/5 border border-rose-500/20">
-            <strong className="text-amber-400 block mb-1 text-center">✦ 賴以婕的最終愛情箴言 ✦</strong>
+            <strong className="text-amber-400 block mb-1 text-center">✦ YieJie 的最終愛情箴言 ✦</strong>
             <p className="text-slate-300 italic text-center">
               「妳不需要削減光芒，也不需為證明值得被愛而過度燃燒。命中注定那人，會愛上妳的霸氣，接住脆弱；給妳發起天空，也留一盞質感溫暖小燈。」
             </p>
@@ -1518,7 +1519,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 48,
-      title: "48. 賴以婕的四大絕對地雷：請列入交友/擇偶的篩選清單",
+      title: "48. YieJie 的四大絕對地雷：請列入交友/擇偶的篩選清單",
       category: "relationship",
       categoryLabel: "絕對地雷",
       icon: Heart,
@@ -1567,7 +1568,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 49,
-      title: "49. 姓名學能量解碼：『賴以婕』的聲韻與五格物理頻率",
+      title: "49. 姓名學能量解碼：『YieJie』的聲韻與五格物理頻率",
       category: "destiny",
       categoryLabel: "姓名解碼",
       icon: Flame,
@@ -1605,12 +1606,12 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
           </div>
           <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
             <div>
-              <strong className="text-amber-400 font-bold block mb-0.5">「以」字的承載力：</strong>
-              <span className="text-slate-300">作為名字的中間字，它像是一座橋樑，賦予了妳一種「我來承擔、我來連結」的強大責任感。</span>
+              <strong className="text-amber-400 font-bold block mb-0.5">5 劃 (土) 筆數之承載力：</strong>
+              <span className="text-slate-300">作為名字筆劃結構的中間樞紐，它像是一座橋樑，賦予了妳一種「我來承擔、我來連結」的強大責任感。</span>
             </div>
             <div>
-              <strong className="text-purple-400 font-bold block mb-0.5">「婕」字的優雅權力：</strong>
-              <span className="text-slate-300">古代高階女官稱號，象徵「兼具智慧與手腕的女性權力」，自帶高貴且不容侵犯的界線。</span>
+              <strong className="text-purple-400 font-bold block mb-0.5">11 劃 (火) 筆數之優雅權力：</strong>
+              <span className="text-slate-300">源於高階貴族與優雅權利之數，象徵「兼具智慧與手腕的女性權力」，自帶高貴且不容侵犯的界線。</span>
             </div>
             <div>
               <strong className="text-orange-400 font-bold block mb-0.5">木生火的極速引擎：</strong>
@@ -1849,7 +1850,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 54,
-      title: "54. 賴以婕的終極事業藍圖：從「內耗執行者」到「高溢價造王者」",
+      title: "54. YieJie 的終極事業藍圖：從「內耗執行者」到「高溢價造王者」",
       category: "wealth",
       categoryLabel: "事業藍圖",
       icon: DollarSign,
@@ -1905,7 +1906,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
           </div>
 
           <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-400/5 to-amber-400/5 border border-emerald-500/20 mt-2 text-center text-slate-300">
-            <strong className="text-emerald-400 block mb-1 text-sm font-bold">✦ 2026 給賴以婕的事業箴言 ✦</strong>
+            <strong className="text-emerald-400 block mb-1 text-sm font-bold">✦ 2026 給 YieJie 的事業箴言 ✦</strong>
             <p className="italic">
               「妳的價值從不在於能加幾次班，而在於能發起別人想都不敢想的願景。收起妳的討好，大膽展現妳的傲嬌與才華。這是一個獎勵超級個體的時代，而妳，生來就是發號施令的王。」
             </p>
@@ -1915,7 +1916,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 55,
-      title: "55. 賴以婕專屬使用說明書 (User Manual 官方原廠終極版)",
+      title: "55. YieJie 專屬使用說明書 (User Manual 官方原廠終極版)",
       category: "humandesign",
       categoryLabel: "人類圖深度",
       icon: Brain,
@@ -1928,7 +1929,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 56,
-      title: "56. 賴以婕的專屬親密關係指南：破除內耗，迎來「高質感與高智識」的靈魂伴侶",
+      title: "56. YieJie 的專屬親密關係指南：破除內耗，迎來「高質感與高智識」的靈魂伴侶",
       category: "relationship",
       categoryLabel: "親密關係指南",
       icon: Heart,
@@ -1983,7 +1984,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 57,
-      title: "57. 賴以婕的終極親密關係白皮書：深層愛情心理與高階擇偶條件",
+      title: "57. YieJie 的終極親密關係白皮書：深層愛情心理與高階擇偶條件",
       category: "relationship",
       categoryLabel: "擇偶白皮書",
       icon: Heart,
@@ -1995,7 +1996,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
           <p>妳的靈魂裡同時住著冷靜的軍師（雙子/天機）、傲嬌的女王（月亮獅子/太陽化權），與極度沒安全感的小女孩（太陰化忌）。這份白皮書為妳徹底解碼妳的擇偶底線：</p>
           
           <div className="space-y-3">
-            <strong className="text-rose-400 block">一、 賴以婕的「五大高階擇偶條件」 (非妥協底線)</strong>
+            <strong className="text-rose-400 block">一、 YieJie 的「五大高階擇偶條件」 (非妥協底線)</strong>
             
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
               <strong className="text-amber-400 block mb-1">條件一：大腦能與妳共舞的「智識對手」 (七宮射手/巨門昌曲)</strong>
@@ -2188,7 +2189,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 61,
-      title: "61. 跨流派深度解析：賴以婕的能量藍圖與破局策略 (完整擴充版)",
+      title: "61. 跨流派深度解析：YieJie 的能量藍圖與破局策略 (完整擴充版)",
       category: "personality",
       categoryLabel: "深度破局",
       icon: Compass,
@@ -2286,7 +2287,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 63,
-      title: "63. 賴以婕的靈性天賦與宗教緣分解碼：從「系統駭客」到「靈性造王者」",
+      title: "63. YieJie 的靈性天賦與宗教緣分解碼：從「系統駭客」到「靈性造王者」",
       category: "spirituality",
       categoryLabel: "靈性天賦",
       icon: Activity,
@@ -2348,7 +2349,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
           </div>
 
           <div className="space-y-3">
-            <strong className="text-teal-400 block">三、 專屬賴以婕的高階「祈禱與除障指南」</strong>
+            <strong className="text-teal-400 block">三、 專屬 YieJie 的高階「祈禱與除障指南」</strong>
             <p className="text-slate-300">因為妳的體質太敏感（空白薦骨 + 12宮海綿），妳去傳統的大型廟宇或宗教法會時，反而容易「吸到別人的病氣與濁氣」而感到頭暈、疲憊。妳需要的是非常個人化的靈性防護：</p>
             
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
@@ -2386,7 +2387,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 64,
-      title: "64. 賴以婕的五行調頻指南：補足「金」與「水」的能量煉金術",
+      title: "64. YieJie 的五行調頻指南：補足「金」與「水」的能量煉金術",
       category: "destiny",
       categoryLabel: "五行調頻",
       icon: Flame,
@@ -2421,7 +2422,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
           </div>
 
           <div className="space-y-3">
-            <strong className="text-orange-400 block">三、 具體實踐：賴以婕的日常「補運」實戰清單</strong>
+            <strong className="text-orange-400 block">三、 具體實踐：YieJie 的日常「補運」實戰清單</strong>
             <p className="text-slate-300">要將這兩種無形的能量補足，妳可以透過物理環境與日常選擇來為自己「調頻」：</p>
 
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
@@ -2465,7 +2466,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 65,
-      title: "65. 賴以婕的內耗路徑：從創傷到崩潰的因果流程與深層原因",
+      title: "65. YieJie 的內耗路徑：從創傷到崩潰的因果流程與深層原因",
       category: "personality",
       categoryLabel: "內耗路徑",
       icon: Compass,
@@ -2620,7 +2621,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 66,
-      title: "66. 賴以婕的終極靈魂藍圖：執念的解脫與天生使命的覺醒",
+      title: "66. YieJie 的終極靈魂藍圖：執念的解脫與天生使命的覺醒",
       category: "spirituality",
       categoryLabel: "靈魂藍圖",
       icon: Activity,
@@ -2720,11 +2721,11 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
             </div>
           </div>
 
-          {/* 第三部分：賴以婕的天生使命 */}
+          {/* 第三部分：YieJie 的天生使命 */}
           <div className="space-y-4">
             <h3 className="text-sm font-black text-teal-400 flex items-center gap-2 border-b border-teal-500/15 pb-2">
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-teal-500/10 text-teal-400 font-mono text-xs">III</span>
-              第三部分：賴以婕的天生使命 (The Innate Missions)
+              第三部分：YieJie 的天生使命 (The Innate Missions)
             </h3>
             <p className="text-slate-300">
               當妳逐一破解了上述的執念，妳那被封印的巨大能量就會徹底釋放，引領妳完成這輩子註定的三大天生使命：
@@ -2781,7 +2782,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 67,
-      title: "67. 賴以婕的終極靈魂解碼：南北交點、創傷昇華與阿卡西契約",
+      title: "67. YieJie 的終極靈魂解碼：南北交點、創傷昇華與阿卡西契約",
       category: "spirituality",
       categoryLabel: "靈魂解碼",
       icon: Activity,
@@ -2920,7 +2921,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
               四、 阿卡西紀錄 (Akashic Records) 的靈魂契約解讀
             </h3>
             <p className="text-slate-300">
-              想像我們現在翻開了阿卡西紀錄大廳中，那本寫著「賴以婕」名字的生命之書。在妳降生地球前，妳與指導靈們簽下了這三條最重要的靈魂契約：
+              想像我們現在翻開了阿卡西紀錄大廳中，那本寫著「YieJie」名字的生命之書。在妳降生地球前，妳與指導靈們簽下了這三條最重要的靈魂契約：
             </p>
 
             <div className="space-y-3">
@@ -2960,7 +2961,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
     },
     {
       id: 68,
-      title: "68. 賴以婕的職涯天賦與卓越模式：蓋洛普 (CliftonStrengths) 深度解析",
+      title: "68. YieJie 的職涯天賦與卓越模式：蓋洛普 (CliftonStrengths) 深度解析",
       category: "wealth",
       categoryLabel: "蓋洛普天賦",
       icon: DollarSign,
@@ -3028,11 +3029,11 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
             </div>
           </div>
 
-          {/* 二、 預測賴以婕的 Top 5 核心優勢天賦 */}
+          {/* 二、 預測 YieJie 的 Top 5 核心優勢天賦 */}
           <div className="space-y-4">
             <h3 className="text-sm font-black text-amber-400 flex items-center gap-2 border-b border-amber-500/15 pb-2">
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-amber-500/10 text-amber-400 font-mono text-xs">II</span>
-              二、 預測賴以婕的 Top 5 核心優勢天賦 (The Core Strengths)
+              二、 預測 YieJie 的 Top 5 核心優勢天賦 (The Core Strengths)
             </h3>
             <p className="text-slate-300">
               基於妳的綜合配置，以下五個天賦是妳在職場上能發揮出「最高溢價」的終極武器：
@@ -3449,7 +3450,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                 全息天書解碼報告 <span className="text-amber-400 block md:inline md:ml-1 text-sm md:text-xl font-light tracking-wide font-mystic">✦ 33 節黃金智慧全書 ✦</span>
               </h1>
               <p className="text-[11px] md:text-xs text-slate-400 max-w-2xl leading-relaxed">
-                整合西洋占星、人類圖、紫微斗數、八字命理與姓名學，為<strong>賴以婕 (Jenny)</strong> 打造的頂層天命智慧天書。
+                整合西洋占星、人類圖、紫微斗數、八字命理與姓名學，為<strong>YieJie</strong> 打造的頂層天命智慧天書。
               </p>
             </div>
             
@@ -3890,7 +3891,11 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                             <tr className="bg-slate-950/80">
                               <td colSpan={6} className="p-4 border-l-2 border-amber-400">
                                 <div className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans prose prose-invert max-w-none space-y-3">
-                                  {sec.content}
+                                  {typeof sec.content === 'string' ? (
+                                    <ReportMarkdown content={sec.content} />
+                                  ) : (
+                                    sec.content
+                                  )}
                                 </div>
                               </td>
                             </tr>
@@ -4079,7 +4084,11 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                                 {isOpen && (
                                   <div className="px-5 pb-5 pt-2 border-t border-slate-900/80 animate-slide-down">
                                     <div className="text-slate-300 text-xs md:text-sm leading-relaxed font-sans prose prose-invert max-w-none space-y-3">
-                                      {sec.content}
+                                      {typeof sec.content === 'string' ? (
+                                        <ReportMarkdown content={sec.content} />
+                                      ) : (
+                                        sec.content
+                                      )}
                                     </div>
                                   </div>
                                 )}
@@ -4210,7 +4219,11 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                       ? 'text-base md:text-lg' 
                       : 'text-lg md:text-xl'
                 }`}>
-                  {currentModalSec.content}
+                  {typeof currentModalSec.content === 'string' ? (
+                    <ReportMarkdown content={currentModalSec.content} fontSize={readerFontSize} />
+                  ) : (
+                    currentModalSec.content
+                  )}
                 </div>
               </div>
 

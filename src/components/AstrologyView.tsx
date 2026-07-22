@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
 import { Compass, Sparkles, AlertCircle, HelpCircle, Eye, CornerRightDown, CheckCircle } from 'lucide-react';
 import FullReportView from './FullReportView';
+import ReportMarkdown, { FeatureCardBlock } from './ReportMarkdown';
 
 export default function AstrologyView() {
   const data = LAI_YI_CHIEH_DATA.astrology;
@@ -181,25 +182,27 @@ export default function AstrologyView() {
 
             {selectedPlacement ? (
               <div className="space-y-4 animate-fade-in">
-                <div className="inline-block px-2.5 py-1 rounded bg-amber-400/10 text-amber-400 text-xs font-black font-mono tracking-wider">
-                  ✦ DECODING ENERGETIC KEY
-                </div>
-                <h4 className="text-base font-black text-slate-100 font-display">{getPlacementDetail(selectedPlacement).title}</h4>
-                <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-sans">
-                  {getPlacementDetail(selectedPlacement).meaning}
-                </p>
-                <div className="p-4 bg-slate-950 border border-slate-850 rounded-xl space-y-2">
-                  <span className="text-[10px] text-amber-400 font-black tracking-widest font-mono block uppercase">🎯 進階實踐策略 / PRACTICE</span>
-                  <p className="text-xs text-slate-400 leading-relaxed font-sans font-medium">
-                    {getPlacementDetail(selectedPlacement).advise}
-                  </p>
-                </div>
+                <FeatureCardBlock
+                  title={getPlacementDetail(selectedPlacement).title}
+                  badge="DECODED"
+                  variant="amber"
+                  icon={Sparkles}
+                >
+                  <ReportMarkdown content={getPlacementDetail(selectedPlacement).meaning} />
+                  
+                  <div className="p-3.5 mt-3 bg-slate-950 border border-amber-400/20 rounded-xl space-y-1">
+                    <span className="text-[10px] text-amber-400 font-black tracking-widest font-mono block uppercase">🎯 進階實踐策略 / PRACTICE</span>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      {getPlacementDetail(selectedPlacement).advise}
+                    </p>
+                  </div>
+                </FeatureCardBlock>
               </div>
             ) : (
               <div className="py-12 text-center space-y-4">
                 <HelpCircle className="w-12 h-12 text-slate-700 mx-auto animate-pulse" />
                 <p className="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">
-                  請點選左側表格中的 <strong>星體名稱</strong>（建議優先點選 <strong>太陽、月亮、水星、金星或土星</strong>）來解鎖賴以婕的獨家命盤深度剖析。
+                  請點選左側表格中的 <strong>星體名稱</strong>（建議優先點選 <strong>太陽、月亮、水星、金星或土星</strong>）來解鎖 YieJie 的獨家命盤深度剖析。
                 </p>
                 <div className="pt-2">
                   <button 

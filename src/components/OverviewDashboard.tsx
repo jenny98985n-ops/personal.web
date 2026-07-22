@@ -1,13 +1,300 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LAI_YI_CHIEH_DATA } from '../types';
 import { 
   Sparkles, Brain, Flame, Zap, CheckCircle2, AlertCircle, 
   Compass, Heart, DollarSign, Activity, Eye, Shield, Award, HelpCircle,
   RefreshCw, Shuffle, Crown, TrendingUp, Users, ArrowRight,
-  Sliders, Gauge, BarChart3, PieChart, Info, ChevronDown, ChevronUp
+  Sliders, Gauge, BarChart3, PieChart, Info, ChevronDown, ChevronUp,
+  Maximize2, X, ExternalLink, BookOpen
 } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import EnergyQuoteWidget from './EnergyQuoteWidget';
+
+export interface HolographicCardItem {
+  id: string;
+  systemTag: string;
+  groupTitle: string;
+  title: string;
+  tags: string[];
+  icon: React.ElementType;
+  themeColor: 'amber' | 'rose' | 'teal' | 'emerald' | 'blue' | 'indigo' | 'pink';
+  summary: string;
+  spiritualInsight: string;
+  coreBreakdown: { label: string; text: string }[];
+  actionAdvice: string;
+  targetTab: string;
+}
+
+const HOLOGRAPHIC_CARDS: HolographicCardItem[] = [
+  // Group 1: 天賦核心
+  {
+    id: 'astrology',
+    systemTag: '西洋占星',
+    groupTitle: '維度一 ✦ 天賦核心',
+    title: '太陽與上升雙子 ✕ 月亮獅子 3 宮',
+    tags: ['超級神經網絡', '12宮隱秘天賦', '表達造王者'],
+    icon: Compass,
+    themeColor: 'amber',
+    summary: '雙子星群賦予極速學習與超頻邏輯，月亮獅子 3 宮擁有強烈的表達熱情與造王者氣場。',
+    spiritualInsight: `雙子座太陽與上升組合構成了 YieJie 極速運算、無限吸收資訊的高維神經網絡。大腦如同一台超頻運作的量子電腦，能輕鬆拆解複雜系統並完成跨領域的逆向工程。
+
+然而，這層看似機智靈動的外衣下，包裹著月亮獅子座在 3 宮的強烈光芒——妳的內心渴望透過高質感的表達與創造，成為眾人矚目的「靈性造王者」。同時，12 宮星體連線讓妳擁有極其特殊的潛意識靈感雷達，能在平靜中感應宇宙場域的細微震動。妳的理智並非冷酷，而是將深邃的靈性直覺轉化為精準無懈的語言。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '雙子超頻神經網絡 ✕ 3宮月亮獅子的語言震撼力與啟發氣場' },
+      { label: '✦ 陰影機制', text: '大腦資訊過載引發的神經焦慮，與 12 宮海綿體質吸收外界濁氣' },
+      { label: '✦ 高階破局', text: '建立明確心理結界，將 12 宮直覺轉化為 3 宮精準輸出，不干涉他人業力' }
+    ],
+    actionAdvice: '定期實施「文字與語音排毒」，將大腦中的靈光寫成專欄或卡片，並搭配雪松香氛淨化頭部能量場。',
+    targetTab: 'astrology'
+  },
+  {
+    id: 'hd_core',
+    systemTag: '人類圖',
+    groupTitle: '維度一 ✦ 天賦核心',
+    title: '顯示者 Manifestor ✕ 四箭全左',
+    tags: ['獨立破局發起', '極致戰略策劃', '告知開路'],
+    icon: Brain,
+    themeColor: 'rose',
+    summary: '生來打破現狀、開創新局。配備四箭全左邏輯大腦，專注於頂層策略規劃與方向引領。',
+    spiritualInsight: `身為佔人口僅 9% 的「顯示者 (Manifestor)」，YieJie 的原廠設定是獨立打破舊秩序、發起全新局面的變革者。妳的封閉與排他型能量場（Closed Aura）保護著妳強大的發起意志，不受他人質疑干擾。
+
+搭配極為罕見的「四箭全左」戰略型大腦，妳在觀察世界時自帶極致的結構化與逆向思維。妳不是來聽命行事的，妳是來頒佈願景、帶領團隊突破重圍的戰略司令。當妳學會在行動前「告知 (Inform)」，阻力將化為助力，全宇宙都會為妳的發起開路。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '獨立發起力、純粹願景渲染力、四箭全左系統化架構天賦' },
+      { label: '✦ 陰影機制', text: '試圖微觀管理苦工引發的「憤怒 (Anger)」，或被笨規則約束時的爆發' },
+      { label: '✦ 高階破局', text: '只做發起者與軍師，將執行層面授權給團隊，並透過事先「告知」消除周遭恐懼' }
+    ],
+    actionAdvice: '在每次執行新企劃前，向團隊明確告知「我要做什麼」與「我的邊界在哪」，保護能量不被無謂干預。',
+    targetTab: 'humandesign'
+  },
+  {
+    id: 'ziwei_core',
+    systemTag: '紫微斗數',
+    groupTitle: '維度一 ✦ 天賦核心',
+    title: '命宮卯無主星 ✕ 對宮太陽天梁',
+    tags: ['變色龍極致適應', '軍師靈感源泉', '大智若愚'],
+    icon: Zap,
+    themeColor: 'teal',
+    summary: '無主星具備極高彈性與環境吸收力，藉由借對宮陽梁巨木能量，展現大智若愚與策略格局。',
+    spiritualInsight: `紫微斗數中「命宮無主星」象徵著極高的能量塑造空間與變色龍般的環境適應力。YieJie 不會被單一僵化的角色定型，妳能根據當下局勢自由切換頻率。
+
+而借對宮「太陽天梁（廟）」的浩瀚能量，為妳挹注了光芒萬丈的庇蔭力與「蔭星」的靈性智慧。外在呈現出太陽般的熾熱溫暖與照顧精神，內在則具備天梁星看透世事的超然智慧。這種雙重交響讓妳在俗世商戰與高維玄學之間遊刃有餘。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '無主星無限包容力 ✕ 借對宮陽梁的庇蔭氣場與智者視野' },
+      { label: '✦ 陰影機制', text: '因過度吸收外界期待而短暫迷失自我中心，或過度擔負他人宿命' },
+      { label: '✦ 高階破局', text: '以「借力使力」代替硬碰硬，利用對宮陽梁的光芒照亮他人，同時保持本宮空靈' }
+    ],
+    actionAdvice: '定期進行自我能量歸零，提醒自己「我是一切的可能性，不被任何單一標籤綁架」。',
+    targetTab: 'easterndestiny'
+  },
+
+  // Group 2: 運勢節奏
+  {
+    id: 'bazi_fortune',
+    systemTag: '八字格局',
+    groupTitle: '維度二 ✦ 運勢節奏',
+    title: '丙火日主 ✕ 月時雙透辛金正財',
+    tags: ['暖意璀璨太陽', '高品味正財格', '丙辛化財'],
+    icon: Flame,
+    themeColor: 'amber',
+    summary: '自帶耀眼丙火能量，丙辛相合化財，具備天然的高階美感商業眼光與穩健獲利手腕。',
+    spiritualInsight: `八字命格中，YieJie 為「丙火」日主，宛如高懸於天空的太陽，自帶無私照耀、溫暖萬物的旺盛生命力。月柱與時柱雙透「辛金」正財，形成了極為珍貴的「丙辛相合」。
+
+辛金為溫潤精緻的珠寶翡翠，遇丙火陽光照射，更顯絢麗奪目。這代表妳具備天然的高品味審美眼光與穩健長久的商業變現手腕。妳的財富並非來自投機冒險，而是透過將美感、智慧與高品質服務系統化，吸引豐盛自然湧入。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '丙火太陽光輝 ✕ 丙辛合財的高階美感變現與資源吸引力' },
+      { label: '✦ 陰影機制', text: '丙火過旺時的急躁，或辛金過度精細導致的完美主義內耗' },
+      { label: '✦ 高階破局', text: '保持「溫和持續的照耀」，以高質感定位鎖定精準客群，讓財富主動追隨' }
+    ],
+    actionAdvice: '佩戴金屬配件或白水晶以補足「金」與「水」的調和能量，保持審美與財富管道的和諧。',
+    targetTab: 'easterndestiny'
+  },
+  {
+    id: 'ziwei_wealth',
+    systemTag: '財帛事業',
+    groupTitle: '維度二 ✦ 運勢節奏',
+    title: '財帛宮天機化祿 ✕ 點子印鈔機',
+    tags: ['企劃變現天賦', '智慧輕鬆聚財', '輕資產高溢價'],
+    icon: DollarSign,
+    themeColor: 'emerald',
+    summary: '靠智慧、企劃與頂層架構獲得豐厚回報。專注於策略發起與系統構建，避開無謂勞力損耗。',
+    spiritualInsight: `財帛宮天機化祿，象徵著 YieJie 的財富源泉來自「大腦智慧、策略企劃與創新靈感」。天機星為智慧機謀之星，化祿則代表點子源源不絕，且能快速轉化為實質收益。
+
+妳是天生的「腦力印鈔機」，不需要依靠笨重體力，而是靠著靈活的頭腦與頂層架構獲得豐厚回報。結合太陰星在身宮的沉穩累積，妳能將抽象的策略概念，轉化為具備高溢價與可擴充性的商業模式。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '天機化祿的點子變現力、策略諮詢與知識產權高溢價' },
+      { label: '✦ 陰影機制', text: '思維過度跳躍導致企劃流於表面，或因追求完美而延遲落地方案' },
+      { label: '✦ 高階破局', text: '建立標準化知識產品或諮詢體系，實現「一次產出、多次收益」的輕資產模式' }
+    ],
+    actionAdvice: '將點子記錄在數位知識庫中，每季挑選 1-2 個最高槓桿的企劃進行商業落地。',
+    targetTab: 'wealth'
+  },
+  {
+    id: 'hd_emotion',
+    systemTag: '能量節奏',
+    groupTitle: '維度二 ✦ 運勢節奏',
+    title: '情緒權威 ✕ 72 小時冷卻法則',
+    tags: ['情緒波浪衝浪', '平靜確定算數', '冷卻隔離艙'],
+    icon: Activity,
+    themeColor: 'blue',
+    summary: '絕不在興奮或焦慮當下做承諾。等待情緒波浪平復後的清明冷酷理智，決策勝率近乎 100%。',
+    spiritualInsight: `人類圖情緒太陽神經叢中心（Emotional Solar Plexus）為 YieJie 的內在權威。這意味著妳的生命中「當下沒有真相」。妳的情緒會經歷如海洋波浪般高低起伏的週期：在興奮頂峰時看世界一片光明，在低谷時則容易生出焦慮疑慮。
+
+真正的智慧在於學會「在情緒波浪上衝浪」。當面對重大合作、投資或感情承諾時，啟動「72小時冷卻法則」，等興奮與焦慮退去後，留下的那份「平靜而冷酷的確定感」，才是妳靈魂真正的答案。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '沉澱後深邃無比的洞察力、情感共鳴與平靜中的極致理性' },
+      { label: '✦ 陰影機制', text: '在情緒高點衝動承諾，或在情緒低點焦慮毀約導致能量透支' },
+      { label: '✦ 高階破局', text: '養成口頭禪：「這聽起來很棒！請給我 2-3 天思考，冷卻後回覆您。」' }
+    ],
+    actionAdvice: '設立專屬「情緒冷卻艙」時間，在面臨重大決定時絕不當下做最終答覆。',
+    targetTab: 'humandesign'
+  },
+
+  // Group 3: 人際互動
+  {
+    id: 'name_numerology',
+    systemTag: '五格姓名',
+    groupTitle: '維度三 ✦ 人際互動',
+    title: '「YieJie」總格 32 吉木',
+    tags: ['春日花開之象', '熟人貴人聚財', '良好口碑'],
+    icon: Award,
+    themeColor: 'rose',
+    summary: '名字自帶春日溫和能量與強大人緣氣場。良好的人際口碑與貴人引薦是事業成功的加速器。',
+    spiritualInsight: `在姓名數理能量場中，YieJie 的總格呈現 32 數「寶馬金鞍、春日花開」之吉木大象。木主仁慈、生長與溫和，32 數具備極其強大的「貴人運」與人際吸引力。
+
+妳的名字自帶一種讓人感到安心、值得信任的親和氣場，更容易吸引高層次貴人的賞識與自動引薦。人格與地格的和諧配置，讓妳在處理人際關係時既能展現優雅禮貌，又能在適當時機發揮溫柔而堅定的談判影響力。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '春風化雨般的人際吸引力、熟人圈層貴人引薦、品牌好感度' },
+      { label: '✦ 陰影機制', text: '太過在意他人期待而難以劃清界線，或被「助人者」包袱綁架' },
+      { label: '✦ 高階破局', text: '善用貴人網絡與口碑效應，同時保持清晰的個人邊界與專業定價' }
+    ],
+    actionAdvice: '定期維護高價值熟人圈層，以高質感諮詢與真誠服務鞏固口碑。',
+    targetTab: 'name'
+  },
+  {
+    id: 'hd_role',
+    systemTag: '人生角色',
+    groupTitle: '維度三 ✦ 人際互動',
+    title: '2/4 雙軌社交 (隱士 / 機會主義者)',
+    tags: ['神聖獨處充電', '熟人網絡圈層', '雙軌社交策略'],
+    icon: Shield,
+    themeColor: 'indigo',
+    summary: '需要神聖的獨處洞穴時間 (2爻)，同時好機會往往來自深厚信任的熟人圈層 (4爻)。',
+    spiritualInsight: `人類圖人生角色 2/4 呈現出特殊的雙軌動態：意識層面的「2爻隱士 (Hermit)」與潛意識層面的「4爻機會主義者 (Opportunist)」。
+
+2爻讓妳天然具備某種不受干擾的獨異天賦，且極度需要沉浸在個人的神聖洞穴中獨處充電；而 4爻則代表妳生命中最優質的事業、財富與感情機會，絕大多數來自於「熟人與信任圈層」。妳不需要像業務員般盲目社交，只要在洞穴中磨練天賦，當熟人社群向妳發出召喚時，自然能一舉驚豔全場。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '自然發光的天賦技能、基於深厚信任的熟人圈層轉化率' },
+      { label: '✦ 陰影機制', text: '在洞穴中過度縮避，或被不適合的社交圈強行打擾產生抗拒' },
+      { label: '✦ 高階破局', text: '嚴格篩選社交圈，只對真誠且具智識質量的熟人網絡開放' }
+    ],
+    actionAdvice: '設定「無打擾獨處日」，在充分充電後再回應熟人社群的邀請。',
+    targetTab: 'humandesign'
+  },
+  {
+    id: 'love_astro',
+    systemTag: '情感品味',
+    groupTitle: '維度三 ✦ 人際互動',
+    title: '金星金牛 ✕ 月亮獅子 3 宮',
+    tags: ['高奢實質感', '智識大腦對手', '實用型感情觀'],
+    icon: Heart,
+    themeColor: 'pink',
+    summary: '鄙視廉價的畫大餅。重視實質行動、高質感審美體驗，與能進行智識深度交流的靈魂夥伴。',
+    spiritualInsight: `在情感與審美面向，金星位於廟旺的金牛座，讓 YieJie 對生活質感、感官美學與實質安全感有著極高標準。妳鄙視廉價的畫大餅與虛情假意的甜言蜜語，唯有實實在在的行動、高品質的陪伴與優雅的環境才能打動妳的心。
+
+同時，月亮獅子座在 3 宮則渴望在關係中找到能進行「智識深度對話」的大腦夥伴。妳的理想伴侶既是能在外為妳撐腰的同盟者，也是能在私底下接住妳敏感焦慮、與妳共舞智識靈魂的知己。`,
+    coreBreakdown: [
+      { label: '✦ 靈魂天賦', text: '極高審美品味、實用主義情感觀、智識共鳴與真誠同盟' },
+      { label: '✦ 陰影機制', text: '對細節與質感的極致挑剔，或在外強撐女王架子導致內心孤獨' },
+      { label: '✦ 高階破局', text: '尋找具備深厚專業與高情緒價值的伴侶，在安全環境中放下防禦' }
+    ],
+    actionAdvice: '在日常生活中打造具備金牛美感的專屬儀式感，例如精油香氛與高品質音響。',
+    targetTab: 'love'
+  }
+];
+
+const getThemeClasses = (color: string) => {
+  switch (color) {
+    case 'rose':
+      return {
+        border: 'border-slate-850 hover:border-rose-400/60',
+        shadow: 'hover:shadow-rose-400/10',
+        bgGlow: 'bg-rose-400/5 group-hover:bg-rose-400/15',
+        badgeBg: 'bg-rose-400/10 text-rose-400 border-rose-400/20',
+        badgeText: 'text-rose-300',
+        text: 'text-rose-400 group-hover:text-rose-300',
+        hoverHeading: 'group-hover:text-rose-300',
+        modalBorder: 'border-rose-400/30'
+      };
+    case 'teal':
+      return {
+        border: 'border-slate-850 hover:border-teal-400/60',
+        shadow: 'hover:shadow-teal-400/10',
+        bgGlow: 'bg-teal-400/5 group-hover:bg-teal-400/15',
+        badgeBg: 'bg-teal-400/10 text-teal-400 border-teal-400/20',
+        badgeText: 'text-teal-300',
+        text: 'text-teal-400 group-hover:text-teal-300',
+        hoverHeading: 'group-hover:text-teal-300',
+        modalBorder: 'border-teal-400/30'
+      };
+    case 'emerald':
+      return {
+        border: 'border-slate-850 hover:border-emerald-400/60',
+        shadow: 'hover:shadow-emerald-400/10',
+        bgGlow: 'bg-emerald-400/5 group-hover:bg-emerald-400/15',
+        badgeBg: 'bg-emerald-400/10 text-emerald-400 border-emerald-400/20',
+        badgeText: 'text-emerald-300',
+        text: 'text-emerald-400 group-hover:text-emerald-300',
+        hoverHeading: 'group-hover:text-emerald-300',
+        modalBorder: 'border-emerald-400/30'
+      };
+    case 'blue':
+      return {
+        border: 'border-slate-850 hover:border-blue-400/60',
+        shadow: 'hover:shadow-blue-400/10',
+        bgGlow: 'bg-blue-400/5 group-hover:bg-blue-400/15',
+        badgeBg: 'bg-blue-400/10 text-blue-400 border-blue-400/20',
+        badgeText: 'text-blue-300',
+        text: 'text-blue-400 group-hover:text-blue-300',
+        hoverHeading: 'group-hover:text-blue-300',
+        modalBorder: 'border-blue-400/30'
+      };
+    case 'indigo':
+      return {
+        border: 'border-slate-850 hover:border-indigo-400/60',
+        shadow: 'hover:shadow-indigo-400/10',
+        bgGlow: 'bg-indigo-400/5 group-hover:bg-indigo-400/15',
+        badgeBg: 'bg-indigo-400/10 text-indigo-400 border-indigo-400/20',
+        badgeText: 'text-indigo-300',
+        text: 'text-indigo-400 group-hover:text-indigo-300',
+        hoverHeading: 'group-hover:text-indigo-300',
+        modalBorder: 'border-indigo-400/30'
+      };
+    case 'pink':
+      return {
+        border: 'border-slate-850 hover:border-pink-400/60',
+        shadow: 'hover:shadow-pink-400/10',
+        bgGlow: 'bg-pink-400/5 group-hover:bg-pink-400/15',
+        badgeBg: 'bg-pink-400/10 text-pink-400 border-pink-400/20',
+        badgeText: 'text-pink-300',
+        text: 'text-pink-400 group-hover:text-pink-300',
+        hoverHeading: 'group-hover:text-pink-300',
+        modalBorder: 'border-pink-400/30'
+      };
+    case 'amber':
+    default:
+      return {
+        border: 'border-slate-850 hover:border-amber-400/60',
+        shadow: 'hover:shadow-amber-400/10',
+        bgGlow: 'bg-amber-400/5 group-hover:bg-amber-400/15',
+        badgeBg: 'bg-amber-400/10 text-amber-400 border-amber-400/20',
+        badgeText: 'text-amber-300',
+        text: 'text-amber-400 group-hover:text-amber-300',
+        hoverHeading: 'group-hover:text-amber-300',
+        modalBorder: 'border-amber-400/30'
+      };
+  }
+};
 
 interface EnergyMetric {
   id: string;
@@ -211,6 +498,19 @@ export default function OverviewDashboard({ onTabChange }: Props) {
   const [selectedGaugeCategory, setSelectedGaugeCategory] = useState<'all' | 'talent' | 'wealth' | 'mindfulness'>('all');
   const [hoveredMetricId, setHoveredMetricId] = useState<string | null>(null);
   const [activeMetricDetail, setActiveMetricDetail] = useState<string>('brainpower');
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+
+  const selectedCard = HOLOGRAPHIC_CARDS.find(c => c.id === selectedCardId) || null;
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedCardId(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleShuffleAll = () => {
     setIsSpinning(true);
@@ -657,7 +957,7 @@ export default function OverviewDashboard({ onTabChange }: Props) {
               每日五句能量金句 ✦ 隨機解籤
             </h2>
             <p className="text-xs text-slate-400 font-sans">
-              為賴以婕量身定制的靈魂絮語。點擊整盤更換，或<span className="text-amber-400/90 font-bold">點擊單個卡片</span>單獨更換。
+              為 YieJie 量身定制的靈魂絮語。點擊整盤更換，或<span className="text-amber-400/90 font-bold">點擊單個卡片</span>單獨更換。
             </p>
           </div>
           
@@ -725,16 +1025,17 @@ export default function OverviewDashboard({ onTabChange }: Props) {
               跨流派全息命理卡片式矩陣
             </h2>
             <p className="text-xs text-slate-400 mt-1">
-              依據「天賦核心」、「運勢節奏」、「人際互動」三大主軸整合各流派摘要資訊
+              點擊卡片可即時展開 Framer Motion 平滑過渡之靈性深度洞察，或深入各系統分頁
             </p>
           </div>
-          <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-400/10 px-3.5 py-1.5 rounded-full border border-amber-400/20 self-start sm:self-auto">
-            CATEGORIZED CARD GRID
+          <span className="text-[10px] font-mono font-bold text-amber-400 bg-amber-400/10 px-3.5 py-1.5 rounded-full border border-amber-400/20 self-start sm:self-auto flex items-center gap-1.5">
+            <Maximize2 className="w-3 h-3" />
+            CLICK TO EXPAND CARD
           </span>
         </div>
 
         <div className="space-y-8">
-          {/* GROUP 1: 天賦核心 (Core Talents & Personality) */}
+          {/* GROUP 1: 天賦核心 */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <span className="px-3 py-1 rounded-lg bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-black flex items-center gap-2 font-mono">
@@ -744,123 +1045,68 @@ export default function OverviewDashboard({ onTabChange }: Props) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Western Astrology Card */}
-              <div 
-                onClick={() => onTabChange('astrology')}
-                className="group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border border-slate-850 hover:border-amber-400/60 shadow-lg hover:shadow-2xl hover:shadow-amber-400/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-                id="overview-card-astrology"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-amber-400/5 rounded-full blur-2xl group-hover:bg-amber-400/15 transition-all" />
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-amber-400/10 text-amber-400 border border-amber-400/20 group-hover:scale-110 transition-transform">
-                      <Compass className="w-5 h-5" />
+              {HOLOGRAPHIC_CARDS.slice(0, 3).map((card) => {
+                const theme = getThemeClasses(card.themeColor);
+                return (
+                  <motion.div
+                    key={card.id}
+                    id={`overview-card-${card.id}`}
+                    whileHover={{ y: -6, scale: 1.01 }}
+                    whileTap={{ scale: 0.985 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                    onClick={() => setSelectedCardId(card.id)}
+                    className={`group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border ${theme.border} shadow-lg hover:shadow-2xl ${theme.shadow} transition-colors duration-300 relative overflow-hidden flex flex-col justify-between`}
+                  >
+                    <div className={`absolute top-0 right-0 w-28 h-28 ${theme.bgGlow} rounded-full blur-2xl transition-all`} />
+                    
+                    <div className="space-y-3 relative z-10">
+                      <div className="flex items-center justify-between">
+                        <div className={`p-2.5 rounded-xl ${theme.badgeBg} border group-hover:scale-110 transition-transform`}>
+                          <card.icon className="w-5 h-5" />
+                        </div>
+                        
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
+                            <Maximize2 className="w-2.5 h-2.5" />
+                            點擊放大
+                          </span>
+                          <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
+                            {card.systemTag}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className={`text-base font-black text-slate-100 ${theme.hoverHeading} transition-colors`}>
+                          {card.title}
+                        </h3>
+                        <div className="flex flex-wrap gap-1.5 mt-2">
+                          {card.tags.map((tag, tIdx) => (
+                            <span key={tIdx} className={`text-[10px] font-bold px-2 py-0.5 rounded ${tIdx === 0 ? `${theme.badgeBg} ${theme.badgeText} border` : 'bg-slate-900 text-slate-300 border border-slate-800'}`}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-slate-300 leading-relaxed pt-1">
+                        {card.summary}
+                      </p>
                     </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-400">
-                      西洋占星
-                    </span>
-                  </div>
 
-                  <div>
-                    <h3 className="text-base font-black text-slate-100 group-hover:text-amber-300 transition-colors">
-                      太陽與上升雙子 ✕ 月亮獅子
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20">超級神經網絡</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">12宮隱秘天賦</span>
+                    <div className={`mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold ${theme.text}`}>
+                      <span className="flex items-center gap-1">
+                        <span>點擊展開靈性洞察 ✦</span>
+                      </span>
+                      <Maximize2 className="w-3.5 h-3.5 group-hover:scale-125 transition-transform" />
                     </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    雙子星群賦予極速學習與超頻邏輯，月亮獅子 3 宮擁有強烈的<strong>表達熱情與造王者氣場</strong>。
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-amber-400 group-hover:text-amber-300">
-                  <span>查看西洋占星詳情</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
-
-              {/* Human Design Card */}
-              <div 
-                onClick={() => onTabChange('humandesign')}
-                className="group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border border-slate-850 hover:border-rose-400/60 shadow-lg hover:shadow-2xl hover:shadow-rose-400/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-                id="overview-card-hd"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-rose-400/5 rounded-full blur-2xl group-hover:bg-rose-400/15 transition-all" />
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-rose-400/10 text-rose-400 border border-rose-400/20 group-hover:scale-110 transition-transform">
-                      <Brain className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-slate-400">
-                      人類圖
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-base font-black text-slate-100 group-hover:text-rose-300 transition-colors">
-                      顯示者 Manifestor ✕ 四箭全左
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-400/10 text-rose-300 border border-rose-400/20">獨立破局發起</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">極致戰略策劃</span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    生來打破現狀、開創新局。配備<strong>四箭全左邏輯大腦</strong>，專注於頂層策略規劃與方向引領。
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-rose-400 group-hover:text-rose-300">
-                  <span>查看人類圖詳情</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
-
-              {/* Ziwei Core Card */}
-              <div 
-                onClick={() => onTabChange('easterndestiny')}
-                className="group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border border-slate-850 hover:border-teal-400/60 shadow-lg hover:shadow-2xl hover:shadow-teal-400/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-                id="overview-card-ziwei"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-teal-400/5 rounded-full blur-2xl group-hover:bg-teal-400/15 transition-all" />
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-teal-400/10 text-teal-400 border border-teal-400/20 group-hover:scale-110 transition-transform">
-                      <Zap className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                      紫微斗數
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-base font-black text-slate-100 group-hover:text-teal-300 transition-colors">
-                      命宮卯無主星 ✕ 對宮太陽天梁
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-400/10 text-teal-300 border border-teal-400/20">變色龍極致適應</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">軍師靈感源泉</span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    無主星具備極高彈性與環境吸收力，藉由借對宮陽梁巨木能量，展現<strong>大智若愚與策略格局</strong>。
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-teal-400 group-hover:text-teal-300">
-                  <span>查看紫微命盤詳情</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
-          {/* GROUP 2: 運勢節奏 (Fortune & Life Rhythm) */}
+          {/* GROUP 2: 運勢節奏 */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <span className="px-3 py-1 rounded-lg bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 text-xs font-black flex items-center gap-2 font-mono">
@@ -870,123 +1116,68 @@ export default function OverviewDashboard({ onTabChange }: Props) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Bazi Card */}
-              <div 
-                onClick={() => onTabChange('easterndestiny')}
-                className="group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border border-slate-850 hover:border-emerald-400/60 shadow-lg hover:shadow-2xl hover:shadow-emerald-400/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-                id="overview-card-bazi"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-emerald-400/5 rounded-full blur-2xl group-hover:bg-emerald-400/15 transition-all" />
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-amber-400/10 text-amber-400 border border-amber-400/20 group-hover:scale-110 transition-transform">
-                      <Flame className="w-5 h-5" />
+              {HOLOGRAPHIC_CARDS.slice(3, 6).map((card) => {
+                const theme = getThemeClasses(card.themeColor);
+                return (
+                  <motion.div
+                    key={card.id}
+                    id={`overview-card-${card.id}`}
+                    whileHover={{ y: -6, scale: 1.01 }}
+                    whileTap={{ scale: 0.985 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                    onClick={() => setSelectedCardId(card.id)}
+                    className={`group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border ${theme.border} shadow-lg hover:shadow-2xl ${theme.shadow} transition-colors duration-300 relative overflow-hidden flex flex-col justify-between`}
+                  >
+                    <div className={`absolute top-0 right-0 w-28 h-28 ${theme.bgGlow} rounded-full blur-2xl transition-all`} />
+                    
+                    <div className="space-y-3 relative z-10">
+                      <div className="flex items-center justify-between">
+                        <div className={`p-2.5 rounded-xl ${theme.badgeBg} border group-hover:scale-110 transition-transform`}>
+                          <card.icon className="w-5 h-5" />
+                        </div>
+                        
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-300 border border-emerald-400/20 flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
+                            <Maximize2 className="w-2.5 h-2.5" />
+                            點擊放大
+                          </span>
+                          <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
+                            {card.systemTag}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className={`text-base font-black text-slate-100 ${theme.hoverHeading} transition-colors`}>
+                          {card.title}
+                        </h3>
+                        <div className="flex flex-wrap gap-1.5 mt-2">
+                          {card.tags.map((tag, tIdx) => (
+                            <span key={tIdx} className={`text-[10px] font-bold px-2 py-0.5 rounded ${tIdx === 0 ? `${theme.badgeBg} ${theme.badgeText} border` : 'bg-slate-900 text-slate-300 border border-slate-800'}`}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-slate-300 leading-relaxed pt-1">
+                        {card.summary}
+                      </p>
                     </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                      八字格局
-                    </span>
-                  </div>
 
-                  <div>
-                    <h3 className="text-base font-black text-slate-100 group-hover:text-amber-300 transition-colors">
-                      丙火日主 ✕ 月時雙透辛金正財
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-300 border border-emerald-400/20">暖意璀璨太陽</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">高品味正財格</span>
+                    <div className={`mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold ${theme.text}`}>
+                      <span className="flex items-center gap-1">
+                        <span>點擊展開靈性洞察 ✦</span>
+                      </span>
+                      <Maximize2 className="w-3.5 h-3.5 group-hover:scale-125 transition-transform" />
                     </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    自帶耀眼丙火能量，丙辛相合化財，具備天然的<strong>高階美感商業眼光與穩健獲利手腕</strong>。
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-emerald-400 group-hover:text-emerald-300">
-                  <span>查看八字與流年詳情</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
-
-              {/* Ziwei Wealth Card */}
-              <div 
-                onClick={() => onTabChange('wealth')}
-                className="group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border border-slate-850 hover:border-emerald-400/60 shadow-lg hover:shadow-2xl hover:shadow-emerald-400/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-                id="overview-card-wealth-ziwei"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-emerald-400/5 rounded-full blur-2xl group-hover:bg-emerald-400/15 transition-all" />
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 group-hover:scale-110 transition-transform">
-                      <DollarSign className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                      財帛事業
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-base font-black text-slate-100 group-hover:text-emerald-300 transition-colors">
-                      財帛宮天機化祿 ✕ 點子印鈔機
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-300 border border-emerald-400/20">企劃變現天賦</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">智慧輕鬆聚財</span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    靠智慧、企劃與頂層架構獲得豐厚回報。專注於<strong>策略發起與系統構建</strong>，避開無謂勞力損耗。
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-emerald-400 group-hover:text-emerald-300">
-                  <span>查看財富事業佈局</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
-
-              {/* HD Emotional Authority Card */}
-              <div 
-                onClick={() => onTabChange('humandesign')}
-                className="group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border border-slate-850 hover:border-blue-400/60 shadow-lg hover:shadow-2xl hover:shadow-blue-400/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-                id="overview-card-hd-rhythm"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-blue-400/5 rounded-full blur-2xl group-hover:bg-blue-400/15 transition-all" />
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-blue-400/10 text-blue-400 border border-blue-400/20 group-hover:scale-110 transition-transform">
-                      <Activity className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                      能量節奏
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-base font-black text-slate-100 group-hover:text-blue-300 transition-colors">
-                      情緒權威 ✕ 72 小時冷卻法則
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-400/10 text-blue-300 border border-blue-400/20">情緒波浪衝浪</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">平靜確定算數</span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    絕不在興奮或焦慮當下做承諾。等待<strong>情緒波浪平復後的清明冷酷理智</strong>，決策勝率近乎 100%。
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-blue-400 group-hover:text-blue-300">
-                  <span>查看情緒權威與冷卻艙</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
-          {/* GROUP 3: 人際互動 (Interpersonal & Dynamics) */}
+          {/* GROUP 3: 人際互動 */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <span className="px-3 py-1 rounded-lg bg-rose-400/10 border border-rose-400/30 text-rose-400 text-xs font-black flex items-center gap-2 font-mono">
@@ -996,123 +1187,210 @@ export default function OverviewDashboard({ onTabChange }: Props) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* Name Numerology Card */}
-              <div 
-                onClick={() => onTabChange('name')}
-                className="group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border border-slate-850 hover:border-rose-400/60 shadow-lg hover:shadow-2xl hover:shadow-rose-400/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-                id="overview-card-name"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-rose-400/5 rounded-full blur-2xl group-hover:bg-rose-400/15 transition-all" />
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-rose-400/10 text-rose-400 border border-rose-400/20 group-hover:scale-110 transition-transform">
-                      <Award className="w-5 h-5" />
+              {HOLOGRAPHIC_CARDS.slice(6, 9).map((card) => {
+                const theme = getThemeClasses(card.themeColor);
+                return (
+                  <motion.div
+                    key={card.id}
+                    id={`overview-card-${card.id}`}
+                    whileHover={{ y: -6, scale: 1.01 }}
+                    whileTap={{ scale: 0.985 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                    onClick={() => setSelectedCardId(card.id)}
+                    className={`group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border ${theme.border} shadow-lg hover:shadow-2xl ${theme.shadow} transition-colors duration-300 relative overflow-hidden flex flex-col justify-between`}
+                  >
+                    <div className={`absolute top-0 right-0 w-28 h-28 ${theme.bgGlow} rounded-full blur-2xl transition-all`} />
+                    
+                    <div className="space-y-3 relative z-10">
+                      <div className="flex items-center justify-between">
+                        <div className={`p-2.5 rounded-xl ${theme.badgeBg} border group-hover:scale-110 transition-transform`}>
+                          <card.icon className="w-5 h-5" />
+                        </div>
+                        
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-rose-400/10 text-rose-300 border border-rose-400/20 flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity">
+                            <Maximize2 className="w-2.5 h-2.5" />
+                            點擊放大
+                          </span>
+                          <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
+                            {card.systemTag}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className={`text-base font-black text-slate-100 ${theme.hoverHeading} transition-colors`}>
+                          {card.title}
+                        </h3>
+                        <div className="flex flex-wrap gap-1.5 mt-2">
+                          {card.tags.map((tag, tIdx) => (
+                            <span key={tIdx} className={`text-[10px] font-bold px-2 py-0.5 rounded ${tIdx === 0 ? `${theme.badgeBg} ${theme.badgeText} border` : 'bg-slate-900 text-slate-300 border border-slate-800'}`}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-slate-300 leading-relaxed pt-1">
+                        {card.summary}
+                      </p>
                     </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                      五格姓名
-                    </span>
-                  </div>
 
-                  <div>
-                    <h3 className="text-base font-black text-slate-100 group-hover:text-rose-300 transition-colors">
-                      「賴以婕」總格 32 吉木
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-400/10 text-rose-300 border border-rose-400/20">春日花開之象</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">熟人貴人聚財</span>
+                    <div className={`mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold ${theme.text}`}>
+                      <span className="flex items-center gap-1">
+                        <span>點擊展開靈性洞察 ✦</span>
+                      </span>
+                      <Maximize2 className="w-3.5 h-3.5 group-hover:scale-125 transition-transform" />
                     </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    名字自帶春日溫和能量與強大人緣氣場。<strong>良好的人際口碑與貴人引薦</strong>是事業成功的加速器。
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-rose-400 group-hover:text-rose-300">
-                  <span>查看姓名學格局詳情</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
-
-              {/* HD 2/4 Role Card */}
-              <div 
-                onClick={() => onTabChange('humandesign')}
-                className="group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border border-slate-850 hover:border-indigo-400/60 shadow-lg hover:shadow-2xl hover:shadow-indigo-400/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-                id="overview-card-hd-role"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-indigo-400/5 rounded-full blur-2xl group-hover:bg-indigo-400/15 transition-all" />
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-indigo-400/10 text-indigo-400 border border-indigo-400/20 group-hover:scale-110 transition-transform">
-                      <Shield className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                      人生角色
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-base font-black text-slate-100 group-hover:text-indigo-300 transition-colors">
-                      2/4 雙軌社交 (隱士 / 機會主義者)
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-400/10 text-indigo-300 border border-indigo-400/20">神聖獨處充電</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">熟人網絡圈層</span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    需要<strong>神聖的獨處洞穴時間 (2爻)</strong>，同時好機會往往來自<strong>深厚信任的熟人圈層 (4爻)</strong>。
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-indigo-400 group-hover:text-indigo-300">
-                  <span>查看 2/4 角色互動策略</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
-
-              {/* Astro Venus/Moon Card */}
-              <div 
-                onClick={() => onTabChange('love')}
-                className="group cursor-pointer p-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900/90 border border-slate-850 hover:border-pink-400/60 shadow-lg hover:shadow-2xl hover:shadow-pink-400/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden flex flex-col justify-between"
-                id="overview-card-love"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-pink-400/5 rounded-full blur-2xl group-hover:bg-pink-400/15 transition-all" />
-                <div className="space-y-3 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="p-2.5 rounded-xl bg-pink-400/10 text-pink-400 border border-pink-400/20 group-hover:scale-110 transition-transform">
-                      <Heart className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-slate-900 border border-slate-850 text-slate-400">
-                      情感品味
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-base font-black text-slate-100 group-hover:text-pink-300 transition-colors">
-                      金星金牛 ✕ 月亮獅子 3 宮
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-pink-400/10 text-pink-300 border border-pink-400/20">高奢實質感</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">智識大腦對手</span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed pt-1">
-                    鄙視廉價的畫大餅。重視<strong>實質行動、高質感審美體驗</strong>，與能進行智識深度交流的靈魂夥伴。
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-pink-400 group-hover:text-pink-300">
-                  <span>查看情感與關係密碼</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-                </div>
-              </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Framer Motion Expanded Card Lightbox Modal */}
+      <AnimatePresence>
+        {selectedCard && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            {/* Backdrop Blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setSelectedCardId(null)}
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
+            />
+
+            {/* Modal Dialog Content */}
+            <motion.div
+              layoutId={`overview-card-${selectedCard.id}`}
+              initial={{ scale: 0.92, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.92, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+              className={`relative z-10 w-full max-w-2xl bg-slate-900 border ${getThemeClasses(selectedCard.themeColor).modalBorder} rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden my-auto`}
+            >
+              <div className={`absolute top-0 right-0 w-64 h-64 ${getThemeClasses(selectedCard.themeColor).bgGlow} rounded-full blur-3xl pointer-events-none`} />
+
+              {/* Close Button & Header Bar */}
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4 relative z-10">
+                <div className="flex items-center gap-3">
+                  <div className={`p-3 rounded-2xl ${getThemeClasses(selectedCard.themeColor).badgeBg} border`}>
+                    <selectedCard.icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-mono font-bold text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded border border-amber-400/20">
+                      {selectedCard.groupTitle}
+                    </span>
+                    <h2 className="text-xl sm:text-2xl font-black text-slate-100 mt-0.5">
+                      {selectedCard.title}
+                    </h2>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setSelectedCardId(null)}
+                  className="p-2 rounded-full bg-slate-800/80 text-slate-400 hover:text-slate-100 hover:bg-slate-700 transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Tags & System Badge */}
+              <div className="flex flex-wrap items-center gap-2 mt-4 relative z-10">
+                <span className="text-xs font-mono font-black px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-slate-300">
+                  {selectedCard.systemTag}
+                </span>
+                {selectedCard.tags.map((tag, idx) => (
+                  <span
+                    key={idx}
+                    className={`text-xs font-bold px-3 py-1 rounded-lg border ${
+                      idx === 0
+                        ? `${getThemeClasses(selectedCard.themeColor).badgeBg} ${getThemeClasses(selectedCard.themeColor).badgeText}`
+                        : 'bg-slate-950 text-slate-300 border-slate-800'
+                    }`}
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Spiritual Detailed Insight Content */}
+              <div className="mt-6 space-y-6 relative z-10 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                {/* Spiritual Insight Section */}
+                <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 space-y-3">
+                  <h4 className="text-sm font-black text-amber-400 flex items-center gap-2 font-mono">
+                    <BookOpen className="w-4 h-4 text-amber-400" />
+                    靈性維度全息洞察 ✦ DEEP SPIRITUAL INSIGHT
+                  </h4>
+                  <div className="text-sm text-slate-200 leading-relaxed whitespace-pre-line font-normal">
+                    {selectedCard.spiritualInsight}
+                  </div>
+                </div>
+
+                {/* Core Breakdown Items */}
+                <div className="space-y-2.5">
+                  <h4 className="text-xs font-black text-slate-400 font-mono tracking-wider">
+                    核心解析與機制拆解
+                  </h4>
+                  <div className="grid grid-cols-1 gap-2.5">
+                    {selectedCard.coreBreakdown.map((item, bIdx) => (
+                      <div key={bIdx} className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-850/80 flex flex-col sm:flex-row sm:items-baseline gap-2">
+                        <span className="text-xs font-bold text-amber-300 shrink-0">
+                          {item.label}
+                        </span>
+                        <span className="text-xs text-slate-300 leading-relaxed">
+                          {item.text}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* High Level Action Advice */}
+                <div className="p-4 rounded-xl bg-amber-400/10 border border-amber-400/20 text-xs text-amber-200 leading-relaxed flex items-start gap-3">
+                  <Sparkles className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold text-amber-300 block mb-0.5">高階運作建議：</span>
+                    {selectedCard.actionAdvice}
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Footer Actions */}
+              <div className="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between gap-4 relative z-10">
+                <span className="text-xs text-slate-400 hidden sm:inline-block">
+                  按 ESC 鍵或點擊外部可隨時關閉
+                </span>
+                
+                <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                  <button
+                    onClick={() => setSelectedCardId(null)}
+                    className="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold hover:bg-slate-700 transition-colors"
+                  >
+                    關閉卡片
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      const target = selectedCard.targetTab;
+                      setSelectedCardId(null);
+                      onTabChange(target);
+                    }}
+                    className={`px-5 py-2.5 rounded-xl text-slate-950 text-xs font-black bg-amber-400 hover:bg-amber-300 transition-all shadow-lg flex items-center justify-center gap-2`}
+                  >
+                    <span>進入【{selectedCard.systemTag}】完整分頁</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* Synthesized Energy Systems Matrix */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

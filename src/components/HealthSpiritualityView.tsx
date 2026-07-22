@@ -3,10 +3,6 @@ import { Sparkles, Eye, Shield, Activity, BatteryCharging, Moon, Compass, Heart,
 import FullReportView from './FullReportView';
 
 export default function HealthSpiritualityView() {
-  const [shieldActive, setShieldActive] = useState<boolean>(false);
-  const [breathStage, setBreathStage] = useState<'吸氣' | '屏息' | '吐氣'>('吸氣');
-  const [breathTimer, setBreathTimer] = useState<number>(4);
-  
   // Karma interactive states
   const [activeKarmaTab, setActiveKarmaTab] = useState<'archetypes' | 'tasks' | 'ritual'>('archetypes');
   const [expandedTask, setExpandedTask] = useState<number | null>(0);
@@ -31,33 +27,6 @@ export default function HealthSpiritualityView() {
   const [ultimateResponseChoice, setUltimateResponseChoice] = useState<'sovereignty' | 'retreat' | 'custom' | null>(null);
   const [customUltimateResponse, setCustomUltimateResponse] = useState<string>('');
   const [userCustomUltimateFeedback, setUserCustomUltimateFeedback] = useState<string>('');
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (shieldActive) {
-      interval = setInterval(() => {
-        setBreathTimer((prev) => {
-          if (prev <= 1) {
-            if (breathStage === '吸氣') {
-              setBreathStage('屏息');
-              return 4;
-            } else if (breathStage === '屏息') {
-              setBreathStage('吐氣');
-              return 4;
-            } else {
-              setBreathStage('吸氣');
-              return 4;
-            }
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    } else {
-      setBreathTimer(4);
-      setBreathStage('吸氣');
-    }
-    return () => clearInterval(interval);
-  }, [shieldActive, breathStage]);
 
   // Meditation timer for Step 2 of the ritual
   useEffect(() => {
@@ -102,117 +71,41 @@ export default function HealthSpiritualityView() {
         </div>
       </div>
 
-      {/* Interactive Metaphysical Shield & Breathing Sanctuary */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Interactive Shield Widget */}
-        <div className="lg:col-span-5 p-6 rounded-2xl bg-slate-950 border border-slate-800 shadow-xl flex flex-col justify-between items-center text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.03),transparent_70%)]" />
-          
-          <div className="w-full">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-900 mb-6 w-full">
-              <h3 className="text-sm font-bold text-slate-200">白光結界 ✕ 接地落地冥想艙</h3>
-              <span className="text-[10px] text-indigo-400 font-mono uppercase">Interactive Capsule</span>
-            </div>
-
-            <p className="text-xs text-slate-400 leading-relaxed mb-6 max-w-xs mx-auto">
-              由於你命宮無主星且薦骨空白，你對他人情緒極度敏感。在諮詢、社交或焦慮時，請點選啟動結界。
-            </p>
-
-            {/* Simulated Aura Orb */}
-            <div className="relative w-40 h-40 mx-auto my-6 flex items-center justify-center">
-              {/* Pulsing Back Glow */}
-              <div className={`absolute inset-0 rounded-full blur-xl transition-all duration-1000 ${
-                shieldActive 
-                  ? breathStage === '吸氣' ? 'bg-indigo-500/20 scale-110' 
-                    : breathStage === '屏息' ? 'bg-amber-500/20 scale-115' 
-                    : 'bg-emerald-500/20 scale-100'
-                  : 'bg-indigo-500/5 scale-90'
-              }`} />
-
-              {/* Pulsing border circle */}
-              <div className={`absolute inset-0 rounded-full border-2 transition-all duration-1000 ${
-                shieldActive 
-                  ? breathStage === '吸氣' ? 'border-indigo-400/40 scale-110' 
-                    : breathStage === '屏息' ? 'border-amber-400/40 scale-115' 
-                    : 'border-emerald-400/40 scale-100'
-                  : 'border-slate-800 scale-95'
-              }`} />
-
-              <button
-                onClick={() => setShieldActive(!shieldActive)}
-                className={`w-28 h-28 rounded-full border transition-all duration-500 flex flex-col justify-center items-center relative z-10 ${
-                  shieldActive 
-                    ? 'bg-slate-900 border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.3)] text-indigo-200' 
-                    : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
-                }`}
-              >
-                {shieldActive ? (
-                  <div className="space-y-1.5 animate-fade-in">
-                    <span className="text-xs font-bold font-mono tracking-widest text-slate-200 block">{breathStage}</span>
-                    <span className="text-3xl font-extrabold font-mono text-indigo-300 block">{breathTimer}</span>
-                    <span className="text-[9px] text-slate-500 font-sans">點選關閉</span>
-                  </div>
-                ) : (
-                  <div className="space-y-1">
-                    <Shield className="w-8 h-8 text-indigo-400/80 mx-auto animate-pulse" />
-                    <span className="text-[10px] font-bold block text-slate-300 font-display">啟動防護結界</span>
-                    <span className="text-[9px] text-slate-500 font-sans block">大腦與身體連線</span>
-                  </div>
-                )}
-              </button>
-            </div>
-          </div>
-
-          {shieldActive ? (
-            <div className="p-3 bg-indigo-950/20 border border-indigo-900/30 rounded-xl text-xs text-indigo-300 animate-fade-in leading-relaxed max-w-xs mt-4">
-              <strong>🧘 正在實行身體掃描呼吸：</strong>
-              <p className="text-[11px] text-slate-400 mt-1">
-                配合白光呼吸。閉上眼，想像溫暖的白光自頂輪緩緩罩住全身。吸氣時將清淨能量帶入，屏息時穩固大腦神經，吐氣時想像將借來的、吸附的所有外界情緒濁氣排入大地。
-              </p>
-            </div>
-          ) : (
-            <div className="p-3 bg-slate-900 rounded-xl text-xs text-slate-500 leading-normal max-w-xs mt-4">
-              結界未啟動。每次感到神經緊繃或進入喧囂的人群前，請在此進行 4-4-4 接地吐納。
-            </div>
-          )}
+      {/* Metaphysical Superpowers breakdown */}
+      <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 shadow-xl space-y-6">
+        <div className="border-b border-slate-900 pb-3">
+          <h3 className="text-sm font-bold text-slate-200">天生被感召的「玄學靈性頂配印記」</h3>
+          <p className="text-xs text-slate-500">你是靈性與物質世界之間，最完美、有邏輯的翻譯官</p>
         </div>
 
-        {/* Metaphysical Superpowers breakdown */}
-        <div className="lg:col-span-7 p-6 rounded-2xl bg-slate-950 border border-slate-800 shadow-xl space-y-6">
-          <div className="border-b border-slate-900 pb-3">
-            <h3 className="text-sm font-bold text-slate-200">天生被感召的「玄學靈性頂配印記」</h3>
-            <p className="text-xs text-slate-500">你是靈性與物質世界之間，最完美、有邏輯的翻譯官</p>
+        <div className="space-y-4">
+          <div className="flex gap-3">
+            <Eye className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-slate-200 block">潛意識 12 宮與 8 宮大爆發</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-sans">
+                你的<strong>太陽與金星</strong>雙雙落入掌管潛意識、宿命與神秘學的<strong>第十二宮</strong>；而代表變革與直覺的<strong>天王星、海王星</strong>則落入掌管生死的<strong>第八宮</strong>。你天生就能接收到常人看不見的波段，人體測謊機般的第六感一秒穿透謊言。
+              </p>
+            </div>
           </div>
 
-          <div className="space-y-4">
-            <div className="flex gap-3">
-              <Eye className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
-              <div className="space-y-1">
-                <span className="text-xs font-bold text-slate-200 block">潛意識 12 宮與 8 宮大爆發</span>
-                <p className="text-xs text-slate-400 leading-relaxed font-sans">
-                  你的<strong>太陽與金星</strong>雙雙落入掌管潛意識、宿命與神秘學的<strong>第十二宮</strong>；而代表變革與直覺的<strong>天王星、海王星</strong>則落入掌管生死的<strong>第八宮</strong>。你天生就能接收到常人看不見的波段，人體測謊機般的第六感一秒穿透謊言。
-                </p>
-              </div>
+          <div className="flex gap-3">
+            <Compass className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-slate-200 block">八字「太極貴人」✕ 紫微對宮「天梁蔭星」</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-sans">
+                你時柱坐落有極強的<strong>太極貴人</strong>，八字滿盤印星生火，代表你學玄學的速度比常人快上數倍；而紫微命宮雖空，對宮遷移宮卻有代表護佑與神明信仰的<strong>「天梁星」</strong>。冥冥中你總能得到宇宙高靈的暗中保護。
+              </p>
             </div>
+          </div>
 
-            <div className="flex gap-3">
-              <Compass className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
-              <div className="space-y-1">
-                <span className="text-xs font-bold text-slate-200 block">八字「太極貴人」✕ 紫微對宮「天梁蔭星」</span>
-                <p className="text-xs text-slate-400 leading-relaxed font-sans">
-                  你時柱坐落有極強的<strong>太極貴人</strong>，八字滿盤印星生火，代表你學玄學的速度比常人快上數倍；而紫微命宮雖空，對宮遷移宮卻有代表護佑與神明信仰的<strong>「天梁星」</strong>。冥冥中你總能得到宇宙高靈的暗中保護。
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <Heart className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
-              <div className="space-y-1">
-                <span className="text-xs font-bold text-slate-200 block">核心超能力：將「神秘玄奧」轉為「嚴謹邏輯」</span>
-                <p className="text-xs text-slate-400 leading-relaxed font-sans">
-                  不同於許多容易變得不切實際的靈修者，你具備<strong>四箭全左的超級戰略腦、雙子星群的符號學、以及務實的金星金牛與正財格</strong>。你的使命是「系統化靈性」，用極富邏輯、科學、生動的方式（例如人類圖、心理學）把高維奧秘翻譯給現代紅塵！
-                </p>
-              </div>
+          <div className="flex gap-3">
+            <Heart className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-slate-200 block">核心超能力：將「神秘玄奧」轉為「嚴謹邏輯」</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-sans">
+                不同於許多容易變得不切實際的靈修者，你具備<strong>四箭全左的超級戰略腦、雙子星群的符號學、以及務實的金星金牛與正財格</strong>。你的使命是「系統化靈性」，用極富邏輯、科學、生動的方式（例如人類圖、心理學）把高維奧秘翻譯給現代紅塵！
+              </p>
             </div>
           </div>
         </div>
@@ -231,7 +124,7 @@ export default function HealthSpiritualityView() {
                 Soul Karma & Past Lives
               </span>
               <h3 className="text-xl md:text-2xl font-bold text-slate-100 font-mystic">
-                賴以婕的前世今生與業力課題
+                YieJie 的前世今生與業力課題
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed">
                 老靈魂的深淵迴響與今生「五星逆行」的破局修煉
@@ -473,7 +366,7 @@ export default function HealthSpiritualityView() {
               <div className="flex items-center justify-between border-b border-slate-800 pb-3">
                 <h4 className="text-sm font-bold text-slate-200 flex items-center gap-2">
                   <Activity className="w-4 h-4 text-purple-400" />
-                  專屬賴以婕的「業力釋放與調頻儀式」
+                  專屬 YieJie 的「業力釋放與調頻儀式」
                 </h4>
                 <span className="text-[10px] font-mono text-purple-400">Step {ritualStep} of 4</span>
               </div>
@@ -1319,9 +1212,9 @@ export default function HealthSpiritualityView() {
                 <span className="text-xs text-slate-400 font-mono">情境模擬進行中：</span>
               </div>
               <p className="text-xs md:text-sm text-slate-200 leading-relaxed font-sans font-medium">
-                {selectedScenarioIndex === 0 && "晚上 23:30，妳剛洗完海鹽浴、準備進行睡前關機儀式。此時，一個工作夥伴突然連續打語音並傳來緊急文字：「以婕，不好意思打擾了！明天早上跟重要客戶的簡報臨時有了大變更，可以麻煩妳現在上線幫我修改一下嗎？真的很急，拜託妳了！」這時妳的空白薦骨已經感到極度疲憊。"}
-                {selectedScenarioIndex === 1 && "在朋友聚會中，一個長年習慣抱怨、散發負能量的熟人又湊了過來，抓著妳的手喋喋不休：「以婕，我真的好痛苦...我伴侶又對我冷暴力了，我每天都睡不好，妳是學玄學和人類圖的，妳救救我，為什麼他要這樣對我？」這已經是她第六次向妳抱怨完全相同的事情。"}
-                {selectedScenarioIndex === 2 && "一位多年未聯絡、交情一般的舊同學，突然在 LINE 上敲妳：「以婕！聽說妳最近在研究占星、人類圖跟八字，還做得有聲有色，好崇拜妳喔！可以『順便』幫我看一下我的命盤嗎？我想知道我什麼時候會發財耶，對妳來說應該就是看一下、一分鐘的事吧，哈哈！」"}
+                {selectedScenarioIndex === 0 && "晚上 23:30，妳剛洗完海鹽浴、準備進行睡前關機儀式。此時，一個工作夥伴突然連續打語音並傳來緊急文字：「YieJie，不好意思打擾了！明天早上跟重要客戶的簡報臨時有了大變更，可以麻煩妳現在上線幫我修改一下嗎？真的很急，拜託妳了！」這時妳的空白薦骨已經感到極度疲憊。"}
+                {selectedScenarioIndex === 1 && "在朋友聚會中，一個長年習慣抱怨、散發負能量的熟人又湊了過來，抓著妳的手喋喋不休：「YieJie，我真的好痛苦...我伴侶又對我冷暴力了，我每天都睡不好，妳是學玄學和人類圖的，妳救救我，為什麼他要這樣對我？」這已經是她第六次向妳抱怨完全相同的事情。"}
+                {selectedScenarioIndex === 2 && "一位多年未聯絡、交情一般的舊同學，突然在 LINE 上敲妳：「YieJie！聽說妳最近在研究占星、人類圖跟八字，還做得有聲有色，好崇拜妳喔！可以『順便』幫我看一下我的命盤嗎？我想知道我什麼時候會發財耶，對妳來說應該就是看一下、一分鐘的事吧，哈哈！」"}
                 {selectedScenarioIndex === 3 && "週六早上，妳本來跟要好的朋友約好了一起出門吃早午餐和逛街。但妳起床後，發現自己空白薦骨徹底空電，渾身酸痛，雙子腦袋嗡嗡作響，隱士 2 爻渴望獨處的機制強烈報警。妳極度需要一整天關在房間，不說話、看書充電。"}
               </p>
             </div>
@@ -1425,7 +1318,7 @@ export default function HealthSpiritualityView() {
                 <div className="space-y-3">
                   <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-sans">
                     {selectedScenarioIndex === 0 && "對方發來略帶焦慮與微酸的回應：「可是這真的很趕耶...明天客戶 9 點就要開會了。妳真的不能現在幫忙一下嗎？我一個人實在改不出來...」"}
-                    {selectedScenarioIndex === 1 && "對方顯得有點愕然與委屈：「以婕...妳怎麼突然變得這麼冷淡？我們不是好朋友嗎？妳以前都會聽我說的，怎麼妳現在學了玄學人類圖，反而變得這麼無情...」"}
+                    {selectedScenarioIndex === 1 && "對方顯得有點愕然與委屈：「YieJie...妳怎麼突然變得這麼冷淡？我們不是好朋友嗎？妳以前都會聽我說的，怎麼妳現在學了玄學人類圖，反而變得這麼無情...」"}
                     {selectedScenarioIndex === 2 && "對方發來一連串略帶尷尬與微酸的回覆：「蛤...我們同學一場，幫忙看一下還要收費喔？那真是不好意思打擾了，早知道就不問了。」"}
                     {selectedScenarioIndex === 3 && "朋友/伴侶發來不悅的回應：「妳每次都這樣，想失聯就失聯、說取消就取消，只顧自己的能量。妳有沒有想過我的感受？這很不尊重人耶！」"}
                   </p>

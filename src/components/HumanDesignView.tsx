@@ -232,7 +232,7 @@ export default function HumanDesignView() {
           ) : (
             <div className="py-24 text-center space-y-3">
               <HelpCircle className="w-10 h-10 text-slate-600 mx-auto animate-bounce-slow" />
-              <p className="text-xs text-slate-400">點選左側 Bodygraph 的任意區域解鎖 賴以婕 的特殊中心管道機理。</p>
+              <p className="text-xs text-slate-400">點選左側 Bodygraph 的任意區域解鎖 YieJie 的特殊中心管道機理。</p>
             </div>
           )}
 

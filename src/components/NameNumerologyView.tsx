@@ -35,7 +35,7 @@ export default function NameNumerologyView() {
           
           <div className="flex bg-slate-900 border border-slate-800 p-3 rounded-xl max-w-xs">
             <p className="text-xs text-slate-400 leading-normal">
-              <strong>名字是妳一生的能量振動頻率</strong>。在「賴以婕」名字中，隱含著極強的獨立主權、優雅特質與獨特的社交磨損防線。
+              <strong>名字是妳一生的能量振動頻率</strong>。在「YieJie」名字中，隱含著極強的獨立主權、優雅特質與獨特的社交磨損防線。
             </p>
           </div>
         </div>
@@ -47,21 +47,21 @@ export default function NameNumerologyView() {
         {/* Visual Character Grid */}
         <div className="lg:col-span-5 p-6 rounded-2xl bg-slate-950 border border-slate-800 shadow-xl space-y-6 flex flex-col justify-between">
           <div>
-            <h3 className="text-sm font-bold text-slate-200 border-b border-slate-900 pb-3">「賴以婕」漢字筆劃與五行能量</h3>
+            <h3 className="text-sm font-bold text-slate-200 border-b border-slate-900 pb-3">「YieJie」姓名筆劃與五行能量</h3>
             
             <div className="flex justify-center items-center gap-4 py-8 bg-slate-900/30 rounded-2xl border border-slate-900 mt-4">
               <div className="text-center space-y-2">
-                <div className="w-16 h-16 rounded-xl bg-slate-950 border border-slate-850 flex items-center justify-center text-3xl font-bold text-slate-100 font-mystic">賴</div>
+                <div className="w-16 h-16 rounded-xl bg-slate-950 border border-emerald-500/30 flex items-center justify-center text-2xl font-black text-emerald-400 font-mono">16</div>
                 <span className="text-xs text-slate-400 font-mono">16 劃 (火)</span>
               </div>
-              <div className="text-slate-605 font-display text-emerald-500">＋</div>
+              <div className="text-slate-600 font-display text-emerald-500">＋</div>
               <div className="text-center space-y-2">
-                <div className="w-16 h-16 rounded-xl bg-slate-950 border border-slate-850 flex items-center justify-center text-3xl font-bold text-slate-100 font-mystic">以</div>
+                <div className="w-16 h-16 rounded-xl bg-slate-950 border border-emerald-500/30 flex items-center justify-center text-2xl font-black text-emerald-400 font-mono">5</div>
                 <span className="text-xs text-slate-400 font-mono">5 劃 (土)</span>
               </div>
-              <div className="text-slate-605 font-display text-emerald-500">＋</div>
+              <div className="text-slate-600 font-display text-emerald-500">＋</div>
               <div className="text-center space-y-2">
-                <div className="w-16 h-16 rounded-xl bg-slate-950 border border-slate-850 flex items-center justify-center text-3xl font-bold text-slate-100 font-mystic">婕</div>
+                <div className="w-16 h-16 rounded-xl bg-slate-950 border border-emerald-500/30 flex items-center justify-center text-2xl font-black text-emerald-400 font-mono">11</div>
                 <span className="text-xs text-slate-400 font-mono">11 劃 (火)</span>
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function NameNumerologyView() {
         </div>
       </div>
 
-      {/* BRAND NEW: Interactive Deep Analysis Expansion of "賴以婕" */}
+      {/* BRAND NEW: Interactive Deep Analysis Expansion of "YieJie" */}
       <div className="p-6 md:p-8 rounded-3xl bg-slate-950 border border-slate-800 shadow-2xl relative overflow-hidden">
         <div className="absolute -top-10 -left-10 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl" />
         <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-amber-500/5 rounded-full blur-3xl" />
@@ -146,7 +146,7 @@ export default function NameNumerologyView() {
                 Name Inner Hologram
               </span>
               <h3 className="text-xl md:text-2xl font-bold text-slate-100 font-mystic">
-                「賴以婕」名字底下的隱藏能量切面
+                「YieJie」名字底下的隱藏能量切面
               </h3>
               <p className="text-xs text-slate-400">
                 深度解構五格筆劃頻率、木生火燃燒引擎、與優雅字義能量
@@ -177,7 +177,7 @@ export default function NameNumerologyView() {
                   activeSubTab === 'characters' ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20' : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                字義優雅權力
+                筆劃數理與權力
               </button>
             </div>
           </div>
@@ -315,18 +315,18 @@ export default function NameNumerologyView() {
           {/* Sub-tab 3: Character Meaning & Female Power */}
           {activeSubTab === 'characters' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in">
-              {/* Character 'Yi' */}
+              {/* Stroke 5 (Earth) */}
               <div className="p-5 rounded-2xl bg-slate-900 border border-slate-850 hover:border-emerald-500/20 transition-all space-y-4 flex flex-col justify-between">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl font-extrabold text-emerald-400 font-mystic">以</span>
+                    <span className="text-2xl font-black text-emerald-400 font-mono">5 劃 (土)</span>
                     <span className="text-[10px] px-2 py-0.5 bg-emerald-500/10 text-emerald-300 font-mono rounded">
                       憑藉與承載 (Bridge)
                     </span>
                   </div>
                   <h4 className="text-sm font-bold text-slate-200">承前啟後的靈魂橋樑</h4>
                   <p className="text-xs text-slate-300 leading-relaxed font-sans">
-                    「以」字代表「憑藉、承載與連結」。在字意上，它是一座連通兩端的橋樑。這賦予了妳靈魂深處強烈的責任感與承載力。妳天生自帶想去承擔團隊、連結不同次元與流派（如將玄學翻譯為嚴謹系統）的崇高使命。
+                    5 劃數理代表「憑藉、承載與連結」。在能量頻率上，它是一座連通兩端的橋樑。這賦予了妳靈魂深處強烈的責任感與承載力。妳天生自帶想去承擔團隊、連結不同次元與流派（如將玄學翻譯為嚴謹系統）的崇高使命。
                   </p>
                 </div>
                 <div className="p-3 bg-slate-950 rounded-xl text-[11px] text-slate-400 font-sans">
@@ -334,22 +334,22 @@ export default function NameNumerologyView() {
                 </div>
               </div>
 
-              {/* Character 'Chieh' */}
+              {/* Stroke 11 (Fire) */}
               <div className="p-5 rounded-2xl bg-slate-900 border border-slate-850 hover:border-emerald-500/20 transition-all space-y-4 flex flex-col justify-between">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl font-extrabold text-emerald-400 font-mystic">婕</span>
+                    <span className="text-2xl font-black text-emerald-400 font-mono">11 劃 (火)</span>
                     <span className="text-[10px] px-2 py-0.5 bg-emerald-500/10 text-emerald-300 font-mono rounded">
                       優雅與權力 (Sovereignty)
                     </span>
                   </div>
                   <h4 className="text-sm font-bold text-slate-200">優雅、手腕與女性高貴主權</h4>
                   <p className="text-xs text-slate-300 leading-relaxed font-sans">
-                    「婕」字源於古代高階女官（婕妤）的稱號。代表妳溫和、美麗的外表與 ENFJ 的優雅社交面具之下，隱藏著「兼具智慧與鐵血手腕的女性最高權力」。妳有獨立的領地（2爻），也有著高貴的邊界，不需要向任何人卑躬屈膝。
+                    11 劃數理源於高階貴族氣場之數。代表妳溫和、美麗的外表與 ENFJ 的優雅社交面具之下，隱藏著「兼具智慧與鐵血手腕的女性最高權力」。妳有獨立的領地（2爻），也有著高貴的邊界，不需要向任何人卑躬屈膝。
                   </p>
                 </div>
                 <div className="p-3 bg-slate-950 rounded-xl text-[11px] text-slate-400 font-sans">
-                  <strong>💡 提醒：</strong> 展現「婕妤」的高貴氣場。當妳堅定地守護領地主權時，妳的發起（顯示者）與氣場才最優雅迷人。
+                  <strong>💡 提醒：</strong> 展現高貴的能量氣場。當妳堅定地守護領地主權時，妳的發起（顯示者）與氣場才最優雅迷人。
                 </div>
               </div>
             </div>
@@ -371,7 +371,7 @@ export default function NameNumerologyView() {
             </h3>
             <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-sans">
               在八字中，丙火（妳的太陽日主）最需要「木來生火」，才能維持璀璨燃燒的生命能量。
-              妳的名字「賴以婕」中，人格21、總格32皆是<strong>極旺的大吉木</strong>！這代表妳的名字在玄學頻率上，源源不絕地在為妳的丙火日主、月亮獅子、和顯示者能量提供「燃料」。
+              妳的名字「YieJie」中，人格21、總格32皆是<strong>極旺的大吉木</strong>！這代表妳的名字在玄學頻率上，源源不絕地在為妳的丙火日主、月亮獅子、和顯示者能量提供「燃料」。
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
               <div className="flex items-start gap-2.5">
@@ -414,7 +414,7 @@ export default function NameNumerologyView() {
             </div>
             <div>
               <h3 className="text-sm md:text-base font-black text-slate-100">全息天書 ✦ 姓名能量與個人特質專屬章節</h3>
-              <p className="text-[11px] text-slate-400">邏輯分流：系統自動匯入全息天書中屬於賴以婕姓名數理與人格界線的解析</p>
+              <p className="text-[11px] text-slate-400">邏輯分流：系統自動匯入全息天書中屬於 YieJie 姓名數理與人格界線的解析</p>
             </div>
           </div>
           <span className="text-[10px] font-mono text-emerald-300 bg-slate-950 px-3 py-1 rounded-full border border-emerald-400/30 self-start sm:self-auto">

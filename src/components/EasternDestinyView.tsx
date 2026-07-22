@@ -138,7 +138,7 @@ export default function EasternDestinyView() {
         return {
           title: `${palaceName} 解析`,
           text: `此宮位坐落著特定的吉星或凶星，反映了你在相應人生維度（例如： ${palaceName.split(' ')[0]}）的氣場運作與潛在課題。`,
-          guide: '點選其他核心宮位（命宮、夫妻宮、財帛宮、遷移宮、福德宮）可直接解鎖賴以婕的獨家紫微盤深層解碼！'
+          guide: '點選其他核心宮位（命宮、夫妻宮、財帛宮、遷移宮、福德宮）可直接解鎖 YieJie 的獨家紫微盤深層解碼！'
         };
     }
   };
@@ -257,7 +257,7 @@ export default function EasternDestinyView() {
             ) : (
               <div className="py-20 text-center space-y-2">
                 <HelpCircle className="w-8 h-8 text-slate-600 mx-auto" />
-                <p className="text-xs text-slate-400">點選左側表格中的四柱解鎖賴以婕的八字奧秘。</p>
+                <p className="text-xs text-slate-400">點選左側表格中的四柱解鎖 YieJie 的八字奧秘。</p>
               </div>
             )}
           </div>
@@ -277,7 +277,7 @@ export default function EasternDestinyView() {
             <Award className="w-5 h-5 text-teal-400" />
             紫微命盤：12宮大限全息盤
           </h3>
-          <p className="text-xs text-slate-400">點選紫微十二宮位，透視賴以婕的生命發展與星煞配置</p>
+          <p className="text-xs text-slate-400">點選紫微十二宮位，透視 YieJie 的生命發展與星煞配置</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -374,7 +374,7 @@ export default function EasternDestinyView() {
                   文墨天機 ✦ 命盤
                 </div>
                 <div className="flex justify-center gap-1.5 text-[7px] sm:text-[11px]">
-                  <span className="text-slate-200 font-bold">姓名: 賴以婕</span>
+                  <span className="text-slate-200 font-bold">姓名: YieJie</span>
                   <span className="text-pink-400 font-semibold scale-90 sm:scale-100 origin-center">陰女 土五局</span>
                 </div>
               </div>
