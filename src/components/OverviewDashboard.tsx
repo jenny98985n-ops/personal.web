@@ -586,6 +586,104 @@ export default function OverviewDashboard({ onTabChange }: Props) {
         </div>
       </div>
 
+      {/* 🧭 由淺入深 4 步驟閱讀地圖 (Progressive Reading Path Card) */}
+      <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border border-amber-400/30 shadow-xl space-y-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-850 pb-3">
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 bg-amber-400/10 text-amber-400 rounded-xl border border-amber-400/20">
+              <BookOpen className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm font-black text-slate-100 flex items-center gap-2">
+                🧭 由淺入深導讀建議地圖
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20">
+                  循序漸進不雜亂
+                </span>
+              </h3>
+              <p className="text-xs text-slate-400">報告總字數龐大，建議按照以下 4 個階梯逐步閱讀：</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {/* Step 1 */}
+          <button 
+            onClick={() => onTabChange && onTabChange('overview')}
+            className="p-3.5 rounded-xl bg-slate-950/80 border border-emerald-500/30 hover:border-emerald-400 transition-all text-left space-y-2 group"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/30">
+                階梯 1 ✦ 入門
+              </span>
+              <span className="text-[10px] text-slate-500 font-mono">約 3 分鐘</span>
+            </div>
+            <h4 className="text-xs font-bold text-slate-200 group-hover:text-emerald-300 transition-colors">
+              1. 全息總覽 (當前頁面)
+            </h4>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              觀看下方四大天賦卡片與能量金句，快速獲得靈魂全貌不迷失。
+            </p>
+          </button>
+
+          {/* Step 2 */}
+          <button 
+            onClick={() => onTabChange && onTabChange('usermanual')}
+            className="p-3.5 rounded-xl bg-slate-950/80 border border-amber-500/30 hover:border-amber-400 transition-all text-left space-y-2 group"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30">
+                階梯 2 ✦ 手冊
+              </span>
+              <span className="text-[10px] text-slate-500 font-mono">約 5 分鐘</span>
+            </div>
+            <h4 className="text-xs font-bold text-slate-200 group-hover:text-amber-300 transition-colors">
+              2. 能量使用說明書 ➔
+            </h4>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              了解三大面貌（太陽女王/高奢隱士/靈魂駭客）與防坑地雷指南。
+            </p>
+          </button>
+
+          {/* Step 3 */}
+          <button 
+            onClick={() => onTabChange && onTabChange('humandesign')}
+            className="p-3.5 rounded-xl bg-slate-950/80 border border-indigo-500/30 hover:border-indigo-400 transition-all text-left space-y-2 group"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
+                階梯 3 ✦ 專題
+              </span>
+              <span className="text-[10px] text-slate-500 font-mono">各 3 分鐘</span>
+            </div>
+            <h4 className="text-xs font-bold text-slate-200 group-hover:text-indigo-300 transition-colors">
+              3. 分科主題深度精讀 ➔
+            </h4>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              針對占星、人類圖、八字紫微、姓名學或感情財富個別破局。
+            </p>
+          </button>
+
+          {/* Step 4 */}
+          <button 
+            onClick={() => onTabChange && onTabChange('fullreport')}
+            className="p-3.5 rounded-xl bg-slate-950/80 border border-purple-500/30 hover:border-purple-400 transition-all text-left space-y-2 group"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/30">
+                階梯 4 ✦ 天書
+              </span>
+              <span className="text-[10px] text-slate-500 font-mono">深度研讀</span>
+            </div>
+            <h4 className="text-xs font-bold text-slate-200 group-hover:text-purple-300 transition-colors">
+              4. 全息天書萬字報告 ➔
+            </h4>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              完全合參萬字條目，適合想要一字不漏沉浸研讀的讀者。
+            </p>
+          </button>
+        </div>
+      </div>
+
       {/* 能量儀表板與雷達矩陣 (Energy Radar & Gauges Matrix Dashboard) */}
       <div className="p-6 md:p-8 rounded-3xl bg-slate-900/40 border border-slate-850 shadow-2xl space-y-8 relative overflow-hidden" id="energy-gauge-dashboard-section">
         <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl pointer-events-none" />

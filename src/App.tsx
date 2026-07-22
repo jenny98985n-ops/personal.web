@@ -5,6 +5,8 @@ import {
 
 import OverviewDashboard from './components/OverviewDashboard';
 import EnergyQuoteWidget from './components/EnergyQuoteWidget';
+import GuidedReadingBanner from './components/GuidedReadingBanner';
+
 const UserManualView = lazy(() => import('./components/UserManualView'));
 const AstrologyView = lazy(() => import('./components/AstrologyView'));
 const HumanDesignView = lazy(() => import('./components/HumanDesignView'));
@@ -19,6 +21,7 @@ type TabType = 'overview' | 'usermanual' | 'fullreport' | 'astrology' | 'humande
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
+  const [guidedMode, setGuidedMode] = useState<boolean>(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     return (localStorage.getItem('app-theme') as 'dark' | 'light') || 'dark';
@@ -51,16 +54,16 @@ export default function App() {
   };
 
   const tabs = [
-    { id: 'overview', name: '全息總覽', icon: Sparkles, color: 'text-indigo-400' },
-    { id: 'usermanual', name: '能量使用說明書', icon: BookOpenCheck, color: 'text-emerald-400' },
-    { id: 'fullreport', name: '全息天書報告', icon: BookOpen, color: 'text-amber-400' },
-    { id: 'astrology', name: '西洋占星', icon: Compass, color: 'text-blue-400' },
-    { id: 'humandesign', name: '人類圖全析', icon: Brain, color: 'text-rose-400' },
-    { id: 'easterndestiny', name: '東方命理 (八字/紫微)', icon: Flame, color: 'text-amber-400' },
-    { id: 'name', name: '五格姓名學', icon: Award, color: 'text-emerald-400' },
-    { id: 'love', name: '親密關係藍圖', icon: Heart, color: 'text-rose-500' },
-    { id: 'wealth', name: '財富與職場', icon: DollarSign, color: 'text-amber-300' },
-    { id: 'spirituality', name: '身心靈與玄學', icon: Activity, color: 'text-teal-400' },
+    { id: 'overview', name: '全息總覽', icon: Sparkles, color: 'text-indigo-400', level: '1階入門' },
+    { id: 'usermanual', name: '能量使用說明書', icon: BookOpenCheck, color: 'text-emerald-400', level: '2階手冊' },
+    { id: 'astrology', name: '西洋占星', icon: Compass, color: 'text-blue-400', level: '3階專題' },
+    { id: 'humandesign', name: '人類圖全析', icon: Brain, color: 'text-rose-400', level: '3階專題' },
+    { id: 'easterndestiny', name: '東方命理 (八字/紫微)', icon: Flame, color: 'text-amber-400', level: '3階專題' },
+    { id: 'name', name: '五格姓名學', icon: Award, color: 'text-emerald-400', level: '3階專題' },
+    { id: 'love', name: '親密關係藍圖', icon: Heart, color: 'text-rose-500', level: '3階專題' },
+    { id: 'wealth', name: '財富與職場', icon: DollarSign, color: 'text-amber-300', level: '3階專題' },
+    { id: 'spirituality', name: '身心靈與玄學', icon: Activity, color: 'text-teal-400', level: '3階專題' },
+    { id: 'fullreport', name: '全息天書報告', icon: BookOpen, color: 'text-amber-400', level: '4階天書' },
   ];
 
   const handleTabSelect = (tabId: TabType) => {
@@ -92,22 +95,31 @@ export default function App() {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-45 bg-slate-950/98 flex flex-col pt-24 px-8 space-y-6 md:hidden animate-fade-in">
-          <nav className="flex flex-col space-y-4">
+        <div className="fixed inset-0 z-45 bg-slate-950/98 flex flex-col pt-24 px-8 space-y-6 md:hidden animate-fade-in overflow-y-auto">
+          <nav className="flex flex-col space-y-3">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
                   onClick={() => handleTabSelect(tab.id as TabType)}
-                  className={`flex items-center gap-4 py-3.5 px-4 rounded-xl text-sm font-black transition-all ${
+                  className={`flex items-center justify-between py-3 px-4 rounded-xl text-sm font-black transition-all ${
                     activeTab === tab.id 
                       ? 'bg-amber-400 text-slate-950 shadow-lg shadow-amber-400/10' 
                       : 'text-slate-400 hover:text-slate-300 bg-slate-900/40'
                   }`}
                 >
-                  <Icon className="w-5 h-5 flex-shrink-0" />
-                  {tab.name}
+                  <div className="flex items-center gap-3">
+                    <Icon className="w-5 h-5 flex-shrink-0" />
+                    <span>{tab.name}</span>
+                  </div>
+                  <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${
+                    activeTab === tab.id
+                      ? 'bg-slate-950/20 border-slate-950/30 text-slate-900'
+                      : 'bg-slate-950 border-slate-800 text-slate-400'
+                  }`}>
+                    {tab.level}
+                  </span>
                 </button>
               );
             })}
@@ -159,15 +171,24 @@ export default function App() {
                 <button
                   key={tab.id}
                   onClick={() => handleTabSelect(tab.id as TabType)}
-                  className={`w-full flex items-center gap-3.5 py-2.5 px-4 rounded-xl text-xs font-black tracking-wide transition-all ${
+                  className={`w-full flex items-center justify-between py-2.5 px-3.5 rounded-xl text-xs font-black tracking-wide transition-all ${
                     activeTab === tab.id 
                       ? 'bg-amber-400 text-slate-950 shadow-lg shadow-amber-400/15' 
                       : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 bg-slate-950 border border-transparent'
                   }`}
                   id={`tab-btn-${tab.id}`}
                 >
-                  <Icon className="w-4 h-4 flex-shrink-0" />
-                  {tab.name}
+                  <div className="flex items-center gap-3">
+                    <Icon className="w-4 h-4 flex-shrink-0" />
+                    <span>{tab.name}</span>
+                  </div>
+                  <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded border ${
+                    activeTab === tab.id 
+                      ? 'bg-slate-950/20 border-slate-950/30 text-slate-900' 
+                      : 'bg-slate-900 border-slate-800 text-slate-500'
+                  }`}>
+                    {tab.level}
+                  </span>
                 </button>
               );
             })}
@@ -207,6 +228,14 @@ export default function App() {
       <div className="flex-grow relative overflow-hidden flex flex-col min-h-screen">
         {/* Scrollable content box */}
         <main className="relative z-10 flex-grow p-6 md:p-10 max-w-7xl mx-auto space-y-8 w-full overflow-y-auto">
+          {/* Top Guided Reading Banner */}
+          <GuidedReadingBanner 
+            activeTab={activeTab} 
+            onSelectTab={handleTabSelect} 
+            guidedMode={guidedMode} 
+            setGuidedMode={setGuidedMode} 
+          />
+
           <Suspense fallback={
             <div className="flex items-center justify-center py-20 gap-3 text-slate-400 font-mono text-sm">
               <Loader2 className="w-5 h-5 animate-spin text-amber-400" />
