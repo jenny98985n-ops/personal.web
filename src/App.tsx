@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { 
-  Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, Menu, X, BookOpen
+  Sparkles, Compass, Brain, Flame, Award, Heart, DollarSign, Activity, Menu, X, BookOpen, Loader2
 } from 'lucide-react';
-import OverviewDashboard from './components/OverviewDashboard';
-import AstrologyView from './components/AstrologyView';
-import HumanDesignView from './components/HumanDesignView';
-import EasternDestinyView from './components/EasternDestinyView';
-import NameNumerologyView from './components/NameNumerologyView';
-import RelationshipView from './components/RelationshipView';
-import WealthCareerView from './components/WealthCareerView';
-import HealthSpiritualityView from './components/HealthSpiritualityView';
-import FullReportView from './components/FullReportView';
+
+const OverviewDashboard = lazy(() => import('./components/OverviewDashboard'));
+const AstrologyView = lazy(() => import('./components/AstrologyView'));
+const HumanDesignView = lazy(() => import('./components/HumanDesignView'));
+const EasternDestinyView = lazy(() => import('./components/EasternDestinyView'));
+const NameNumerologyView = lazy(() => import('./components/NameNumerologyView'));
+const RelationshipView = lazy(() => import('./components/RelationshipView'));
+const WealthCareerView = lazy(() => import('./components/WealthCareerView'));
+const HealthSpiritualityView = lazy(() => import('./components/HealthSpiritualityView'));
+const FullReportView = lazy(() => import('./components/FullReportView'));
 
 type TabType = 'overview' | 'fullreport' | 'astrology' | 'humandesign' | 'easterndestiny' | 'name' | 'love' | 'wealth' | 'spirituality';
 
@@ -153,15 +154,22 @@ export default function App() {
 
         {/* Scrollable content box */}
         <main className="relative z-10 flex-grow p-6 md:p-10 max-w-7xl mx-auto space-y-8 w-full overflow-y-auto">
-          {activeTab === 'overview' && <OverviewDashboard onTabChange={(tab) => handleTabSelect(tab as TabType)} />}
-          {activeTab === 'fullreport' && <FullReportView />}
-          {activeTab === 'astrology' && <AstrologyView />}
-          {activeTab === 'humandesign' && <HumanDesignView />}
-          {activeTab === 'easterndestiny' && <EasternDestinyView />}
-          {activeTab === 'name' && <NameNumerologyView />}
-          {activeTab === 'love' && <RelationshipView />}
-          {activeTab === 'wealth' && <WealthCareerView />}
-          {activeTab === 'spirituality' && <HealthSpiritualityView />}
+          <Suspense fallback={
+            <div className="flex items-center justify-center py-20 gap-3 text-slate-400 font-mono text-sm">
+              <Loader2 className="w-5 h-5 animate-spin text-amber-400" />
+              <span>載入中...</span>
+            </div>
+          }>
+            {activeTab === 'overview' && <OverviewDashboard onTabChange={(tab) => handleTabSelect(tab as TabType)} />}
+            {activeTab === 'fullreport' && <FullReportView />}
+            {activeTab === 'astrology' && <AstrologyView />}
+            {activeTab === 'humandesign' && <HumanDesignView />}
+            {activeTab === 'easterndestiny' && <EasternDestinyView />}
+            {activeTab === 'name' && <NameNumerologyView />}
+            {activeTab === 'love' && <RelationshipView />}
+            {activeTab === 'wealth' && <WealthCareerView />}
+            {activeTab === 'spirituality' && <HealthSpiritualityView />}
+          </Suspense>
         </main>
       </div>
 
