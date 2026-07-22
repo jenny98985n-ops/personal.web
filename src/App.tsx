@@ -137,21 +137,8 @@ export default function App() {
         </div>
       </aside>
 
-      {/* Main Content Area Container with shifting watermark background */}
+      {/* Main Content Area Container */}
       <div className="flex-grow relative overflow-hidden flex flex-col min-h-screen">
-        {/* Background Decorative Text - Giant Brand Watermark */}
-        <div className="absolute -top-12 -right-16 text-[15rem] md:text-[22rem] font-black text-slate-100/5 leading-none select-none z-0 pointer-events-none font-display uppercase tracking-tighter">
-          {activeTab === 'overview' && 'SOUL'}
-          {activeTab === 'fullreport' && 'REPORT'}
-          {activeTab === 'astrology' && 'ASTRO'}
-          {activeTab === 'humandesign' && 'HUMAN'}
-          {activeTab === 'easterndestiny' && 'DESTINY'}
-          {activeTab === 'name' && 'NAME'}
-          {activeTab === 'love' && 'LOVE'}
-          {activeTab === 'wealth' && 'WEALTH'}
-          {activeTab === 'spirituality' && 'SPIRIT'}
-        </div>
-
         {/* Scrollable content box */}
         <main className="relative z-10 flex-grow p-6 md:p-10 max-w-7xl mx-auto space-y-8 w-full overflow-y-auto">
           <Suspense fallback={
