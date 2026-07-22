@@ -93,12 +93,12 @@ const HOLOGRAPHIC_CARDS: HolographicCardItem[] = [
     id: 'wealth_matrix',
     systemTag: '財富矩陣',
     groupTitle: '維度二 ✦ 運勢節奏',
-    title: '54章：財富矩陣與商業帝國底層',
+    title: '財富矩陣與商業帝國底層',
     tags: ['系統變現', '高溢價定價權', '隱密智庫結界'],
     icon: DollarSign,
     themeColor: 'emerald',
     summary: '戒斷「勞力變現」，啟動「系統變現」。憑藉高溢價定價權與 12 宮隱密結界打造商業帝國。',
-    spiritualInsight: `（參照第 54 章剖析）YieJie 過去受 ENFJ 與 6 宮冥王星影響，容易落入「親力親為」的陷阱。對空白薦骨而言，這是慢性自殺！
+    spiritualInsight: `（參照財富矩陣篇剖析）YieJie 過去受 ENFJ 與 6 宮冥王星影響，容易落入「親力親為」的陷阱。對空白薦骨而言，這是慢性自殺！
 
 破局戰略：
 ① 系統變現：結合四箭全左與天機化祿，將妳的解牌與潛意識戰略錄製成高單價課程或「潛意識戰略推演框架」。妳賣的是節省時間的「演算法」，而非時間本身。
@@ -116,12 +116,12 @@ const HOLOGRAPHIC_CARDS: HolographicCardItem[] = [
     id: 'ziwei_oppose',
     systemTag: '巳亥對沖',
     groupTitle: '維度二 ✦ 運勢節奏',
-    title: '57章：巳亥對沖解碼 (天機化祿 vs 太陰化忌)',
+    title: '巳亥對沖解碼 (天機化祿 vs 太陰化忌)',
     tags: ['賺錢與焦慮對決', '木五行通關', '知識產權護城河'],
     icon: Activity,
     themeColor: 'teal',
     summary: '財帛宮天機化祿與福德宮太陰化忌正對沖！唯有導入「木五行（品牌/知識庫）」方能通關。',
-    spiritualInsight: `（參照第 57 章剖析）紫微財帛宮在「亥（天機化祿）」，福德宮在「巳（太陰化忌）」，兩者正對沖，完美對應八字「巳亥相沖」。
+    spiritualInsight: `（參照巳亥對沖篇剖析）紫微財帛宮在「亥（天機化祿）」，福德宮在「巳（太陰化忌）」，兩者正對沖，完美對應八字「巳亥相沖」。
 
 底層真相：大腦一產生商業點子賺錢（天機化祿），就會立刻沖動福德宮，引爆太陰化忌的神經緊繃與失眠。對妳來說，原廠設定中「賺錢」與「內心平靜」是拉扯的。
 
@@ -139,12 +139,12 @@ const HOLOGRAPHIC_CARDS: HolographicCardItem[] = [
     id: 'bazi_pingsin',
     systemTag: '八字博弈',
     groupTitle: '維度二 ✦ 運勢節奏',
-    title: '58章：丙辛合水權力遊戲與吸血鬼防禦',
+    title: '丙辛合水權力遊戲與吸血鬼防禦',
     tags: ['丙辛合水', '空宮吸血鬼防禦', '太陽化權降維打擊'],
     icon: Flame,
     themeColor: 'amber',
     summary: '丙辛合正財與控制權博弈！識別假貴人吸血鬼，啟動太陽化權進行降維打擊。',
-    spiritualInsight: `（參照第 58 章剖析）八字「丙辛合水（貪合正財）」：丙火（太陽）與辛金（正財）合化為水（官殺責任）。
+    spiritualInsight: `（參照丙辛合水篇剖析）八字「丙辛合水（貪合正財）」：丙火（太陽）與辛金（正財）合化為水（官殺責任）。
 
 致命盲點：妳為了抓住實質價值（辛金），常不自覺陷入充滿壓力的體制或責任（化水）中。配合紫微命宮空宮，一旦對方展現優渥條件，顯示者靈魂就會戴上枷鎖。
 
@@ -165,12 +165,12 @@ const HOLOGRAPHIC_CARDS: HolographicCardItem[] = [
     id: 'social_cabinet',
     systemTag: '人際結界',
     groupTitle: '維度三 ✦ 人際互動',
-    title: '55章：三層人際防護網與核心內閣',
+    title: '三層人際防護網與核心內閣',
     tags: ['外圍信仰者', '中堅執行內閣', '核心靈魂避難所'],
     icon: Shield,
     themeColor: 'indigo',
     summary: '告別向下兼容！建立「信仰者、執行內閣、靈魂避難所」三層防護網，保護空白薦骨。',
-    spiritualInsight: `（參照第 55 章剖析）伴隨 2026 羊刃年加冕，妳的人際關係必須重新洗牌。不能再把每個人都當成需要拯救的朋友，必須像 CEO 一樣建立三層防護網：
+    spiritualInsight: `（參照三層人際防護網篇剖析）伴隨 2026 羊刃年加冕，妳的人際關係必須重新洗牌。不能再把每個人都當成需要拯救的朋友，必須像 CEO 一樣建立三層防護網：
 
 第一層 ✦ 外圍信仰者：
 對應「太陽化權 + 月亮獅子」。給予願景與智識，享受掌聲，但絶不介入私人情緒，不當情緒垃圾桶。

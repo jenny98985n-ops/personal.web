@@ -259,13 +259,15 @@ export default function CoreKeyPointsSummary({
 
                     {/* Action Advice Callout */}
                     {item.actionAdvice && (
-                      <div className="p-2.5 rounded-xl bg-amber-400/5 border border-amber-400/20 text-[11px] text-amber-200 leading-normal flex items-start gap-2">
-                        <Target className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                      <div className="p-3 rounded-xl bg-amber-500/10 dark:bg-amber-950/40 border border-amber-500/30 text-xs leading-relaxed flex items-start gap-2.5 mt-1">
+                        <Target className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
                         <div>
-                          <strong className="text-amber-300 block text-[10px] uppercase font-mono tracking-wider">
+                          <strong className="text-amber-800 dark:text-amber-300 block text-xs font-bold font-mono tracking-wide mb-0.5">
                             關鍵破局行動：
                           </strong>
-                          <span>{item.actionAdvice}</span>
+                          <span className="text-slate-900 dark:text-amber-100 font-medium">
+                            {item.actionAdvice}
+                          </span>
                         </div>
                       </div>
                     )}
@@ -315,9 +317,12 @@ export default function CoreKeyPointsSummary({
 
                     {/* Action Advice (if available) */}
                     {item.actionAdvice && (
-                      <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-amber-200/90 leading-normal flex items-start gap-1.5">
-                        <Lightbulb className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                        <span><strong className="text-amber-300">行動指南：</strong>{item.actionAdvice}</span>
+                      <div className="p-3 rounded-xl bg-amber-500/10 dark:bg-amber-950/40 border border-amber-500/30 text-xs leading-relaxed flex items-start gap-2 mt-1">
+                        <Lightbulb className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="text-amber-800 dark:text-amber-300 font-bold block mb-0.5">行動指南：</strong>
+                          <span className="text-slate-900 dark:text-amber-100 font-medium">{item.actionAdvice}</span>
+                        </div>
                       </div>
                     )}
                   </div>

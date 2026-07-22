@@ -36,13 +36,13 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
   const [copiedId, setCopiedId] = useState<number | null>(null);
 
   const categories = [
-    { id: 'all', name: '全部章節', count: 68, icon: BookOpen },
-    { id: 'personality', name: '性格心智', count: 15, icon: Compass },
-    { id: 'humandesign', name: '人類圖解碼', count: 5, icon: Brain },
-    { id: 'destiny', name: '東方玄學', count: 9, icon: Flame },
-    { id: 'relationship', name: '親密關係', count: 9, icon: Heart },
-    { id: 'wealth', name: '財富與事業', count: 10, icon: DollarSign },
-    { id: 'spirituality', name: '身心靈實踐', count: 16, icon: Activity },
+    { id: 'all', name: '全部章節', count: 89, icon: BookOpen },
+    { id: 'personality', name: '性格心智', count: 21, icon: Compass },
+    { id: 'humandesign', name: '人類圖解碼', count: 6, icon: Brain },
+    { id: 'destiny', name: '東方玄學', count: 12, icon: Flame },
+    { id: 'relationship', name: '親密關係', count: 13, icon: Heart },
+    { id: 'wealth', name: '財富與事業', count: 12, icon: DollarSign },
+    { id: 'spirituality', name: '身心靈實踐', count: 21, icon: Activity },
     { id: 'future', name: '未來願景', count: 4, icon: Sparkles },
   ];
 
@@ -549,7 +549,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
       tagline: "情感權力動態 ✦ 焦慮數據化 ✦ 有策略地示弱 ✦ 溫度差調和",
       content: (
         <div className="space-y-4 text-xs leading-relaxed font-sans">
-          <p>接續上一章的跨維度視角，這是一份完整擴充版的破局藍圖，直擊妳在親密關係、決策與自我認同中的核心盲區：</p>
+          <p>接續上一篇的跨維度視角，這是一份完整擴充版的破局藍圖，直擊妳在親密關係、決策與自我認同中的核心盲區：</p>
           
           <div className="space-y-3">
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850">
@@ -3430,7 +3430,492 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
           </div>
         </div>
       )
-    }
+    },
+
+    {
+      id: 69,
+      title: "原盤座標定位：當微觀小星落入妳的命盤宮位與孤辰寡宿結界",
+      category: "destiny",
+      categoryLabel: "微觀星曜",
+      icon: Flame,
+      iconBg: "bg-orange-500/10",
+      iconColor: "text-orange-400",
+      tagline: "微觀星曜 ✦ 孤辰寡宿 ✦ 靈魂邊界 ✦ 紫微深層佈局",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>微觀小星雖然不主導人生的大方向，但卻精準地調控著妳日常生活中的情緒細節與人際邊界。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">① 孤辰與寡宿：靈魂防護防護罩</strong>
+            <p className="text-slate-300">妳命盤中的孤辰與寡宿，表面上帶來孤獨感，實則是宇宙為保護妳高敏感體質而設定的神聖能量防護結界。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-blue-400 block">② 太台與八座：天然尊榮氣場</strong>
+            <p className="text-slate-300">帶來貴人相助與高質感氛圍，讓妳在任何領域皆能展現不俗品味與權威位階。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 70,
+      title: "當小星遇上主星：賴以婕專屬的反差萌與超頻大腦防護矩陣",
+      category: "personality",
+      categoryLabel: "心智運作",
+      icon: Compass,
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-400",
+      tagline: "天才博士 ✦ 超頻運算 ✦ 主星小星交響 ✦ 精神防護網",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>當天才星與博士星遇上主星天機與雙子座，塑造了妳超高速運算的腦力與極具個人魅力的反差萌。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-blue-400 block">① 天才與博士：超頻學習雷達</strong>
+            <p className="text-slate-300">能在極短時間內拆解複雜系統，並將知識進行跨界整合，是天然的知識建築師。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">② 反差萌：外在強勢與內在軟萌</strong>
+            <p className="text-slate-300">外表展現太陽化權的霸氣女王風範，私下卻保有極具溫柔同理的照顧者本色。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 71,
+      title: "財帛與交友/兄弟宮暗湧：天機化祿的智力變現與絕對單飛戰略",
+      category: "wealth",
+      categoryLabel: "財富策略",
+      icon: DollarSign,
+      iconBg: "bg-emerald-500/10",
+      iconColor: "text-emerald-400",
+      tagline: "天機化祿 ✦ 智力高價變現 ✦ 獨資單飛 ✦ 合夥防爆",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>財帛宮天機化祿代表妳最好的賺錢模式是「販售智慧與策略」，而非靠體力死啃。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-emerald-400 block">① 智力變現最高招</strong>
+            <p className="text-slate-300">建立高單價顧問、系統方案與個人知識產品，讓腦力高槓桿運作。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">② 絕對單飛策略</strong>
+            <p className="text-slate-300">兄弟與交友宮的暗湧提醒妳：絕對獨資或握有 100% 主導權，外包執行，不進行股份糾纏。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 72,
+      title: "疾厄宮與父母宮宿命連動：七殺坐疾厄的肉體高壓與身心調頻",
+      category: "spirituality",
+      categoryLabel: "身心調頻",
+      icon: Activity,
+      iconBg: "bg-teal-500/10",
+      iconColor: "text-teal-400",
+      tagline: "七殺疾厄 ✦ 肉體高壓 ✦ 體質發炎 ✦ 完美主義處決",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>七殺星落入疾厄宮，身體容易在過度追求完美時出現發炎與神經系統高壓現象。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">① 肉體高壓警訊</strong>
+            <p className="text-slate-300">當完美的自我要求過高時，七殺會化為肉體的發炎與緊張，需及時關機。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-teal-400 block">② 水分與接地調頻</strong>
+            <p className="text-slate-300">利用海鹽浴、芳療與多補充水分，將體內的火氣與神經過熱平穩排出。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 73,
+      title: "遷移宮與身宮太陽化權：外在霸氣女王面具與內在太陰化忌的深夜療癒",
+      category: "personality",
+      categoryLabel: "性格假面",
+      icon: Compass,
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-400",
+      tagline: "太陽化權 ✦ 女王氣場 ✦ 太陰化忌 ✦ 深夜情緒防護",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>太陽化權賦予妳在公眾面前無可撼動的女王氣場，但深夜的太陰化忌需要極度的溫柔呵護。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">① 太陽化權的面具</strong>
+            <p className="text-slate-300">對外展現果斷、獨立與霸氣，是妳開創新事業與談判的最佳武器。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-indigo-400 block">② 太陰化忌的深夜療癒</strong>
+            <p className="text-slate-300">允許自己在深夜關閉雷達，不強求理性，用音樂與冥想陪伴內在情緒。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 74,
+      title: "田宅宮與福德宮宿命共振：打造絕對防禦的高奢靈魂結界",
+      category: "spirituality",
+      categoryLabel: "高奢結界",
+      icon: Activity,
+      iconBg: "bg-teal-500/10",
+      iconColor: "text-teal-400",
+      tagline: "田宅貪狼 ✦ 實體基座 ✦ 靈魂結界 ✦ 感官定錨",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>田宅宮貪狼與福德宮共振，代表高質感的居住與私人空間是妳神經系統最好的能量安撫器。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">① 空間即是能量定錨</strong>
+            <p className="text-slate-300">頂級音響、高奢家具與完全私密的環境，能將雙子大腦的躁動徹底安定。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-teal-400 block">② 靈魂堡壘建立</strong>
+            <p className="text-slate-300">嚴格過濾進入妳生活空間的人，將家打造成絕對純淨的高頻 sanctuary。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 75,
+      title: "紫微斗數十二宮全景評估與能量權重分析",
+      category: "destiny",
+      categoryLabel: "十二宮全景",
+      icon: Flame,
+      iconBg: "bg-orange-500/10",
+      iconColor: "text-orange-400",
+      tagline: "十二宮評估 ✦ 命盤權重 ✦ 能量吉凶 ✦ 全息大戰略",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>全景剖析十二宮位能量權重，命宮空宮借對宮太陽天梁，財帛天機化祿，官祿巨門昌曲。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">① 強宮定位：財帛、官祿、遷移</strong>
+            <p className="text-slate-300">三大三方四正強宮主導妳的外在事業成就，智力與口才為第一生產力。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">② 弱宮防守：交友、夫妻</strong>
+            <p className="text-slate-300">交友與夫妻宮需採防禦姿態，保持適度邊界，避免情緒牽連與財務糾葛。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 76,
+      title: "東方八字命理精解與五行水金調和戰略",
+      category: "destiny",
+      categoryLabel: "八字精解",
+      icon: Flame,
+      iconBg: "bg-orange-500/10",
+      iconColor: "text-orange-400",
+      tagline: "丙火日主 ✦ 丙辛合水 ✦ 補金補水 ✦ 五行平衡",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>丙火日主生於夏月，印星木旺，喜金水調和。丙辛合水帶給妳敏銳的商業直覺與財富嗅覺。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">① 五行喜用：金與水</strong>
+            <p className="text-slate-300">金為財星，水為官殺與智慧。多接觸白色、金色、黑色、深藍色與水元素。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-emerald-400 block">② 丙辛合水之妙</strong>
+            <p className="text-slate-300">將務實的金錢規劃轉化為流動的靈魂智慧與事業活水。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 77,
+      title: "太陽化權與太陰化忌的心理時差：解開假面超人的精神過載",
+      category: "personality",
+      categoryLabel: "心理剖析",
+      icon: Compass,
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-400",
+      tagline: "心理時差 ✦ 假面超人 ✦ 精神過載 ✦ 內在和解",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>太陽化權的強大外表與太陰化忌的內在不安，容易在獨處時產生心理時差與自我檢討過度的傾向。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">① 假面超人的疲憊</strong>
+            <p className="text-slate-300">白天完美扛下所有期待，夜晚卻容易陷入「我是不是還不夠好」的精神批判。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-teal-400 block">② 停止自我自殘</strong>
+            <p className="text-slate-300">接納自己的脆弱，明白完美的標準只是幻象，允許自己放鬆與停拍。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 78,
+      title: "丙辛合水與祿存空宮的黃金籠子：突破自由與安全的內在藩籬",
+      category: "wealth",
+      categoryLabel: "財富困局",
+      icon: DollarSign,
+      iconBg: "bg-emerald-500/10",
+      iconColor: "text-emerald-400",
+      tagline: "黃金籠子 ✦ 丙辛合水 ✦ 自由與安全 ✦ 突破藩籬",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>祿存星在空宮建立起安全的黃金籠子，但雙子與顯示者基因又迫切渴望打破藩籬。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">① 黃金籠子的安全感</strong>
+            <p className="text-slate-300">用物質與防禦建立安全堡壘，防止外界過度侵擾。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-blue-400 block">② 開放飛翔門戶</strong>
+            <p className="text-slate-300">在安全資產護城河之上，給大腦與靈魂留出 100% 自由發起與探索的通道。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 79,
+      title: "製造問題上癮與平穩恐懼症：重塑應激大腦的神經安全感",
+      category: "personality",
+      categoryLabel: "心智陷阱",
+      icon: Compass,
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-400",
+      tagline: "製造問題 ✦ 平穩恐懼 ✦ 應激反應 ✦ 神經安撫",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>長期習慣高壓與應激狀態的大腦，在遇到風平浪靜時，反而無意識尋找或製造新的挑戰。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">① 應激大腦的慣性</strong>
+            <p className="text-slate-300">平穩被大腦誤判為危險前兆，因而主動挑起戰火或給自己設定高難度目標。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-emerald-400 block">② 重塑神經安全感</strong>
+            <p className="text-slate-300">告訴大腦：「現在很安全，平穩是值得享受的祝福，不需要尋找敵人。」</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 80,
+      title: "親密關係的預防性拋棄：打破智力碾壓與迴避型依附的推拉",
+      category: "relationship",
+      categoryLabel: "親密推拉",
+      icon: Heart,
+      iconBg: "bg-pink-500/10",
+      iconColor: "text-pink-400",
+      tagline: "預防性拋棄 ✦ 智力碾壓 ✦ 迴避依附 ✦ 真實敞開",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>恐懼迴避型依附讓妳在感覺太靠近時，本能啟動智力碾壓或拉開距離以防受傷。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-pink-400 block">① 預防性拋棄機制</strong>
+            <p className="text-slate-300">在對方可能傷害自己之前，先用嚴苛的標準或冷漠將對方推出防禦圈。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">② 敞開的勇氣</strong>
+            <p className="text-slate-300">學會在安全伴侶面前展現真實的脆弱，用「告知」取代智力對抗。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 81,
+      title: "卯宮空宮帶祿存與太陰化忌：撕毀精神高利貸與隱形帳本",
+      category: "relationship",
+      categoryLabel: "人際邊界",
+      icon: Heart,
+      iconBg: "bg-pink-500/10",
+      iconColor: "text-pink-400",
+      tagline: "精神高利貸 ✦ 隱形帳本 ✦ 討好陷阱 ✦ 徹底放手",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>照顧者面具下，隱形帳本記錄著每一次的付出，若得不到相應尊重，會引發冷酷的斷捨離。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">① 隱形帳本的由來</strong>
+            <p className="text-slate-300">源於對公平與尊重的渴望，過度付出後若對方不知感恩，會一次性扣滿分數。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-emerald-400 block">② 撕毀帳本，設立事前邊界</strong>
+            <p className="text-slate-300">不再進行非自願的過度照顧，一開始就建立清晰邊界，免除後續內耗。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 82,
+      title: "疾厄七殺與父母擎羊的肉體審判庭：解除完美主義對身體的處決",
+      category: "spirituality",
+      categoryLabel: "肉體療癒",
+      icon: Activity,
+      iconBg: "bg-teal-500/10",
+      iconColor: "text-teal-400",
+      tagline: "肉體審判庭 ✦ 完美處決 ✦ 神經發炎 ✦ 放鬆放空",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>完美的內在標準像審判庭，把壓能直接轉化為肉體的緊繃與過敏發炎。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">① 肉體處決機制</strong>
+            <p className="text-slate-300">身體成為完美主義的代罪羔羊，長期的神經緊繃引發生理發炎。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-teal-400 block">② 解除審判，溫柔對待</strong>
+            <p className="text-slate-300">給身體真正的許可，容許瑕疵，用芳療、水療與睡眠好好愛自己。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 83,
+      title: "水星雙子逆行與智識傲慢：高處不勝寒的精神孤寂與同頻尋伴",
+      category: "personality",
+      categoryLabel: "智識傲慢",
+      icon: Compass,
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-400",
+      tagline: "智識傲慢 ✦ 精神孤寂 ✦ 水星逆行 ✦ 靈魂尋伴",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>超頻的雙子大腦與高標準讓妳在人群中依然能感受到深刻的精神孤寂。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-blue-400 block">① 精神高處的孤寂</strong>
+            <p className="text-slate-300">很少人能跟上妳的邏輯跳躍速度，因而產生孤芳自賞與無敵孤獨。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">② 尋找同頻同路人</strong>
+            <p className="text-slate-300">不必強求所有人都理解妳，在核心圈子裡找到少數能深度對話的靈魂即可。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 84,
+      title: "太陽化權與顯示者基因：破除隱形獨裁者盲點與學會真正授權",
+      category: "personality",
+      categoryLabel: "掌控盲點",
+      icon: Compass,
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-400",
+      tagline: "隱形獨裁者 ✦ 顯示者掌控 ✦ 告知放手 ✦ 權力與自由",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>顯示者的發起力與太陽化權結合，若未意識到會無意間展現強烈的主導與掌控欲。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">① 隱形獨裁盲點</strong>
+            <p className="text-slate-300">以為自己只是在追求自由，但在團隊或關係中常不自主地下達指令。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-emerald-400 block">② 用告知替代掌控</strong>
+            <p className="text-slate-300">清晰告知願景，然後信任並授權給合適的夥伴去發揮執行。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 85,
+      title: "夫妻宮鈴星與雙子高塔矛盾：卸下智力防禦與允許被看穿的溫柔",
+      category: "relationship",
+      categoryLabel: "智識防禦",
+      icon: Heart,
+      iconBg: "bg-pink-500/10",
+      iconColor: "text-pink-400",
+      tagline: "夫妻宮鈴星 ✦ 雙子高塔 ✦ 智識對手 ✦ 被看穿的恐懼",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>智識上渴望棋逢敵手的伴侶，但若對方真的看穿了防禦高塔，又會激發焦慮反應。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-pink-400 block">① 智識高塔防禦</strong>
+            <p className="text-slate-300">用強大的邏輯與辯才打造城堡，既吸引聰明人，又將人擋在城門外。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">② 允許被理解的溫柔</strong>
+            <p className="text-slate-300">卸下完美的防禦塔，讓真正對頻的伴侶走進妳溫柔柔軟的內心。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 86,
+      title: "12宮群星與太陰化忌：擺脫情感回收場陷阱與建立神聖門檻",
+      category: "relationship",
+      categoryLabel: "情感結界",
+      icon: Heart,
+      iconBg: "bg-pink-500/10",
+      iconColor: "text-pink-400",
+      tagline: "高級回收場 ✦ 情感難民 ✦ 12宮海綿 ✦ 神聖結界",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>高共情力與溫柔的結界，若沒有設置清晰閘門，容易無意間吸引需要被拯救的情感難民。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">① 情感回收場陷阱</strong>
+            <p className="text-slate-300">因為能看懂別人的傷痛，常不自覺成為別人的情緒垃圾桶或庇護所。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-teal-400 block">② 建立高門檻結界</strong>
+            <p className="text-slate-300">只招攬能量對等、成熟自律的夥伴進入，拒絕單向消耗的情感吸血。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 87,
+      title: "易經火風鼎卦的煉金密碼：將混亂經歷入鼎淬鍊成智慧仙丹",
+      category: "spirituality",
+      categoryLabel: "易經鼎卦",
+      icon: Activity,
+      iconBg: "bg-teal-500/10",
+      iconColor: "text-teal-400",
+      tagline: "火風鼎卦 ✦ 靈魂煉金 ✦ 毒藥仙丹 ✦ 鼎革新生",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>易經鼎卦代表革故鼎新。妳的人生往往需要將混亂的痛苦經歷入鼎烹煮，淬鍊成高維智慧仙丹。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">① 鼎卦的煉金過程</strong>
+            <p className="text-slate-300">不逃避生命的挫折，將每一次危機當作鼎中的養分進行解構與重組。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-teal-400 block">② 淬鍊成智慧仙丹</strong>
+            <p className="text-slate-300">將自己的轉化經驗寫成系統方法論，成為啟發與療癒世人的高階導師。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 88,
+      title: "靈數 24/6 與女祭司陰影：跨越清高與權威的聖俗統合",
+      category: "spirituality",
+      categoryLabel: "靈數塔羅",
+      icon: Activity,
+      iconBg: "bg-teal-500/10",
+      iconColor: "text-teal-400",
+      tagline: "靈數 24/6 ✦ 女祭司陰影 ✦ 清高與權力 ✦ 聖俗統合",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>女祭司的清高與靈數 6 的完美主義，需要學會接納世俗的慾望與權力，達成聖俗統合。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-indigo-400 block">① 女祭司的雙重陰影</strong>
+            <p className="text-slate-300">渴望遠離世俗庸俗，卻又在潛意識裡希望掌控全盤局面。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">② 聖俗統合的圓滿</strong>
+            <p className="text-slate-300">坦然擁抱對財富與名譽的渴望，用優雅的姿態將靈性與世俗成就圓融結合。</p>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 89,
+      title: "基因天命恐懼迴圈：擺脫無趣恐懼，活在永恆的創造發起中",
+      category: "humandesign",
+      categoryLabel: "基因天命",
+      icon: Brain,
+      iconBg: "bg-rose-500/10",
+      iconColor: "text-rose-400",
+      tagline: "基因天命 ✦ 恐懼迴圈 ✦ 無趣的恐懼 ✦ 終極自由",
+      content: (
+        <div className="space-y-4 text-xs leading-relaxed">
+          <p>基因天命揭示妳內心最大的恐懼不是失敗，而是「達到頂峰之後的停滯與無趣」。</p>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-rose-400 block">① 無趣恐懼迴圈</strong>
+            <p className="text-slate-300">雙子星群與顯示者基因渴望源源不斷的新體驗，害怕陷入死板重複的定型人生。</p>
+          </div>
+          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-850 space-y-2">
+            <strong className="text-amber-400 block">② 活在永恆的發起中</strong>
+            <p className="text-slate-300">將人生視為無窮無盡的探索遊戲，隨時允許自己發起新計劃，享受創造過程本身。</p>
+          </div>
+        </div>
+      )
+    },
+
   ];
 
   // Persistent Read Status State
@@ -3467,8 +3952,8 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
   const [readerFontSize, setReaderFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal');
 
   const readingRoutes = [
-    { id: 'all', name: '全章節順讀', badge: '68章全息天書', desc: '按 7 大主題模組全面研讀 68 章天命與能量解碼', icon: BookOpen, ids: null },
-    { id: 'essential', name: '5分鐘天命精華', badge: '必讀核心', desc: '精選 6 大核心章節，快速掌握命盤骨幹', icon: Zap, ids: [1, 50, 55, 22, 5, 68] },
+    { id: 'all', name: '全主題順讀', badge: '全息天書全解', desc: '按 7 大主題模組按主題模組全面研讀天命與全息能量解碼', icon: BookOpen, ids: null },
+    { id: 'essential', name: '5分鐘天命精華', badge: '必讀核心', desc: '精選 6 大核心主題，快速掌握命盤骨幹', icon: Zap, ids: [1, 50, 55, 22, 5, 68] },
     { id: 'career', name: '事業財富變現', badge: '商業顧問', desc: '聚焦大腦外包、天機化祿與造王藍圖', icon: DollarSign, ids: [4, 7, 28, 25, 68, 15, 16, 54, 44, 14] },
     { id: 'love', name: '情感親密夥伴', badge: '親密關係', desc: '破解夫妻宮空宮與傲嬌推拉心態', icon: Heart, ids: [5, 40, 45, 56, 57, 47, 6, 48, 31] },
     { id: 'mindfulness', name: '抗內耗能量護盾', badge: '身心靈療癒', desc: '空白薦骨保護、12宮隱士與五行調頻', icon: Activity, ids: [8, 29, 9, 30, 26, 32, 34, 35, 41, 23, 63, 17, 67, 66, 46, 42] },
@@ -3529,7 +4014,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
 
   const categoryDetails: Record<string, { subtitle: string; keywords: string[]; overview: string; border: string; accent: string; badgeBg: string }> = {
     all: {
-      subtitle: "68 章全息能量解碼黃金天書",
+      subtitle: "全息能量解碼黃金智慧全書",
       keywords: ["西洋占星", "人類圖", "紫微斗數", "八字命理", "姓名學"],
       overview: "這是一份極致深度的全能藍圖解碼。在上方或左側切換分類標籤，可快速檢視特定主題章節，標記閱讀進度或收藏最愛內容。",
       border: "border-slate-800",
@@ -3712,7 +4197,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                 2026 全息能量解碼終極報告
               </div>
               <h1 className="text-2xl md:text-4xl font-black text-slate-100 tracking-tighter leading-none">
-                全息天書解碼報告 <span className="text-amber-400 block md:inline md:ml-1 text-sm md:text-xl font-light tracking-wide font-mystic">✦ 68 章黃金智慧全書 ✦</span>
+                全息天書解碼報告 <span className="text-amber-400 block md:inline md:ml-1 text-sm md:text-xl font-light tracking-wide font-mystic">✦ 全息天命智慧全書 ✦</span>
               </h1>
               <p className="text-[11px] md:text-xs text-slate-400 max-w-2xl leading-relaxed">
                 整合西洋占星、人類圖、紫微斗數、八字命理與姓名學，為 <strong>YieJie</strong> 打造的頂層天命智慧天書。
@@ -3732,8 +4217,8 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
               </div>
               <div>
                 <div className="text-[10px] text-slate-500 font-mono tracking-wider">READING PROGRESS</div>
-                <div className="text-sm font-black text-slate-100 font-mono">已研讀 {overallStats.read} / {overallStats.total} 章</div>
-                <div className="text-[10px] text-amber-400/80 font-mono">已收藏 {overallStats.bookmarked} 篇最愛章節</div>
+                <div className="text-sm font-black text-slate-100 font-mono">已研讀 {overallStats.read} / {overallStats.total} 個主題</div>
+                <div className="text-[10px] text-amber-400/80 font-mono">已收藏 {overallStats.bookmarked} 篇最愛主題</div>
               </div>
             </div>
           </div>
@@ -3792,7 +4277,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                     {cat.name}
                   </h4>
                   <span className="text-[9px] font-mono text-slate-500 block">
-                    {progress?.total || 0} 個主題章節
+                    {progress?.total || 0} 個全息主題
                   </span>
                 </div>
 
@@ -3857,7 +4342,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                         {cat.name}
                       </span>
                       <span className="text-[10px] font-mono bg-slate-950/60 px-1.5 py-0.5 rounded text-slate-500">
-                        {progress?.total}章
+                        {progress?.total} 主題
                       </span>
                     </div>
 
@@ -4061,7 +4546,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
             <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-950 text-xs text-slate-500">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-mono font-bold text-slate-300">
-                  顯示 {filteredSections.length} 個章節
+                  顯示 {filteredSections.length} 個主題
                 </span>
                 {unreadMinutes > 0 && (
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-950 text-slate-400 border border-slate-800 flex items-center gap-1">
@@ -4141,9 +4626,9 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
               <div className="p-3 bg-slate-950 border-b border-slate-850 flex items-center justify-between text-[11px] font-mono text-slate-400">
                 <span className="flex items-center gap-1.5 font-bold text-slate-200">
                   <List className="w-3.5 h-3.5 text-amber-400" />
-                  天書全章節系統目錄清單
+                  天書全主題系統目錄清單
                 </span>
-                <span>共 {filteredSections.length} 章</span>
+                <span>共 {filteredSections.length} 個主題</span>
               </div>
 
               <div className="divide-y divide-slate-850/60 overflow-x-auto">
@@ -4151,7 +4636,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                   <thead>
                     <tr className="bg-slate-950/40 text-[10px] font-mono text-slate-500 uppercase tracking-wider border-b border-slate-850">
                       <th className="p-3 pl-4">#</th>
-                      <th className="p-3">章節主題與核心點</th>
+                      <th className="p-3">主題名稱與核心能量解碼</th>
                       <th className="p-3">分類</th>
                       <th className="p-3">讀時</th>
                       <th className="p-3">狀態</th>
@@ -4255,7 +4740,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
               {groupedSections.length === 0 ? (
                 <div className="p-12 text-center rounded-2xl bg-slate-900 border border-slate-850">
                   <HelpCircle className="w-10 h-10 text-slate-600 mx-auto mb-3" />
-                  <p className="text-slate-400 text-sm font-medium">沒有找到任何符合的章節與解析內容</p>
+                  <p className="text-slate-400 text-sm font-medium">沒有找到任何符合的主題與解析內容</p>
                   <p className="text-xs text-slate-600 mt-1">請嘗試修改搜尋詞，或切換不同的分類與狀態標籤</p>
                 </div>
               ) : (
@@ -4274,12 +4759,12 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                             <h2 className="text-sm font-black text-slate-100 flex items-center gap-2">
                               <span>{group.categoryName}</span>
                               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 text-amber-400 border border-slate-800">
-                                {group.sections.length} 章
+                                {group.sections.length} 主題
                               </span>
                             </h2>
                             {progress && (
                               <p className="text-[10px] text-slate-500 font-mono mt-0.5">
-                                進度：已研讀 {progress.read} / {progress.total} 章 ({progress.percent}%)
+                                進度：已研讀 {progress.read} / {progress.total} 主題 ({progress.percent}%)
                               </p>
                             )}
                           </div>
@@ -4509,7 +4994,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                         ? 'bg-amber-400/10 border-amber-400/30 text-amber-400'
                         : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
                     }`}
-                    title="收藏此章"
+                    title="收藏此主題"
                   >
                     <Star className="w-4 h-4" fill={bookmarks[currentModalSec.id] ? 'currentColor' : 'transparent'} />
                   </button>
@@ -4536,7 +5021,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
               <div className="p-6 md:p-8 overflow-y-auto space-y-6 flex-grow">
                 <div className="space-y-2 border-b border-slate-850 pb-5">
                   <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
-                    <span>章節 {currentModalIndex + 1} / {filteredSections.length}</span>
+                    <span>主題 {currentModalIndex + 1} / {filteredSections.length}</span>
                     <span>✦</span>
                     <span className="flex items-center gap-1 text-amber-400">
                       <Clock className="w-3 h-3" />
@@ -4603,7 +5088,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                     }`}
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
-                    上一章
+                    上一篇
                   </button>
 
                   <button
@@ -4615,7 +5100,7 @@ export default function FullReportView({ initialCategory = 'all', hideBanner = f
                         : 'bg-slate-950 text-slate-700 border-slate-900 opacity-50 cursor-not-allowed'
                     }`}
                   >
-                    下一章
+                    下一篇
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>

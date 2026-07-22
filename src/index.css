@@ -33,8 +33,10 @@
 
 /* Ensure vibrant colored text stays crystal clear & legible in light mode */
 [data-theme="light"] .text-amber-400,
-[data-theme="light"] .text-amber-300 {
-  color: #b45309;
+[data-theme="light"] .text-amber-300,
+[data-theme="light"] .text-amber-200,
+[data-theme="light"] .text-amber-100 {
+  color: #78350f;
 }
 [data-theme="light"] .text-indigo-400,
 [data-theme="light"] .text-indigo-300 {

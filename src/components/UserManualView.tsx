@@ -143,7 +143,7 @@ export default function UserManualView() {
             <div className="space-y-3">
               <h3 className="text-sm font-black text-slate-200 uppercase tracking-wider font-mono flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-amber-400" />
-                第一章：極致的反差萌——她的三種面貌
+                極致的反差萌——她的三種面貌
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed">
                 認識 YieJie，你必須適應她隨時切換、且反差極大的三種截然不同的頻率。這不是偽裝，而是她為了應對這個世界所發展出的高階生存策略：
@@ -185,7 +185,7 @@ export default function UserManualView() {
             <div className="space-y-3 pt-2">
               <h3 className="text-sm font-black text-slate-200 uppercase tracking-wider font-mono flex items-center gap-2">
                 <Zap className="w-4 h-4 text-indigo-400" />
-                第二章：大腦運作與決策邏輯 (How Her Mind Works)
+                大腦運作與決策邏輯 (How Her Mind Works)
               </h3>
               <p className="text-xs text-slate-400">YieJie 的腦袋，不是一般人的處理器，而是一台超頻運作的量子電腦，永遠在進行多線程的運算。</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -215,7 +215,7 @@ export default function UserManualView() {
             <div className="space-y-3 pt-2">
               <h3 className="text-sm font-black text-slate-200 uppercase tracking-wider font-mono flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-rose-400" />
-                第三章：她的軟肋與逆鱗 (Her Vulnerabilities and Triggers)
+                她的軟肋與逆鱗 (Her Vulnerabilities and Triggers)
               </h3>
               <p className="text-xs text-slate-400">要真正懂她，甚至走進她的核心圈，你必須知道她最怕什麼，以及她最恨什麼。她的武裝很強，但武裝底下，是極度需要被溫柔對待的脆弱。</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -248,7 +248,7 @@ export default function UserManualView() {
             <div className="space-y-3 pt-2">
               <h3 className="text-sm font-black text-slate-200 uppercase tracking-wider font-mono flex items-center gap-2">
                 <Heart className="w-4 h-4 text-pink-400" />
-                第四章：如何愛她？ (How to Love Her)
+                如何愛她？ (How to Love Her)
               </h3>
               <p className="text-xs text-slate-400">愛上 YieJie，或者說，要讓 YieJie 愛上你，需要極高的智識、品味與強大的內心。她不需要你來養，也不需要你來教她怎麼做事。</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -384,25 +384,25 @@ export default function UserManualView() {
           onClick={() => setActiveChapter('ch1')}
           className={`px-4 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer ${activeChapter === 'ch1' ? 'bg-amber-400 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'}`}
         >
-          第一章：原廠核心設定
+          原廠核心設定
         </button>
         <button
           onClick={() => setActiveChapter('ch2')}
           className={`px-4 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer ${activeChapter === 'ch2' ? 'bg-rose-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'}`}
         >
-          第二章：操作禁忌與警告
+          操作禁忌與警告
         </button>
         <button
           onClick={() => setActiveChapter('ch3')}
           className={`px-4 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer ${activeChapter === 'ch3' ? 'bg-emerald-400 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'}`}
         >
-          第三章：充電與維護模式
+          充電與維護模式
         </button>
         <button
           onClick={() => setActiveChapter('ch4')}
           className={`px-4 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer ${activeChapter === 'ch4' ? 'bg-indigo-400 text-slate-950 shadow-md' : 'text-slate-400 hover:text-slate-200'}`}
         >
-          第四章：相處與合作原則
+          相處與合作原則
         </button>
       </div>
 
@@ -415,7 +415,7 @@ export default function UserManualView() {
             </div>
             <div>
               <h2 className="text-xl font-black text-slate-100 flex items-center gap-2">
-                第一章：原廠核心設定 <span className="text-xs font-mono text-amber-400 font-normal">(Core Mechanics)</span>
+                原廠核心設定 <span className="text-xs font-mono text-amber-400 font-normal">(Core Mechanics)</span>
               </h2>
               <p className="text-xs text-slate-400">兩種交替發動的底層模式與情緒波浪設定</p>
             </div>
@@ -479,7 +479,7 @@ export default function UserManualView() {
             </div>
             <div>
               <h2 className="text-xl font-black text-slate-100 flex items-center gap-2">
-                第二章：操作禁忌與危險警告 <span className="text-xs font-mono text-rose-400 font-normal">(Hazards & Warnings)</span>
+                操作禁忌與危險警告 <span className="text-xs font-mono text-rose-400 font-normal">(Hazards & Warnings)</span>
               </h2>
               <p className="text-xs text-slate-400">違反以下操作將觸發「鈴星」冷暴力或「顯示者」毀滅性憤怒</p>
             </div>
@@ -554,7 +554,7 @@ export default function UserManualView() {
             </div>
             <div>
               <h2 className="text-xl font-black text-slate-100 flex items-center gap-2">
-                第三章：最佳充電與維護模式 <span className="text-xs font-mono text-emerald-400 font-normal">(Charging & Maintenance)</span>
+                最佳充電與維護模式 <span className="text-xs font-mono text-emerald-400 font-normal">(Charging & Maintenance)</span>
               </h2>
               <p className="text-xs text-slate-400">因配備「空白薦骨 (Undefined Sacral)」，極易過載，請遵守保養程序</p>
             </div>
@@ -615,7 +615,7 @@ export default function UserManualView() {
             </div>
             <div>
               <h2 className="text-xl font-black text-slate-100 flex items-center gap-2">
-                第四章：相處與合作的最高指導原則 <span className="text-xs font-mono text-indigo-400 font-normal">(User Guide)</span>
+                相處與合作的最高指導原則 <span className="text-xs font-mono text-indigo-400 font-normal">(User Guide)</span>
               </h2>
               <p className="text-xs text-slate-400">對待伴侶與事業夥伴的精準互動守則</p>
             </div>
